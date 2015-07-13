@@ -29,20 +29,16 @@
         "module": "ngResource"
       },
       "router": {
-        "key": "angular-route",
-        "module": "ngRoute"
+        "key": "ui-router",
+        "module": "ui.router"
       },
       "ui": {
-        "key": "bootstrap",
-        "module": null
-      },
-      "bootstrapComponents": {
-        "key": "official",
+        "key": "none",
         "module": null
       },
       "cssPreprocessor": {
-        "key": "none",
-        "extension": "css"
+        "key": "node-sass",
+        "extension": "scss"
       },
       "jsPreprocessor": {
         "key": "none",
@@ -52,6 +48,12 @@
       "htmlPreprocessor": {
         "key": "none",
         "extension": "html"
+      },
+      "bootstrapComponents": {
+        "name": null,
+        "version": null,
+        "key": null,
+        "module": null
       },
       "foundationComponents": {
         "name": null,

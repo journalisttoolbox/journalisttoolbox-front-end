@@ -45,10 +45,10 @@
         'logo': 'protractor.png'
       },
       {
-        'title': 'Bootstrap',
-        'url': 'http://getbootstrap.com/',
-        'description': 'Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.',
-        'logo': 'bootstrap.png'
+        'title': 'Sass (Node)',
+        'url': 'https://github.com/sass/node-sass',
+        'description': 'Node.js binding to libsass, the C version of the popular stylesheet preprocessor, Sass.',
+        'logo': 'node-sass.png'
       }
     ];
 

@@ -14,9 +14,12 @@ gulp.task('watch', ['inject'], function () {
 
   gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], ['inject']);
 
-  gulp.watch(path.join(conf.paths.src, '/app/**/*.css'), function(event) {
+  gulp.watch([
+    path.join(conf.paths.src, '/app/**/*.css'),
+    path.join(conf.paths.src, '/app/**/*.scss')
+  ], function(event) {
     if(isOnlyChange(event)) {
-      browserSync.reload(event.path);
+      gulp.start('styles');
     } else {
       gulp.start('inject');
     }
