@@ -21,12 +21,23 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(moment) {
-      var vm = this;
+    function NavbarController() {
+      // var vm = this;
 
-      // "vm.creation" is avaible by directive option "bindToController: true"
-      vm.relativeDate = moment(vm.creationDate).fromNow();
+      // $scope.user = {
+      //     forename: 'Chris',
+      //     surname: 'Hutchinson',
+      //     image: 'https://pbs.twimg.com/profile_images/482607943071039488/vcujIxUA.jpeg',
+      // };
+
+        // $scope.home = function() {
+          // $state.go('home', {}, {reload: true});
+        // };
+
+        // $scope.missingPage = function() {
+            // alert('Whoops! We\'ve only spent a day on this project during the GEN #newsHack event.\n\nWe\'ll have these pages up very soon.\n\nTry searching for "images", "charts" or "maps" in the meantime for a quick demo.');
+        // };
+      }
     }
-  }
 
 })();
