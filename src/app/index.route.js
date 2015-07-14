@@ -7,7 +7,9 @@
 
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
- $stateProvider
+
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
       .state('home', {
         url: '/',
         templateUrl: 'app/main/main.html',
@@ -19,10 +21,11 @@
         templateUrl: 'app/app/app.html',
         controller: 'AppCtrl'
       })
-      .state('explore', {
-        url: '/explore/:category',
-        templateUrl: 'app/explore/explore.html',
-        controller: 'ExploreCtrl'
+      .state('tools', {
+        url: '/tools/:category',
+        templateUrl: 'app/tools/tools.html',
+        controller: 'ToolsCtrl',
+        controllerAs: 'tsCtrl'
       })
       .state('request', {
         url: '/request/:term',
@@ -40,9 +43,6 @@
         controller: 'InterestedCtrl'
       });
 
-    $urlRouterProvider.otherwise('/');
-
-    $urlRouterProvider.otherwise('/');
   }
 
 })();

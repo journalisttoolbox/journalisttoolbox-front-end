@@ -46,18 +46,18 @@
 	        link: 'charts',
 	      },
 	      {
-	        name: 'Long Reads',
+	        name: 'Audio',
 	        image: 'http://www.placehold.it/140x140',
-	        icon: 'newspaper',
+	        icon: 'sound',
 	        color: 'green',
-	        link: 'longreads',
+	        link: 'audio',
 	      },
 	      {
-	        name: 'Quizzes',
+	        name: 'Data Processing',
 	        image: 'http://www.placehold.it/140x140',
-	        icon: 'question',
+	        icon: 'calculator',
 	        color: 'orange',
-	        link: 'quizzes',
+	        link: 'data-processing',
 	      },
 	      {
 	        name: 'Timelines',
@@ -67,11 +67,11 @@
 	        link: 'timelines',
 	      },
 	      {
-	        name: 'Discovery',
+	        name: 'Design',
 	        image: 'http://www.placehold.it/140x140',
-	        icon: 'search',
+	        icon: 'paint brush',
 	        color: 'purple',
-	        link: 'discovery',
+	        link: 'design',
 	      },
 	    ];
 	}
