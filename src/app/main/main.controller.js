@@ -3,7 +3,7 @@
 
   angular
     .module('journalisttoolboxFrontend')
-    .controller('MainController', MainController);
+    .controller('MainCtrl', MainController);
 
   /** @ngInject */
   function MainController() {

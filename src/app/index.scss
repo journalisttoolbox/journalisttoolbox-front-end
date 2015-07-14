@@ -10,16 +10,41 @@
   padding: 0.2em 0;
 }
 
+img {
+  max-width: 100%; height: auto;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+.meta {
+  color: #9a9a9a;
+}
+
+.floated.right {
+  float: right;
+}
+
 body {
   margin: 0;
+  padding-top: 50px;
 }
 
 a {
   text-decoration: none;
 }
 
+.text.huge {
+  font-size: 4em;
+  vertical-align: middle;
+}
+
 .container {
-  width: 1170px;
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -118,6 +143,12 @@ a {
 
 hr {
   clear: both;
+}
+
+@media screen and (max-width: 680px) {
+  body {
+    padding-top: 100px;
+  }
 }
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
