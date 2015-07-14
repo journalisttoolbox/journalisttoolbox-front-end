@@ -3,25 +3,21 @@
 
   angular
     .module('journalisttoolboxFrontend')
-    .directive('acmeNavbar', acmeNavbar);
+    .directive('jtNavbar', jtNavbar);
 
   /** @ngInject */
-  function acmeNavbar() {
+  function jtNavbar() {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
-      scope: {
-          creationDate: '='
-      },
-      controller: NavbarController,
-      controllerAs: 'vm',
+      controller: NavbarCtrl,
       bindToController: true
     };
 
     return directive;
 
     /** @ngInject */
-    function NavbarController($scope, $state) {
+    function NavbarCtrl($scope, $state) {
 
       $scope.user = {
           forename: 'Chris',

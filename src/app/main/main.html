@@ -1,11 +1,38 @@
 <div class="container">
 
-<acme-navbar></acme-navbar>
+    <jt-navbar></jt-navbar>
 
-<div class="ui page centered grid stackable">
-	<div class="eight wide column center">
-		<img src="assets/images/logo.png" style="width: 100%; margin: 20px auto; display: block; max-width: 400px; ">
-	</div>
-</div>
-  
+    <div class="ui page centered grid stackable">
+        <div class="eight wide column center">
+            <img src="assets/images/logo.png" style="width: 100%; margin: 20px auto; display: block; max-width: 400px; ">
+        </div>
+    </div>
+
+
+    <form class="ui page grid" ng-submit="search()">
+        <div class="sixteen wide column">
+            <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
+                <input type="text" ng-model="term" placeholder="What are you looking to create...?">
+                <i class="search icon" ng-click="search()"></i>
+            </div>
+        </div>
+    </form>
+
+<div class="ui page grid stackable">
+    <div class="sixteen wide column">
+      <div class="ui divider"></div>
+    </div>
+  </div>
+
+  <jt-explore></jt-explore>
+
+  <div class="ui page grid">
+    <div class="sixteen wide column">
+      <div class="footer">
+        <p>With ♥ from The Sunday Times</p>
+      </div>
+    </div>
+  </div>
+
+
 </div>
