@@ -17,26 +17,15 @@
       })
       .state('explore', {
         url: 'explore/:cat',
-        templateUrl: 'app/tools/tools.html',
-        controller: 'ToolsCtrl',
-        controllerAs: 'tsCtrl'
+        templateUrl: 'app/explore/explore.html',
+        controller: 'ExploreCtrl'
+      })
+      .state('tool', {
+        url: 'tool/:id',
+        templateUrl: 'app/tool/tool.html',
+        controller: 'ToolCtrl'
       });
-      // .state('request', {
-      //   url: '/request/:term',
-      //   templateUrl: 'app/request/request.html',
-      //   controller: 'RequestCtrl'
-      // })
-      // .state('create', {
-      //   url: '/create',
-      //   templateUrl: 'app/create/create.html',
-      //   controller: 'CreateCtrl'
-      // })
-      // .state('interested', {
-      //   url: '/interested',
-      //   templateUrl: 'app/interested/interested.html',
-      //   controller: 'InterestedCtrl'
-      // });
-
+     
     // $urlRouterProvider.otherwise('/');
   }
 

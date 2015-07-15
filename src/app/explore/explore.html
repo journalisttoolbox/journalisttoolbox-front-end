@@ -1,0 +1,40 @@
+
+<div class="container">
+	
+	<div class="ui four column grid">
+		<div class="center aligned column row">
+			<h1 class="centered">{{category | uppercase}}</h1>
+		</div>
+		<div class="column" ng-repeat="tool in tools">
+			<div class="ui cards">
+				<div class="card" style="margin-left: auto; margin-right: auto;">
+					<a ui-sref="tool({id: tool._id})" class="image">
+						<img ng-src="http://placehold.it/200x200">
+					</a>    
+					<div class="content">
+						<div class="ui floated right" ng-if="higherUpvotes(record.acf.upvotes, record.acf.downvotes)">
+							<i class="thumbs up icon green"></i> 
+							<span class="text">{{record.acf.upvotes}}</span>
+						</div>
+						<div class="ui floated right" ng-if="higherDownvotes(record.acf.upvotes, record.acf.downvotes)">
+							<i class="thumbs down icon red"></i> 
+							<span class="text">{{record.acf.downvotes}}</span>
+						</div>
+						<a ui-sref="tool({id: tool._id})">
+						<div class="header"><h3>{{tool.name}}</h3></div>
+						</a>
+						<div class="meta">
+							<span><i class="file image outline icon"></i><span ng-repeat="cat in tool.category">{{cat}}{{$last ? '' : ', '}}</span></span>
+						</div>
+						<div class="ui divider"></div>
+						<div><span class="tool-description">{{tool.description}}</span></div>
+					</div>
+					<a ui-sref="tool({id: tool._id})" class="ui bottom attached button primary">
+						<i class="eye icon"></i>
+						View tool
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
