@@ -15,8 +15,8 @@
         controller: 'MainCtrl',
         controllerAs:'vm'
       })
-      .state('tools', {
-        url: '/tools/:category',
+      .state('explore', {
+        url: 'explore/:cat',
         templateUrl: 'app/tools/tools.html',
         controller: 'ToolsCtrl',
         controllerAs: 'tsCtrl'
