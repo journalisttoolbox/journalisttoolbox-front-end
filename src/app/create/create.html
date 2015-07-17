@@ -1,0 +1,120 @@
+<form class="ui form container">
+
+  <h2 class="ui horizontal divider header">
+    <i class="cube icon"></i>
+    Tool Information
+  </h2>
+
+  <div class="two fields">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" name="name" id="name" placeholder="Tool Name">
+    </div>
+    <div class="field">
+      <label>Developer</label>
+      <input type="text" name="developer" id="developer" placeholder="Developer Name">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Description</label>
+    <textarea name="description" id="description"></textarea>
+  </div>
+
+  <div class="three fields">
+    <div class="field" align="center">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" name="free" id="free">
+        <label for="free">Free to use</label>
+      </div>
+    </div>
+
+    <div class="field ui left icon input">
+      <input type="text" placeholder="Price" name="price" id="price">      
+      <i class="dollar icon"></i>
+    </div>
+    
+    <div class="field ui left icon input">
+      <input type="text" placeholder="Version #" name="version" id="version">      
+      <i class="cubes icon"></i>
+    </div>
+
+  </div>
+
+  <label><b>Company(ies) using this tool</b></label>
+  <div class="ui left icon input">
+      <input type="text" name="companies" id="companies" placeholder="Separate each company by a comma">
+      <i class="users icon"></i>
+  </div>
+
+  <label><b>Category</b></label>
+  <div class="ui left icon input">
+      <input type="text" name="companies" id="companies" placeholder="Separate each category by a comma">
+      <i class="tags icon"></i>
+  </div>
+
+  <h2 class="ui horizontal divider header">
+    <i class="linkify icon"></i>
+    Links
+  </h2>
+
+  <div class="ui labeled input">
+
+    <div class="ui label">
+      http://
+    </div>
+    <input type="text" placeholder="Home URL" name="home" id="home">
+
+    <div class="ui label">
+      http://
+    </div>
+    <input type="text" placeholder="Github URL" name="git" id="git">
+  </div>
+
+  <div class="ui labeled input">
+    <div class="ui label">
+    http://
+    </div>
+    <input type="text" placeholder="Download URL" name="download" id="download">
+  </div>
+
+  <h2 class="ui horizontal divider header">
+    <i class="laptop icon"></i>
+    Platforms
+  </h2>
+
+  <div class="inline fields" align="center">
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" name="pc" id="pc">
+        <label for="pc">Windows</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" name="mac" id="mac">
+        <label for="mac">MacOS</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" name="linux" id="linux">
+        <label for="linux">Linux</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" name="web" id="web">
+        <label for="web">Web</label>
+      </div>
+    </div>
+    <div class="field">
+        <label>Other</label>
+        <input type="text" placeholder="Other platform" name="platform-extra" id="platform-extra">
+    </div>
+  </div><br><br>
+<div align="center">
+  <button class="huge positive ui button" type="submit">Submit</button>
+</div>
+<br><br>
+</form>

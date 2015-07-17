@@ -24,6 +24,11 @@
         url: 'tool/:id',
         templateUrl: 'app/tool/tool.html',
         controller: 'ToolCtrl'
+      })
+      .state('create', {
+        url: 'create/',
+        templateUrl: 'app/create/create.html',
+        controller: 'CreateCtrl'
       });
      
     // $urlRouterProvider.otherwise('/');
