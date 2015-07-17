@@ -12,13 +12,13 @@
 						<img ng-src="http://placehold.it/200x200">
 					</a>    
 					<div class="content">
-						<div class="ui floated right" ng-if="higherUpvotes(record.acf.upvotes, record.acf.downvotes)">
+						<div class="ui floated right" ng-if="tool.downvotes <= tool.upvotes">
 							<i class="thumbs up icon green"></i> 
-							<span class="text">{{record.acf.upvotes}}</span>
+							<span class="text">{{tool.upvotes}}</span>
 						</div>
-						<div class="ui floated right" ng-if="higherDownvotes(record.acf.upvotes, record.acf.downvotes)">
+						<div class="ui floated right" ng-if="tool.downvotes > tool.upvotes">
 							<i class="thumbs down icon red"></i> 
-							<span class="text">{{record.acf.downvotes}}</span>
+							<span class="text">{{tool.downvotes}}</span>
 						</div>
 						<a ui-sref="tool({id: tool._id})">
 						<div class="header"><h3>{{tool.name}}</h3></div>
