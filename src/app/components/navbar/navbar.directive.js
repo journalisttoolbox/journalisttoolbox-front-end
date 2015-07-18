@@ -17,7 +17,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarCtrl($scope, $state) {
+    function NavbarCtrl($scope) {
       $scope.user = {
           forename: 'Chris',
           surname: 'Hutchinson',
