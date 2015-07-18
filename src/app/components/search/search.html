@@ -8,7 +8,18 @@
         </div>
     </form>
 
-    <div class="ui page grid stackable" ng-if="tools">
+    <div class="ui page grid stackable" ng-show="noResults">
+        <div class="twelve wide centered column">
+            <div class="ui negative message">
+                  <div class="header">
+                    No results found.
+                  </div>
+                  <p>Please try with a different search term</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ui page grid stackable" ng-show="!noResults">
 
         <!-- <div class="four wide column">
             <div class="ui fluid icon input">
@@ -26,6 +37,7 @@
                 <label for="demo">Demo</label>
             </div>
         </div> -->
+
 
         <div class="four wide column" ng-repeat="tool in tools">
             <div class="ui cards">

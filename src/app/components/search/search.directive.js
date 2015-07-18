@@ -18,12 +18,23 @@
 			$scope.term = "";
 			$scope.filters = {};
 			$scope.tools = {};
+			$scope.noResults = false;
+
 			$scope.search = function(){
+				$scope.tools = {};
 				$scope.loading = true;
 				$http({
 					method: 'GET',
 					url: 'http://localhost:3030/api/tools/search/' + $scope.term
 				}).success(function(data){
+
+					if(data.length == 0){
+						$scope.noResults = true;
+					}
+					else {
+						$scope.noResults = false;
+					}
+					
 					$scope.tools = data;
 					$scope.loading = false;
 				});
