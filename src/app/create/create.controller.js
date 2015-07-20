@@ -6,20 +6,11 @@
 	.controller('CreateCtrl', CreateController);
 
 	/** @ngInject */
-	function CreateController($scope, $http, $stateParams){
+	function CreateController($scope, $http, $stateParams, $state, createTool){
 
-		$scope.caca = function(){
-			//$scope.formData = {};
-			$http({
-					method: 'POST',
-					url: 'http://localhost:3030/api/tools/post',
-					data: $scope.formData
-            }).success(function(data) {
-               alert("inserted");
-            })
-            .error(function(data) {
-                alert("fail");
-            });
+    $scope.caca = function(){
+      //$scope.formData = {};
+      createTool.post($scope.formData);
 		};
 	}
 })();
