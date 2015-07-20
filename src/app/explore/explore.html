@@ -27,7 +27,7 @@
 							<span><i class="file image outline icon"></i><span ng-repeat="cat in tool.category">{{cat}}{{$last ? '' : ', '}}</span></span>
 						</div>
 						<div class="ui divider"></div>
-						<div><span class="tool-description">{{tool.description}}</span></div>
+						<div style="height: 50px; max-height: 50px;"><span class="tool-description">{{tool.description | limitTo: 90 }}{{tool.description.length > 90 ? '...' : ''}}</span></div>
 					</div>
 					<a ui-sref="tool({id: tool._id})" class="ui bottom attached button primary">
 						<i class="eye icon"></i>
