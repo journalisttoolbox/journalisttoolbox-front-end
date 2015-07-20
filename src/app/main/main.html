@@ -6,6 +6,15 @@
         </div>
     </div>
 
+    <div class="createSuccess animate-if" ng-if="showToolMessage">
+      <div class="ui positive message">
+        <div class="header">
+          <h1>Tool successfully inserted!</h1>
+        </div>
+        <p>{{ toolName }} was added to the database.</p>
+      </div>
+    </div>
+
     <jt-search></jt-search>
 
     <div class="ui page grid stackable">
