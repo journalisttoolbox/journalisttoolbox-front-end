@@ -1,9 +1,9 @@
 <div>
-    <form class="ui page grid" ng-submit="search()">
+    <form class="ui page grid">
         <div class="sixteen wide column">
             <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
-                <input type="text" ng-model="term" placeholder="What are you looking to create...?">
-                <i class="search icon" ng-click="search()"></i>
+                <input type="text" ng-model="term" ng-keyup="onKeyUp()" placeholder="What are you looking to create...?">
+                <i class="search icon"></i>
             </div>
         </div>
     </form>
@@ -18,9 +18,8 @@
             </div>
         </div>
     </div>
-    
-    <div class="ui page grid stackable" ng-show="!noResults">
 
+    <div class="ui page grid stackable" ng-show="!noResults">
         <!-- <div class="four wide column">
             <div class="ui fluid icon input">
                 <input type="text" ng-model="filters.acf.documentation_languages" placeholder="Documentation languages...">
@@ -39,7 +38,7 @@
         </div> -->
 
 
-        <div class="four wide column" ng-repeat="tool in tools">
+        <div class="four wide column" ng-repeat="tool in tools | filter:term">
             <div class="ui cards">
                 <div class="card" style="margin-left: auto; margin-right: auto;">
                     <a ui-sref="tool({id: tool._id})" class="image">
