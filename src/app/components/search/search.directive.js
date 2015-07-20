@@ -17,28 +17,25 @@
 		function SearchController($scope, $http){
 			$scope.term = "";
 			$scope.filters = {};
-			$scope.tools = {};
-			$scope.noResults = false;
+			$scope.tools = [];
+			var allTools = {};
+			var pterm = "";
 
-			$scope.search = function(){
-				$scope.tools = {};
-				$scope.loading = true;
-				$http({
+			$http({
 					method: 'GET',
-					url: 'http://localhost:3030/api/tools/search/' + $scope.term
+					url: 'http://localhost:3030/api/tools/'
 				}).success(function(data){
+					allTools = data;
+			});
 
-					if(data.length == 0){
-						$scope.noResults = true;
-					}
-					else {
-						$scope.noResults = false;
-					}
-					
-					$scope.tools = data;
-					$scope.loading = false;
-				});
-			};
+			$scope.onKeyUp = function(){
+				if($scope.term.length >= 3){
+					$scope.tools = allTools;
+				}
+				else{
+					$scope.tools = [];
+				}
+			}
 		}
 	}
 
