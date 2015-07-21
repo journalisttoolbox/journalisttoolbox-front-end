@@ -1,4 +1,4 @@
-# journalisttoolbox-front-end
+# Journalist Toolbox Front-end
 
 ## How to use
 ### Setup
