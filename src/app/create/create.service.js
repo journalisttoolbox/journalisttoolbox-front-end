@@ -24,10 +24,10 @@
       };
 
       // POST method to post to the tools endpoint
-      createTool.post = function( formData ) { 
+      createTool.post = function(formData) { 
         $http({
           method: 'POST',
-          url: 'http://localhost:3030/api/tools/post',
+          url: 'http://localhost:3030/api/tools',
           data: formData})
         .success(function(data) {
           // Redirect to homepage on success
@@ -40,7 +40,7 @@
           return data;
         })
         .error(function(err) {
-          alert('error: ' + err);
+          alert('error: ' + err.message);
         });
       };
       return createTool;
