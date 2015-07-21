@@ -1,4 +1,4 @@
-<form  ng-submit="caca()" class="ui form container">
+<form name="createToolForm" ng-submit="submitTool()" class="ui form container" novalidate>
 
   <h2 class="ui horizontal divider header">
     <i class="cube icon"></i>
@@ -6,47 +6,62 @@
   </h2>
 
   <div class="two fields">
+    <!-- NAME FIELD -->
     <div class="field">
       <label>Name</label>
-      <input type="text" ng-model="formData.name" name="name" id="name" placeholder="Tool Name">
+      <input type="text" ng-model="formData.name" name="name" id="name" placeholder="Tool Name" required>
+      <p class="fieldRequired" ng-show="createToolForm.name.$invalid && !createToolForm.name.$pristine">Your name is required.</p>
     </div>
+
+    <!-- DEVELOPER FIELD -->
     <div class="field">
       <label>Developer</label>
-      <input type="text" ng-model="formData.developer" name="developer" id="developer" placeholder="Developer Name">
+      <input type="text" ng-model="formData.developer" name="developer" id="developer" placeholder="Developer Name" required>
+      <p class="fieldRequired" ng-show="createToolForm.developer.$invalid && !createToolForm.developer.$pristine">The developer name is required.</p>
     </div>
   </div>
 
   <div class="field">
+    <!-- DESCRIPTION FIELD -->
     <label>Description</label>
-    <textarea ng-model="formData.description" name="description" id="description"></textarea>
+    <textarea ng-model="formData.description" name="description" id="description" required ng-maxlength="300"></textarea>
+    <p class="fieldRequired" ng-show="createToolForm.description.$invalid && !createToolForm.description.$pristine && !createToolForm.description.$error.maxlength">You need to provide a description.</p>
+    <p class="fieldRequired" ng-show="createToolForm.description.$error.maxlength && !createToolForm.description.$pristine">You have entered too many characters. Please reduce to 300.</p>
   </div>
 
   <div class="three fields">
     <div class="field" align="center">
       <div class="ui checkbox">
+        <!-- FREE TO USE CONDITIONAL -->
         <input ng-model="formData.free" type="checkbox" tabindex="0" class="hidden" name="free" id="free">
         <label for="free">Free to use</label>
       </div>
     </div>
 
+    <!-- PRICE FIELD -->
     <div class="field ui left icon input">
-      <input ng-model="formData.price" type="text" placeholder="Price" name="price" id="price">      
+      <input ng-disabled="formData.free" ng-model="formData.price" type="number" placeholder="Price" name="price" id="price">      
       <i class="dollar icon"></i>
+      <p class="fieldRequired" ng-show="createToolForm.price.$invalid && !createToolForm.price.$pristine">Please enter a valid number</p>
     </div>
     
+    <!-- VERSION FIELD -->
     <div class="field ui left icon input">
-      <input ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version">      
+      <input ng-model="formData.version" type="number" placeholder="Version #" name="version" id="version" required>      
       <i class="cubes icon"></i>
+       <p class="fieldRequired" ng-show="createToolForm.version.$invalid && !createToolForm.version.$pristine">Please enter a valid version number</p>
     </div>
 
   </div>
 
+  <!-- COMAPNIES FIELD -->
   <label><b>Company(ies) using this tool</b></label>
   <div class="ui left icon input">
       <input type="text" ng-model="formData.companies" name="companies" id="companies" placeholder="Separate each company by a comma">
       <i class="users icon"></i>
   </div>
 
+  <!-- CATEGORY FIELD -->
   <label><b>Category</b></label>
   <div class="ui left icon input">
       <input type="text" ng-model="formData.category" name="companies" id="companies" placeholder="Separate each category by a comma">
@@ -61,21 +76,24 @@
   <div class="ui labeled input">
 
     <div class="ui label">
-      http://
     </div>
-    <input type="text" ng-model="formData.home" placeholder="Home URL" name="home" id="home">
+    <!-- HOME LINK -->
+    <input type="url" ng-model="formData.home" placeholder="Home URL" name="home" id="home">
+    <p class="fieldRequired" ng-show="createToolForm.home.$invalid && !createToolForm.home.$pristine">Please enter a valid URL - append with 'http://'</p>
 
     <div class="ui label">
-      http://
     </div>
-    <input type="text" ng-model="formData.git" placeholder="Github URL" name="git" id="git">
+    <!-- GIT LINK -->
+    <input type="url" ng-model="formData.git" placeholder="Github URL" name="git" id="git">
+    <p class="fieldRequired" ng-show="createToolForm.git.$invalid && !createToolForm.git.$pristine">Please enter a valid URL - append with 'http://'</p>
   </div>
 
   <div class="ui labeled input">
     <div class="ui label">
-    http://
     </div>
-    <input type="text" ng-model="formData.download" placeholder="Download URL" name="download" id="download">
+    <!-- DOWNLOAD LINK -->
+    <input type="url" ng-model="formData.download" placeholder="Download URL" name="download" id="download">
+    <p class="fieldRequired" ng-show="createToolForm.download.$invalid && !createToolForm.download.$pristine">Please enter a valid URL - append with 'http://'</p>
   </div>
 
   <h2 class="ui horizontal divider header">
@@ -114,7 +132,7 @@
     </div>
   </div><br><br>
 <div align="center">
-  <button type="submit" class="huge positive ui button">Submit</button>
+  <button type="submit" ng-disabled="createToolForm.$invalid" class="huge positive ui button">Submit</button>
 </div>
 <br><br>
 </form>
