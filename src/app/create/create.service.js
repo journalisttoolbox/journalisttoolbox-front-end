@@ -27,8 +27,9 @@
       createTool.post = function(formData) { 
         $http({
           method: 'POST',
-          url: 'http://localhost:3030/api/tools',
-          data: formData})
+          url: 'http://localhost:3030/api/tools/',
+          data: formData
+        })
         .success(function(data) {
           // Redirect to homepage on success
           $state.go('home');
@@ -40,7 +41,7 @@
           return data;
         })
         .error(function(err) {
-          alert('error: ' + err.message);
+          alert('error: ' + err);
         });
       };
       return createTool;
