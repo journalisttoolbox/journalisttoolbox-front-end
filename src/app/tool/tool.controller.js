@@ -12,7 +12,6 @@
     toolService.toolResource.get({ id: $stateParams.id })
       .$promise.then(function(data) {
         $scope.tool = data;
-        console.log('yo! ' + $scope.tool);
       });
   }
 
