@@ -1,5 +1,17 @@
 .admin {
   text-align: center;
+  padding: 0 50px;
+
+  .table {
+    font-size: 10px;
+    word-break: break-word;
+    margin-bottom: 50px!important;
+    
+    th {
+      width: 5%;
+    }
+
+  }
 }
 h2 {
   font-size: 20px;

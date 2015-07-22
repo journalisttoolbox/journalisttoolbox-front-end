@@ -3,11 +3,57 @@
     <div class="center aligned column row">
       <h1 class="centered">ADMIN</h1>
     </div>
+  </div>
 
-  <div class="center aligned column row">
-    <h2>Select category you wish to edit:</h2>
-    <div class="ui black basic button">Users</div>
-    <div class="ui black basic button">Tools</div>
-  </div>
-  </div>
+<!-- TOOLS -->
+<table class="ui table segment">
+<h1>TOOLS</h1>
+  <thead>
+    <tr>
+      <th>Name:</th>
+      <th>Developer:</th>
+      <th>Description:</th>
+      <th>Free to use:</th>
+      <th>Price:</th>
+      <th>Version:</th>
+      <th>Using this tool:</th>
+      <th>Category:</th>
+      <th>Home URL:</th>
+      <th>GitHub URL:</th>
+      <th>Download URL:</th>
+      <th>MODIFY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="tool in toolList">
+      <td>{{ tool.name || 'empty'}}</td>
+      <td>{{ tool.developer || 'empty'}}</td>
+      <td>{{ tool.description || 'empty'}}</td>
+      <td>{{ tool.free || 'empty'}}</td>
+      <td>{{ tool.price || 'empty'}}</td>
+      <td>{{ tool.version || 'empty'}}</td>
+      <td><p ng-repeat="comp in tool.organization">{{ comp || 'empty'}}</p></td>
+      <td><p ng-repeat="cat in tool.category">{{ cat || 'empty'}}</p></td>
+      <td>{{ tool.home_url || 'empty'}}</td>
+      <td>{{ tool.github_url || 'empty'}}</td>
+      <td>{{ tool.download_url || 'empty'}}</td>
+      <td><button>edit</button></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr><th colspan="3">
+<!--       <div class="ui blue labeled icon button" ng-click="addTool()"><i class="user icon"></i>Add Tool</div> -->
+
+      <!-- ADD TOOL -->
+<!--       <div class="addToolState" ng-show="addToolState">
+        <form name="adminAddTool" ng-submit="adminSubmitTool()">
+          <input class="input field" type="text" name="name" ng-model="adminToolFormData.name" placeholder="name">
+          <input class="input field" type="text" name="developer" ng-model="adminToolFormData.developer" placeholder="developer">
+          <input class="input field" type="text" name="developer" ng-model="adminToolFormData.developer" placeholder="developer">
+        </form>
+      </div> -->
+
+    </th>
+  </tr></tfoot>
+</table>
 </div>
