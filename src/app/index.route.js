@@ -37,10 +37,18 @@
       controller: 'CreateCtrl'
     };
 
+    var admin = {
+      name: 'admin',
+      url: '/admin',
+      templateUrl: 'app/admin/admin.html',
+      controller: 'AdminCtrl'
+    };
+
     $stateProvider.state(home);
     $stateProvider.state(explore);
     $stateProvider.state(tool);
     $stateProvider.state(create);
+    $stateProvider.state(admin);
 
     $urlRouterProvider.otherwise('/');
 

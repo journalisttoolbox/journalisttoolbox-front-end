@@ -6,7 +6,7 @@
 	.controller('CreateCtrl', CreateController);
 
 	/** @ngInject */
-	function CreateController($scope, $http, $stateParams, $state, createTool) {
+	function CreateController($scope, $http, $stateParams, $state, toolService) {
 
     // Add the 'http://' if not already present
     $scope.prependHttp = function(url) {
@@ -24,9 +24,19 @@
       $scope.formData.home     = $scope.prependHttp($scope.formData.home);
       $scope.formData.download = $scope.prependHttp($scope.formData.download);
 
-      createTool.post($scope.formData);
+      toolService.toolResource.save($scope.formData)
+        .$promise.then(function(user) {
+          console.log('added');
+
+          // Show a message on homepage on successful addition
+          toolService.toolAdded($scope.formData.name);
+
+          $state.go('home');
+          window.scroll(0, 0); 
+        }, function(reason) {
+          console.log('error ' + reason);
+        });
 		};
 
-    $scope.test = false;
 	}
 })();

@@ -6,17 +6,17 @@
     .controller('MainCtrl', MainController);
 
   /** @ngInject */
-  function MainController($scope, createTool, $timeout) {
+  function MainController($scope, toolService, $timeout) {
 
-    $scope.showToolMessage = createTool.getState();
+    $scope.showToolMessage = toolService.getState();
     $scope.toolName = '';
 
     // If tool is created, fade out the message
     if($scope.showToolMessage) {
-      $scope.toolName = createTool.getName();
+      $scope.toolName = toolService.getName();
       $timeout(hideMessage, 1750);
       
-      createTool.setStateFalse();
+      toolService.setStateFalse();
     }
 
     // Change the state to false to hide the message box

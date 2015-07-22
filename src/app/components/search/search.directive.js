@@ -14,19 +14,17 @@
 
 		return directive;
 		/** @ngInject */
-		function SearchController($scope, $http){
+		function SearchController($scope, $http, toolService){
 			$scope.term = "";
 			$scope.filters = {};
 			$scope.tools = [];
 			var allTools = {};
-			var pterm = "";
+			var pterm = '';
 
-			$http({
-					method: 'GET',
-					url: 'http://localhost:3030/api/tools/'
-				}).success(function(data){
-					allTools = data;
-			});
+			toolService.toolResource.query()
+        .$promise.then(function(data) {
+          allTools = data;
+        });
 
 			$scope.onKeyUp = function(){
 				if($scope.term.length >= 3){
