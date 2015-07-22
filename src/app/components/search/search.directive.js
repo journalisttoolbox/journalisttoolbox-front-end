@@ -33,7 +33,7 @@
 				else{
 					$scope.tools = [];
 				}
-			}
+			};
 		}
 	}
 

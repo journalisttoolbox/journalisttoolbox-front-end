@@ -26,8 +26,6 @@
 
       toolService.toolResource.save($scope.formData)
         .$promise.then(function() {
-          console.log('added');
-
           // Show a message on homepage on successful addition
           toolService.toolAdded($scope.formData.name);
 
