@@ -25,7 +25,7 @@
       $scope.formData.download = $scope.prependHttp($scope.formData.download);
 
       toolService.toolResource.save($scope.formData)
-        .$promise.then(function(user) {
+        .$promise.then(function() {
           console.log('added');
 
           // Show a message on homepage on successful addition

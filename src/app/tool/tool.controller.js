@@ -7,12 +7,13 @@
 	.controller('ToolCtrl', ToolController);
 
 	/** @ngInject */
-	function ToolController($scope, $http, $stateParams){
+	function ToolController($scope, toolService, $stateParams){
 		$scope.tool = {};
-		$http({method:'GET', url:'http://localhost:3030/api/tools/' + $stateParams.id})
-			.success(function(data){
-				$scope.tool = data;
-			});
-	}
+    toolService.toolResource.get({ id: $stateParams.id })
+      .$promise.then(function(data) {
+        $scope.tool = data;
+        console.log('yo! ' + $scope.tool);
+      });
+  }
 
 })();
