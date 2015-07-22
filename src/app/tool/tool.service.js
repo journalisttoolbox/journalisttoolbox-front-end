@@ -12,7 +12,8 @@
       // Tool service resource
       toolService.toolResource = 
         $resource('http://localhost:3030/api/tools/:id', {id: '@id'}, {
-          save: { method: 'POST', isArray: true }
+          save: { method: 'POST', isArray: true },
+          'update': { method : 'PUT', params: { id: '@id' } }
         });
 
       toolService.toolAdded = function(name) {

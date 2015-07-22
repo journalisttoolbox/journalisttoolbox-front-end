@@ -5,55 +5,22 @@
     </div>
   </div>
 
-<!-- TOOLS -->
-<table class="ui table segment">
-<h1>TOOLS</h1>
-  <thead>
-    <tr>
-      <th>Name:</th>
-      <th>Developer:</th>
-      <th>Description:</th>
-      <th>Free to use:</th>
-      <th>Price:</th>
-      <th>Version:</th>
-      <th>Using this tool:</th>
-      <th>Category:</th>
-      <th>Home URL:</th>
-      <th>GitHub URL:</th>
-      <th>Download URL:</th>
-      <th>MODIFY</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="tool in toolList">
-      <td>{{ tool.name || 'empty'}}</td>
-      <td>{{ tool.developer || 'empty'}}</td>
-      <td>{{ tool.description || 'empty'}}</td>
-      <td>{{ tool.free || 'empty'}}</td>
-      <td>{{ tool.price || 'empty'}}</td>
-      <td>{{ tool.version || 'empty'}}</td>
-      <td><p ng-repeat="comp in tool.organization">{{ comp || 'empty'}}</p></td>
-      <td><p ng-repeat="cat in tool.category">{{ cat || 'empty'}}</p></td>
-      <td>{{ tool.home_url || 'empty'}}</td>
-      <td>{{ tool.github_url || 'empty'}}</td>
-      <td>{{ tool.download_url || 'empty'}}</td>
-      <td><button>edit</button></td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr><th colspan="3">
-<!--       <div class="ui blue labeled icon button" ng-click="addTool()"><i class="user icon"></i>Add Tool</div> -->
+    <!-- TOOLS TABLE -->
+    <table class="ui table segment">
+    <h2>TOOLS</h2>
+    <p>Click to edit field.</p>
+      <tr>
+        <th ng-repeat="(head, value) in toolList[0]"><span>{{ head }}</span></th>
+        <th>UPDATE</th>
+      </tr>
+      <tr ng-repeat="row in toolList">
+        <td ng-repeat="(name, value) in row" ng-scope>
+          <a href="#" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
+          <input ng-model="row[name]" ng-show="editing" />
+          <button ng-click="editing = false" ng-show="editing">ok</button>
+        </td>    
+        <td><i class="upload icon"></i></td>
+      </tr>
+    </table>
 
-      <!-- ADD TOOL -->
-<!--       <div class="addToolState" ng-show="addToolState">
-        <form name="adminAddTool" ng-submit="adminSubmitTool()">
-          <input class="input field" type="text" name="name" ng-model="adminToolFormData.name" placeholder="name">
-          <input class="input field" type="text" name="developer" ng-model="adminToolFormData.developer" placeholder="developer">
-          <input class="input field" type="text" name="developer" ng-model="adminToolFormData.developer" placeholder="developer">
-        </form>
-      </div> -->
-
-    </th>
-  </tr></tfoot>
-</table>
 </div>
