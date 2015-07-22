@@ -37,10 +37,18 @@
       controller: 'CreateCtrl'
     };
 
+    var signup = {
+      name: 'signup',
+      url: '/signup',
+      templateUrl: 'app/signup/signup.html',
+      controller: 'SignupCtrl'
+    };
+
     $stateProvider.state(home);
     $stateProvider.state(explore);
     $stateProvider.state(tool);
     $stateProvider.state(create);
+    $stateProvider.state(signup);
 
     $urlRouterProvider.otherwise('/');
 
