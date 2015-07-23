@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('journalisttoolboxFrontend')
-  .factory('Auth', function Auth($http, $location, $rootScope, $cookies) {
+  .factory('Auth', function Auth($location, $cookies, $rootScope, Session, User) {
     // $rootScope.currentUser = $cookieStore.get('user') || null;
     // $cookieStore.remove('user');
 
@@ -34,18 +34,27 @@ angular.module('journalisttoolboxFrontend')
       // },
 
       createUser: function(userInfo, callback) {
+        // console.log($rootScope);
         var cb = callback || angular.noop;
-        $http({
-          method:'POST', 
-          url:'http://localhost:3030/api/users', 
-          data: userInfo
-        }).success(function(data){
-            console.log("success");
-            cb();
-          })
-          .error(function(err){
-            console.log("There was an error: " + err);
+        User.save(userInfo,
+          function(user){
+            $rootScope.currentUser = user;
+            return cb();
+          },
+          function(err){
+            console.log("error creating user: " + err.data);
           });
+        // $http({
+        //   method:'POST', 
+        //   url:'http://localhost:3030/api/users', 
+        //   data: userInfo
+        // }).success(function(data){
+        //     console.log("success");
+        //     cb();
+        //   })
+        //   .error(function(err){
+        //     console.log("There was an error: " + err);
+        //   });
       }
 
       // currentUser: function() {

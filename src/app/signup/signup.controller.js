@@ -10,11 +10,11 @@
 
 			$scope.register = function(){
 				Auth.createUser({
-					firstName: $scope.fname,
-					lastName: $scope.lname,
-					email: $scope.email,
-					username: $scope.username,
-					password: $scope.pass
+					firstName: $scope.user.fname,
+					lastName: $scope.user.lname,
+					email: $scope.user.email,
+					username: $scope.user.username,
+					password: $scope.user.pass
 				},
 				function(){
 					$state.go('home');

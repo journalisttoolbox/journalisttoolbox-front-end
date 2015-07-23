@@ -1,22 +1,22 @@
 <div class="container">
 	<form name="signupForm" class="ui form" ng-submit="register()" novalidate>
 		<div class="field">
-			<input type="text" ng-model="fname" name="fname" placeholder="First name" required>
+			<input type="text" ng-model="user.fname" name="fname" placeholder="First name" required>
 		</div>
 		<div class="field">
-			<input type="text" ng-model="lname" name="lname" placeholder="Last name" required>
+			<input type="text" ng-model="user.lname" name="lname" placeholder="Last name" required>
 		</div>
 		<div class="field">
-			<input type="text" ng-model="username" name="username" placeholder="Username" required>
+			<input type="text" ng-model="user.username" name="username" placeholder="Username" required>
 		</div>
 		<div class="field">
-			<input type="email" ng-model="email" name="email" placeholder="Email" required>
+			<input type="email" ng-model="user.email" name="email" placeholder="Email" required>
 		</div>
 		<div class="field">
-			<input type="password" ng-model="pass" name="pass" placeholder="Password" required>
+			<input type="password" ng-model="user.pass" name="pass" placeholder="Password" required>
 		</div>
 		<div class="field">
-			<input type="password" ng-model="pass2" name="pass2" placeholder="Repeat password" required>
+			<input type="password" ng-model="user.pass2" name="pass2" placeholder="Repeat password" required>
 		</div>
 		<button class="ui submit button" ng-disabled="signupForm.$invalid">Signup</div>
 	</form>
