@@ -6,7 +6,7 @@
 		.controller('SignupCtrl', SignupController);
 
 		/** @ngInject */
-		function SignupController($scope, $http, Auth, $state){
+		function SignupController($scope, Auth, $state){
 
 			$scope.register = function(){
 				Auth.createUser({

@@ -2,6 +2,7 @@
 
 angular.module('journalisttoolboxFrontend')
   .factory('Auth', function Auth($location, $cookies, $rootScope, Session, User) {
+    // console.log($rootScope.currentUser);
     $rootScope.currentUser = $cookies.get('user') || null;
     console.log($rootScope.currentUser);
     $cookies.remove('user');
@@ -15,10 +16,10 @@ angular.module('journalisttoolboxFrontend')
           email: user.email,
           password: user.password
         }, function(user) {
-          $rootScope.currentUser = user;
-          return cb();
+              $rootScope.currentUser = user;
+              return cb();
         }, function(err) {
-          return cb(err.data);
+              return cb(err.data);
         });
       },
 

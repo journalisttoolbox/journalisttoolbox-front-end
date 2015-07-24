@@ -3,10 +3,17 @@
 
   angular
     .module('journalisttoolboxFrontend')
-    .controller('MainCtrl', MainController);
+    .controller('MainCtrl', ['$scope', 'createTool', '$timeout','$cookies', '$rootScope','Auth', MainController]);
 
   /** @ngInject */
-  function MainController($scope, createTool, $timeout) {
+  function MainController($scope, createTool, $timeout, $cookies, $rootScope, Auth) {
+    
+    // if ($rootScope.currentUser != null && typeof $cookies.get('user')=='undefined'){
+    //   console.log("aksjdnfa");
+    //   $cookies.putObject('user', $rootScope.currentUser);
+    // }
+    
+    // console.log($cookies.getAll());
 
     $scope.showToolMessage = createTool.getState();
     $scope.toolName = '';

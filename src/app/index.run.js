@@ -3,12 +3,11 @@
 
   angular
     .module('journalisttoolboxFrontend')
-    .run(runBlock);
+    .run(['$rootScope', '$location', 'Auth',runBlock]);
 
   /** @ngInject */
-  function runBlock($log) {
-
-    $log.debug('runBlock end');
+  function runBlock($rootScope, $location, Auth) {
+  
   }
 
 })();
