@@ -1,0 +1,26 @@
+<div class="container admin">
+  <div class="ui four column grid">
+    <div class="center aligned column row">
+      <h1 class="centered">ADMIN</h1>
+    </div>
+  </div>
+
+    <!-- TOOLS TABLE -->
+    <table class="ui table segment">
+    <h2>TOOLS</h2>
+    <p>Click to edit field.</p>
+      <tr>
+        <th ng-repeat="(head, value) in toolList[0]"><span>{{ head }}</span></th>
+        <th>DELETE</th>
+      </tr>
+      <tr ng-repeat="row in toolList">
+        <td ng-repeat="(name, value) in row" ng-scope>
+          <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
+          <textarea ng-model="row[name]" ng-show="editing"></textarea>
+          <button ng-click="editing = false; updateTool(row)" ng-show="editing">UPDATE</button>
+          <td><button ng-click="removeTool(row._id)">X</button></td>
+        </td>    
+      </tr>
+    </table>
+
+</div>
