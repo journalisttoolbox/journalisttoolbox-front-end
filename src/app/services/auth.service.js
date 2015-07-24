@@ -2,25 +2,25 @@
 
 angular.module('journalisttoolboxFrontend')
   .factory('Auth', function Auth($location, $cookies, $rootScope, Session, User) {
-    // $rootScope.currentUser = $cookieStore.get('user') || null;
-    // $cookieStore.remove('user');
+    $rootScope.currentUser = $cookies.get('user') || null;
+    console.log($rootScope.currentUser);
+    $cookies.remove('user');
 
     return {
 
-      // login: function(provider, user, callback) {
-      //   var cb = callback || angular.noop;
-      //   Session.save({
-      //     provider: provider,
-      //     email: user.email,
-      //     password: user.password,
-      //     rememberMe: user.rememberMe
-      //   }, function(user) {
-      //     $rootScope.currentUser = user;
-      //     return cb();
-      //   }, function(err) {
-      //     return cb(err.data);
-      //   });
-      // },
+      login: function(provider, user, callback) {
+        var cb = callback || angular.noop;
+        Session.save({
+          provider: provider,
+          email: user.email,
+          password: user.password
+        }, function(user) {
+          $rootScope.currentUser = user;
+          return cb();
+        }, function(err) {
+          return cb(err.data);
+        });
+      },
 
       // logout: function(callback) {
       //   var cb = callback || angular.noop;
@@ -34,7 +34,6 @@ angular.module('journalisttoolboxFrontend')
       // },
 
       createUser: function(userInfo, callback) {
-        // console.log($rootScope);
         var cb = callback || angular.noop;
         User.save(userInfo,
           function(user){
@@ -44,24 +43,13 @@ angular.module('journalisttoolboxFrontend')
           function(err){
             console.log("error creating user: " + err.data);
           });
-        // $http({
-        //   method:'POST', 
-        //   url:'http://localhost:3030/api/users', 
-        //   data: userInfo
-        // }).success(function(data){
-        //     console.log("success");
-        //     cb();
-        //   })
-        //   .error(function(err){
-        //     console.log("There was an error: " + err);
-        //   });
-      }
+      },
 
-      // currentUser: function() {
-      //   Session.get(function(user) {
-      //     $rootScope.currentUser = user;
-      //   });
-      // },
+      currentUser: function() {
+        Session.get(function(user) {
+          $rootScope.currentUser = user;
+        });
+      }
 
       // changePassword: function(email, oldPassword, newPassword, callback) {
       //   var cb = callback || angular.noop;
