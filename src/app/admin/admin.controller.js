@@ -6,23 +6,38 @@
   .controller('AdminCtrl', AdminController);
 
   /** @ngInject */
-  function AdminController($scope, toolService) {
-    toolService.toolResource.query()
-      .$promise.then(function(data) {
-        $scope.toolList = data;
-      });
+  function AdminController($scope, $state, toolService) {
 
-    $scope.test = toolService.toolResource.get({id:'55ace01dd6aaccae10cddcc6'});
+      $scope.loadTools = function() {
+        toolService.toolResource.query()
+        .$promise.then(function(data) {
+          $scope.toolList = data;
+        });
+      };
 
-    $scope.test.name = 'jim';
-    toolService.toolResource.update({id: '55ace01dd6aaccae10cddcc6'}, function(data) {
-      console.log('hi');
-    });
+      $scope.loadTools();
 
-    $scope.addToolState = false;
+      // Remove a tool
+      $scope.removeTool = function(toolID) {
+        toolService.toolResource.remove({ id: toolID }, function() {
+          $scope.toolList = {};
+          $scope.loadTools();
+        });
+      };
 
-    $scope.addTool = function() {
-      $scope.addToolState = true;
-    };
+      // update a tool property
+      $scope.updateTool = function(updatedTool) {
+        toolService.toolResource.update({ id: updatedTool._id }, updatedTool, function(data) {
+          console.log(data);
+        });
+      };
+
+
+    // $scope.test = toolService.toolResource.get({id:'55ace01dd6aaccae10cddcc6'});
+
+    // toolService.toolResource.update({id: '55ace01dd6aaccae10cddcc6'}, function(data) {
+    //   console.log('hi');
+    // });
+
   }
 })();

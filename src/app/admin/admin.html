@@ -15,11 +15,11 @@
       </tr>
       <tr ng-repeat="row in toolList">
         <td ng-repeat="(name, value) in row" ng-scope>
-          <a href="#" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
-          <input ng-model="row[name]" ng-show="editing" />
-          <button ng-click="editing = false" ng-show="editing">ok</button>
+          <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
+          <textarea ng-model="row[name]" ng-show="editing"></textarea>
+          <button ng-click="editing = false; updateTool(row)" ng-show="editing">UPDATE</button>
+          <td><button ng-click="removeTool(row._id)">X</button></td>
         </td>    
-        <td><i class="upload icon"></i></td>
       </tr>
     </table>
 
