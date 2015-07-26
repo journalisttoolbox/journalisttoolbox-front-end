@@ -24,15 +24,8 @@
       $scope.removeTool = function(toolID) {
         toolService.toolResource.remove({ id: toolID }, function() {
           $scope.loadTools();
+          $scope.selectedRecordIds = [];
         });
-      };
-
-      $scope.removeMultipleTools = function(arrayOfToolIds) {
-        $scope.toolsDeleted = 0;
-          toolService.toolResource.remove({ id: arrayOfToolIds }, function() {
-              $scope.loadTools();
-          });
-        $scope.selectedRecordIds = [];
       };
 
       // update a tool property
