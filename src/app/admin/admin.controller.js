@@ -29,14 +29,10 @@
 
       $scope.removeMultipleTools = function(arrayOfToolIds) {
         $scope.toolsDeleted = 0;
-        for(var i=0; i<arrayOfToolIds.length; i++) {
-          toolService.toolResource.remove({ id: arrayOfToolIds[i] }, function() {
-            $scope.toolsDeleted ++;
-            if($scope.toolsDeleted === arrayOfToolIds.length) {
+          toolService.toolResource.remove({ id: arrayOfToolIds }, function() {
               $scope.loadTools();
-            }
           });
-        }
+        $scope.selectedRecordIds = [];
       };
 
       // update a tool property
