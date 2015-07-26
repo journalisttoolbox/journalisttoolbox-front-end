@@ -11,6 +11,7 @@
     <p>Click to edit field.</p>
       <tr>
         <th ng-repeat="(head, value) in toolList[0]"><span>{{ head }}</span></th>
+        <th>SELECT</th>
         <th>DELETE</th>
       </tr>
       <tr ng-repeat="row in toolList">
@@ -18,9 +19,12 @@
           <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
           <textarea ng-model="row[name]" ng-show="editing"></textarea>
           <button ng-click="editing = false; updateTool(row)" ng-show="editing">UPDATE</button>
-          <td><button ng-click="removeTool(row._id)">X</button></td>
+          <td><input type="checkbox" ng-click="alterSelect(row._id)"></td>
+          <td><button ng-really-message="Are you sure you want to delete this tool?" ng-really-click="removeTool(row._id)">X</button></td>
         </td>    
       </tr>
     </table>
+    <button ng-really-message="Are you sure you want to delete all selected tools?" ng-really-click="removeMultipleTools(selectedRecordIds)" class="negative ui button">Remove selected tools</button>
+
 
 </div>
