@@ -16,19 +16,19 @@
 		/** @ngInject */
 		function SearchController($scope, $http, toolService){
 			$scope.term = "";
+      $scope.noResults = false;
 			$scope.filters = {};
 			$scope.tools = [];
-			var allTools = {};
-			var pterm = '';
+			$scope.allTools = {};
 
 			toolService.toolResource.query()
         .$promise.then(function(data) {
-          allTools = data;
+          $scope.allTools = data;
         });
 
 			$scope.onKeyUp = function(){
 				if($scope.term.length >= 3){
-					$scope.tools = allTools;
+					$scope.tools = $scope.allTools;
 				}
 				else{
 					$scope.tools = [];
