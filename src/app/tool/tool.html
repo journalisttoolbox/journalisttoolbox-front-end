@@ -1,64 +1,66 @@
-<div class="container">
+  <div class="container">
 
-	  <div class="ui page grid">
-	  	<div class="four wide column">
-			<img class="ui image rounded" src="http://placehold.it/250x250?text=Logo">
-		</div>
-		<div class="four wide column">
-			<h1>{{tool.name}}
-	    	
-			</h1>
+      <div class="ui page grid">
+        <div class="four wide column">
+        <img class="ui image rounded" src="http://placehold.it/250x250?text=Logo">
+      </div>
+      <div class="four wide column">
+        <h1>{{tool.name}}
+          
+        </h1>
 
-			<p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
-			<div ng-bind-html="record.excerpt"></div>
-			<p></p>
-			<div class="ui buttons">
-			  <a href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i> GitHub</a>
-			  <div class="or"></div>
-			  <a href="{{tool.home_url}}" target="_blank" class="ui positive button">Give it a go</a>
-			</div>
-		</div>
-		<div class="eight wide column">
-			<div class="ui center aligned segment">
-			<h2>Votes</h2>
-				<div class="center aligned column">
-					<i ng-class="(tool.upvotes>=tool.downvotes) ? 'huge': 'large'" class="thumbs up icon green"></i> 
-					<span class="text huge">{{tool.upvotes}}</span>
-				</div>
-				<div class="center aligned column">
-					<i ng-class="(tool.downvotes>tool.upvotes) ? 'huge': 'large'" class="thumbs down icon red"></i> 
-					<span class="text large">{{tool.downvotes}}</span>
-				</div>
-			</div>
-		</div>
-	  </div>
+        <p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
+        <div ng-bind-html="record.excerpt"></div>
+        <p></p>
+        <div class="ui buttons">
+          <a href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i> GitHub</a>
+          <div class="or"></div>
+          <a href="{{tool.home_url}}" target="_blank" class="ui positive button">Give it a go</a>
+        </div>
+      </div>
+      <div class="eight wide column">
+        <div class="ui center aligned segment">
+        <h2>Votes</h2>
+          <div class="center aligned column">
+            <i ng-class="(tool.upvotes>=tool.downvotes) ? 'huge': 'large'" class="thumbs up icon green"></i> 
+            <span class="text huge">{{tool.upvotes}}</span>
+          </div>
+          <div class="center aligned column">
+            <i ng-class="(tool.downvotes>tool.upvotes) ? 'huge': 'large'" class="thumbs down icon red"></i> 
+            <span class="text large">{{tool.downvotes}}</span>
+          </div>
+        </div>
+      </div>
+      </div>
 
-	  <div class="ui divider"></div>
+      <div class="ui divider"></div>
 
-	  <div class="ui page grid">
-	  	<div class="eight wide column">
-	  		<div class="ui segment">
-	  			<p><strong>Description</strong></p>
-	  			<div ng-bind-html="tool.description"></div>
-	  		</div>
-	  	</div>
+      <div ui-view> <!-- For nested reviews child -->
+    	  <div class="ui page grid">
+    	  	<div class="eight wide column">
+    	  		<div class="ui segment">
+    	  			<p><strong>Description</strong></p>
+    	  			<div ng-bind-html="tool.description"></div>
+    	  		</div>
+    	  	</div>
 
-	  	<div class="eight wide column">
-	  		<div class="ui segment">
-	  			<img src="http://placehold.it/500x300?text=Screenshots">
-	  		</div>
-	  	</div>
-	  </div>
+    	  	<div class="eight wide column">
+    	  		<div class="ui segment">
+    	  			<img src="http://placehold.it/500x300?text=Screenshots">
+    	  		</div>
+    	  	</div>
+    	  </div>
+      </div> <!-- End ui view -->
 
-	</div>
+    </div>
 
-	<div class="ui divider"></div>
+    <div class="ui divider"></div>
 
-  <div class="ui page grid">
-    <div class="sixteen wide column">
-      <div class="footer">
-        <p>With ♥ from The Sunday Times</p>
+    <div class="ui page grid">
+      <div class="sixteen wide column">
+        <div class="footer">
+          <p>With ♥ from The Sunday Times</p>
+        </div>
       </div>
     </div>
   </div>
-</div>

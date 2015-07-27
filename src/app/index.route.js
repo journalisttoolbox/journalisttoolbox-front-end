@@ -44,11 +44,20 @@
       controller: 'AdminCtrl'
     };
 
+    // Review is a child, nested view of tool
+    var review = {
+      name: 'tool.review',
+      url: '/review',
+      templateUrl: 'app/review/review.html',
+      controller: 'ReviewCtrl'
+    };
+
     $stateProvider.state(home);
     $stateProvider.state(explore);
     $stateProvider.state(tool);
     $stateProvider.state(create);
     $stateProvider.state(admin);
+    $stateProvider.state(review);
 
     $urlRouterProvider.otherwise('/');
 

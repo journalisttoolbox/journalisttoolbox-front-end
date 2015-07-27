@@ -5,7 +5,7 @@
     .module('journalisttoolboxFrontend')
     .factory('toolService', toolService);
 
-    function toolService($http, $state, $resource) {
+    function toolService($state, $resource) {
       var toolNotifier = false;
       var toolName = '';
 
