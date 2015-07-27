@@ -3,10 +3,10 @@
 
   angular
     .module('journalisttoolboxFrontend')
-    .controller('MainCtrl', MainController);
+    .controller('MainCtrl', ['$scope', 'toolService', '$timeout','$cookies', '$rootScope','Auth', MainController]);
 
   /** @ngInject */
-  function MainController($scope, toolService, $timeout) {
+  function MainController($scope, toolService, $timeout, $cookies, $rootScope, Auth) {
 
     $scope.showToolMessage = toolService.getState();
     $scope.toolName = '';
