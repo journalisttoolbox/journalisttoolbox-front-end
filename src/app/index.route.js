@@ -52,12 +52,28 @@
       controller: 'ReviewCtrl'
     };
 
+    var signup = {
+      name: 'signup',
+      url: '/signup',
+      templateUrl: 'app/signup/signup.html',
+      controller: 'SignupCtrl'
+    };
+
+    var login = {
+      name: 'login',
+      url: '/login',
+      templateUrl: 'app/login/login.html',
+      controller: 'LoginCtrl'
+    };
+
     $stateProvider.state(home);
     $stateProvider.state(explore);
     $stateProvider.state(tool);
     $stateProvider.state(create);
     $stateProvider.state(admin);
     $stateProvider.state(review);
+    $stateProvider.state(signup);
+    $stateProvider.state(login);
 
     $urlRouterProvider.otherwise('/');
 
