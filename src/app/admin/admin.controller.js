@@ -6,11 +6,14 @@
   .controller('AdminCtrl', AdminController);
 
   /** @ngInject */
-  function AdminController($scope, $state, toolService) {
+  function AdminController($scope, $state, toolService, $filter) {
+
+      $scope.selectedRecordIds = [];
 
       $scope.loadTools = function() {
         toolService.toolResource.query()
         .$promise.then(function(data) {
+          $scope.toolList = {};
           $scope.toolList = data;
         });
       };
@@ -20,8 +23,8 @@
       // Remove a tool
       $scope.removeTool = function(toolID) {
         toolService.toolResource.remove({ id: toolID }, function() {
-          $scope.toolList = {};
           $scope.loadTools();
+          $scope.selectedRecordIds = [];
         });
       };
 
@@ -32,12 +35,18 @@
         });
       };
 
+      $scope.alterSelect = function(toolID) {
+        // Location of element
+        var present = $scope.selectedRecordIds.indexOf(toolID);
 
-    // $scope.test = toolService.toolResource.get({id:'55ace01dd6aaccae10cddcc6'});
-
-    // toolService.toolResource.update({id: '55ace01dd6aaccae10cddcc6'}, function(data) {
-    //   console.log('hi');
-    // });
+        // If not found, add
+        if (present < 0) {
+          $scope.selectedRecordIds.push(toolID);
+        // If found, remove
+        } else {
+          $scope.selectedRecordIds.splice(present, 1);
+        }
+      };
 
   }
 })();
