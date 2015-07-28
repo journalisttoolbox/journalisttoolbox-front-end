@@ -14,6 +14,7 @@ angular.module('journalisttoolboxFrontend')
           password: user.password
         }, function(user) {
             // Store the current user in Browser's cookie.
+            console.log(user);
             $cookies.putObject('user', user);
             $rootScope.loggedInUser = $cookies.getObject('user');
             return cb();
@@ -22,16 +23,18 @@ angular.module('journalisttoolboxFrontend')
         });
       },
 
-      // logout: function(callback) {
-      //   var cb = callback || angular.noop;
-      //   Session.delete(function(res) {
-      //       $rootScope.currentUser = null;
-      //       return cb();
-      //     },
-      //     function(err) {
-      //       return cb(err.data);
-      //     });
-      // },
+      logout: function(callback) {
+        var cb = callback || angular.noop;
+        Session.delete(function() {
+            //Remove cookie and set logged in user to null;
+            $cookies.remove('user');
+            $rootScope.loggedInUser = null;
+            return cb();
+          },
+          function(err) {
+            return cb(err.data);
+          });
+      },
 
       createUser: function(userInfo, callback) {
         var cb = callback || angular.noop;
