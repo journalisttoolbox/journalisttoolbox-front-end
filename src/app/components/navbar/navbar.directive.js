@@ -17,7 +17,13 @@
     return directive;
 
     /** @ngInject */
-    function NavbarCtrl() {}
+    function NavbarCtrl($scope, Auth, $state){
+      $scope.logout = function(){
+        Auth.logout(function(err){
+          if(!err) $state.go('login');
+        });
+      };
+    }
 
   }
 

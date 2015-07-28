@@ -14,11 +14,14 @@
   <a ui-sref="request" ui-sref-active="active" class="item">
     <i class="spy icon"></i> Request
   </a>
-  <a href="http://www.github.com/journalisttoolbox/journalisttoolbox-front-end" target="_blank" class="item right">
-    <i class="github icon"></i> Code on GitHub
-  </a>
-  <div class="text item right">
-  	Welcome back {{ loggedInUser.firstName }}
+  <div style="display:inline;" ng-hide="loggedInUser">
+    <a ui-sref="login" class="item right">Login</a>
+  </div>
+  <div style="display:inline;" ng-show="loggedInUser">
+    <a ng-click="logout()" class="item right"> Logout</a>
+    <div class="text item right">
+    	Welcome back {{ loggedInUser.firstName }}
+    </div>
   </div>
 </div>
 
