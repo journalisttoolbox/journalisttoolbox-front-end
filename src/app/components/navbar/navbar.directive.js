@@ -17,13 +17,8 @@
     return directive;
 
     /** @ngInject */
-    function NavbarCtrl($scope) {
-      $scope.user = {
-          forename: 'Chris',
-          surname: 'Hutchinson',
-          image: 'https://pbs.twimg.com/profile_images/482607943071039488/vcujIxUA.jpeg',
-      };
-    }
+    function NavbarCtrl() {}
+
   }
 
 })();

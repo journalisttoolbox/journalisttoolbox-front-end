@@ -1,5 +1,6 @@
 (function(){
 	'use strict';
+  
 	angular
 		.module('journalisttoolboxFrontend')
 		.factory('Session', ['$resource', function($resource){

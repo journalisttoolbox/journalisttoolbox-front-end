@@ -1,11 +1,8 @@
+(function() {
 'use strict';
 
 angular.module('journalisttoolboxFrontend')
-  .factory('Auth', function Auth($location, $cookies, $rootScope, Session, User) {
-    // console.log($rootScope.currentUser);
-    $rootScope.currentUser = $cookies.get('user') || null;
-    console.log($rootScope.currentUser);
-    $cookies.remove('user');
+  .factory('Auth', function Auth($location, $cookies, Session, User, $rootScope) {
 
     return {
 
@@ -16,10 +13,12 @@ angular.module('journalisttoolboxFrontend')
           email: user.email,
           password: user.password
         }, function(user) {
-              $rootScope.currentUser = user;
-              return cb();
+            // Store the current user in Browser's cookie.
+            $cookies.putObject('user', user);
+            $rootScope.loggedInUser = $cookies.getObject('user');
+            return cb();
         }, function(err) {
-              return cb(err.data);
+            return cb(err.data);
         });
       },
 
@@ -38,7 +37,9 @@ angular.module('journalisttoolboxFrontend')
         var cb = callback || angular.noop;
         User.save(userInfo,
           function(user){
-            $rootScope.currentUser = user;
+            // Store the current user in Browser's cookie.
+            $cookies.putObject('user', user);
+            $rootScope.loggedInUser = $cookies.getObject('user');
             return cb();
           },
           function(err){
@@ -48,7 +49,7 @@ angular.module('journalisttoolboxFrontend')
 
       currentUser: function() {
         Session.get(function(user) {
-          $rootScope.currentUser = user;
+          $cookies.putObject('user', user);
         });
       }
 
@@ -79,4 +80,5 @@ angular.module('journalisttoolboxFrontend')
       //   });
       // }
     };
-  })
+  });
+})();
