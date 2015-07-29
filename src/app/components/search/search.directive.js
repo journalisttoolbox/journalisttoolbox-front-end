@@ -16,34 +16,34 @@
 		/** @ngInject */
 		function SearchController($scope, $http, toolService){
 			$scope.term = "";
+			$scope.noResults = false;
 			$scope.filters = {};
 			$scope.tools = [];
-			$scope.ShowFilter = false; 
-			var allTools = {};
-			var pterm = '';
+			$scope.allTools = {};
 			//filter var			
 			$scope.FilterTools = [];
 			$scope.Findit = false;
+			$scope.ShowFilter = false;
 
 	        //starting the semantic UI accordion
 	        $('.ui.accordion').accordion();
         $('.menu .item').tab();
 
 			toolService.toolResource.query()
-        .$promise.then(function(data) {
-          allTools = data;
-        });
+	        .$promise.then(function(data) {
+	          $scope.allTools = data;
+	        });
 
 			$scope.onKeyUp = function(){
 				if($scope.term.length >= 3){
-					$scope.tools = allTools;
+					$scope.tools = $scope.allTools;
 					//show the filter options
 					$scope.ShowFilter = true;
 				}
 				else{
 					$scope.tools = [];		
-					//hide the filter options			
-					$scope.ShowFilter = false; 
+					//hide the filter options
+					$scope.ShowFilter = false;
 				}
 			};
 
