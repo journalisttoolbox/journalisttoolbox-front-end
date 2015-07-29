@@ -16,8 +16,9 @@
 					username: $scope.user.username,
 					password: $scope.user.pass
 				},
-				function(){
-					$state.go('home');
+				function(err){
+					if (!err) $state.go('home');
+					else console.log(err);
 				});
 			};
 

@@ -1,23 +1,40 @@
 <div class="container">
 	<form name="signupForm" class="ui form" ng-submit="register()" novalidate>
-		<div class="field">
+
+  <!-- FIRST NAME -->
+		<div class="input field" ng-class="{ 'error' : signupForm.fname.$invalid && !signupForm.fname.$pristine }">
 			<input type="text" ng-model="user.fname" name="fname" placeholder="First name" required>
+       <p class="fieldRequired" ng-show="signupForm.fname.$invalid && !signupForm.fname.$pristine">Your first name is required.</p>
 		</div>
-		<div class="field">
+
+  <!-- LAST NAME -->
+		<div class="input field" ng-class="{ 'error' : signupForm.lname.$invalid && !signupForm.lname.$pristine }">
 			<input type="text" ng-model="user.lname" name="lname" placeholder="Last name" required>
+      <p class="fieldRequired" ng-show="signupForm.lname.$invalid && !signupForm.lname.$pristine">Your last name is required.</p>
 		</div>
-		<div class="field">
+
+  <!-- USERNAME -->
+		<div class="input field" ng-class="{ 'error' : signupForm.username.$invalid && !signupForm.username.$pristine }">
 			<input type="text" ng-model="user.username" name="username" placeholder="Username" required>
 		</div>
-		<div class="field">
+
+  <!-- EMAIL -->
+		<div class="input field" ng-class="{ 'error' : signupForm.email.$invalid && !signupForm.email.$pristine }">
 			<input type="email" ng-model="user.email" name="email" placeholder="Email" required>
+      <p class="fieldRequired" ng-show="signupForm.email.$ && !signupForm.email.$pristine">Please ensure you enter a valid email format (x@x.com).</p>
 		</div>
-		<div class="field">
+
+  <!-- PASSWORD -->
+		<div class="input field" ng-class="{ 'error' : signupForm.pass.$invalid && !signupForm.pass.$pristine }">
 			<input type="password" ng-model="user.pass" name="pass" placeholder="Password" required>
 		</div>
-		<div class="field">
-			<input type="password" ng-model="user.pass2" name="pass2" placeholder="Repeat password" required>
+
+  <!-- PASSWORD REPEAT -->
+		<div class="input field" ng-class="{ 'error' : signupForm.pass2.$error.match && !signupForm.pass2.$pristine }">
+			<input type="password" ng-model="user.pass2" name="pass2" placeholder="Repeat password" match="signupForm.pass" required>
+			<p class="fieldRequired" ng-show="signupForm.pass2.$error.match && !signupForm.pass2.$pristine">Your passwords need to match.</p>
 		</div>
+
 		<button class="ui submit button" ng-disabled="signupForm.$invalid">Signup</div>
 	</form>
 </div>
