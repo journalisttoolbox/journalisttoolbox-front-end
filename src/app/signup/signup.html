@@ -1,5 +1,12 @@
-<div class="container">
-	<form name="signupForm" class="ui form" ng-submit="register()" novalidate>
+<div class="ui page centered grid stackable">
+    <div class="four wide column center">
+        <img src="assets/images/logo.png" style="width: 100%; margin: 20px auto; display: block; max-width: 400px; ">
+    </div>
+</div>
+
+
+<div class="ui column stackable page grid">
+	<form name="signupForm" class="ui six wide column centered form segment" ng-submit="register()" novalidate>
 
   <!-- FIRST NAME -->
 		<div class="input field" ng-class="{ 'error' : signupForm.fname.$invalid && !signupForm.fname.$pristine }">
@@ -35,6 +42,6 @@
 			<p class="fieldRequired" ng-show="signupForm.pass2.$error.match && !signupForm.pass2.$pristine">Your passwords need to match.</p>
 		</div>
 
-		<button class="ui submit button" ng-disabled="signupForm.$invalid">Signup</div>
+		<button class="ui submit positive button center-button" ng-disabled="signupForm.$invalid">Signup</div>
 	</form>
 </div>

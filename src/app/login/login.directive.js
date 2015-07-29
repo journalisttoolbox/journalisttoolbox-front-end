@@ -24,6 +24,11 @@
 
 		/** @ngInject */
 		function LoginController($scope, $state, Auth){
+
+			$scope.goToSignup = function(){
+				$scope.closeModal();
+				$state.go('signup');
+			}
 			$scope.login = function(){
 				Auth.login('local', {
 					'email': $scope.user.email,
