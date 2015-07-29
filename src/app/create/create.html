@@ -13,7 +13,7 @@
 
 <form name="createToolForm" ng-submit="submitTool()" class="ui form container" novalidate>
 
-  <h2 class="disabled ui horizontal divider header">
+  <h2 class="ui horizontal divider header" ng-class="{'disabled': !loggedInUser}">
     <i class="cube icon"></i>
     Tool Information
   </h2>
@@ -85,7 +85,7 @@
     </div>
   </div>
 
-  <h2 class="ui horizontal divider header">
+  <h2 class="ui horizontal divider header" ng-class="{'disabled': !loggedInUser}">
     <i class="linkify icon"></i>
     Links
   </h2>
@@ -113,7 +113,7 @@
     <input ng-disabled="{{!loggedInUser}}" type="text" ng-model="formData.download" placeholder="Download URL" name="download" id="download">
   </div>
 
-  <h2 class="ui horizontal divider header">
+  <h2 class="ui horizontal divider header" ng-class="{'disabled': !loggedInUser}">
     <i class="laptop icon"></i>
     Platforms
   </h2>
