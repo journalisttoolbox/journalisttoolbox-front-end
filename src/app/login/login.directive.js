@@ -40,9 +40,11 @@
 						$scope.closeModal();
 						$scope.user.email = "";
 						$scope.user.password = "";
+						$scope.errors = {};
 					}
 					else{
-						console.error(err);
+						console.log(err);
+						$scope.errors = err;
 					}
 				});
 			};
