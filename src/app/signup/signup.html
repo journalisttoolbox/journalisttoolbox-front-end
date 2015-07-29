@@ -32,7 +32,7 @@
   <!-- PASSWORD REPEAT -->
 		<div class="input field" ng-class="{ 'error' : signupForm.pass2.$error.match && !signupForm.pass2.$pristine }">
 			<input type="password" ng-model="user.pass2" name="pass2" placeholder="Repeat password" match="signupForm.pass" required>
-      <p class="fieldRequired" ng-show="signupForm.pass2.$error.match && !signupForm.pass2.$pristine">Your passwords need to match.</p>
+			<p class="fieldRequired" ng-show="signupForm.pass2.$error.match && !signupForm.pass2.$pristine">Your passwords need to match.</p>
 		</div>
 
 		<button class="ui submit button" ng-disabled="signupForm.$invalid">Signup</div>

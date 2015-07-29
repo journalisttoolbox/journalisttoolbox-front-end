@@ -1,13 +1,18 @@
-<div class="controller">
-	<form name="loginForm" class="ui form" ng-submit="login()">
-		<div class="field">
-			<input type="email" ng-model = "user.email" placeholder="Email">
-		</div>
-		<div class="field">
-			<input type="password" ng-model="user.password" placeholder="Password">
-		</div>
-		<button class="ui submit button">Login</button>
-
-	</form>
-
+<div class="ui small modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Login
+  </div>
+  <div class="content">
+    <div class="description">
+        <form name="loginForm" class="ui form" ng-submit="login()">
+            <div class="field">
+                <input type="email" ng-model = "user.email" placeholder="Email">
+            </div>
+            <div class="field">
+                <input type="password" ng-model="user.password" placeholder="Password">
+            </div>
+            <button class="ui positive submit button">Login</button>
+        </form>
+  </div>
 </div>

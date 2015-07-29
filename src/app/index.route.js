@@ -51,12 +51,13 @@
       controller: 'SignupCtrl'
     };
 
-    var login = {
-      name: 'login',
-      url: '/login',
-      templateUrl: 'app/login/login.html',
-      controller: 'LoginCtrl'
-    };
+    // var login = {
+    //   name: 'login',
+    //   url: '/login',
+    //   templateUrl: 'app/login/login.html',
+    //   controller: 'LoginCtrl',
+    //   controllerAs: 'loginCtrl'
+    // };
 
     $stateProvider.state(home);
     $stateProvider.state(explore);
@@ -64,7 +65,7 @@
     $stateProvider.state(create);
     $stateProvider.state(admin);
     $stateProvider.state(signup);
-    $stateProvider.state(login);
+    // $stateProvider.state(login);
 
     $urlRouterProvider.otherwise('/');
 

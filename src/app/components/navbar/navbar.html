@@ -15,7 +15,7 @@
     <i class="spy icon"></i> Request
   </a>
   <div style="display:inline;" ng-hide="loggedInUser">
-    <a ui-sref="login" class="item right">Login</a>
+    <a ng-click="showModal()" class="item right">Login</a>
   </div>
   <div style="display:inline;" ng-show="loggedInUser">
     <a ng-click="logout()" class="item right"> Logout</a>
@@ -24,4 +24,3 @@
     </div>
   </div>
 </div>
-
