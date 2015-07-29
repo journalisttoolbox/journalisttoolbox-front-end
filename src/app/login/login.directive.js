@@ -31,7 +31,7 @@
 				},
 				function(err){
 					if(!err) {
-						$state.go('home');
+						$state.go($state.current);
 						$scope.closeModal();
 						$scope.user.email = "";
 						$scope.user.password = "";

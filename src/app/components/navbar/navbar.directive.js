@@ -25,7 +25,7 @@
     function NavbarCtrl($scope, Auth, $state){
       $scope.logout = function(){
         Auth.logout(function(err){
-          if(!err) $state.go('home');
+          if(!err) $state.go($state.current);
         });
       };
     }
