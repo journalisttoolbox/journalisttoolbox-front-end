@@ -1,6 +1,19 @@
+<div class="container">
+  <div class="ui grid">
+    <div class="eight wide centered column">
+      <div align="center" ng-show="!loggedInUser"class="ui negative message">
+          <div class="header">
+            <i class="warning sign icon"></i> Restricted area
+          </div>
+          <p>Please <a ui-sref="login">login </a>or<a ui-sref="signup"> signup</a> to continue.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <form name="createToolForm" ng-submit="submitTool()" class="ui form container" novalidate>
 
-  <h2 class="ui horizontal divider header">
+  <h2 class="disabled ui horizontal divider header">
     <i class="cube icon"></i>
     Tool Information
   </h2>
