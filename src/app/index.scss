@@ -75,6 +75,12 @@ hr {
   clear: both;
 }
 
+.center-button{
+  margin-left: auto !important; 
+  margin-right:auto !important;
+  display:block !important;
+}
+
 @media screen and (max-width: 680px) {
   body {
     padding-top: 100px;
