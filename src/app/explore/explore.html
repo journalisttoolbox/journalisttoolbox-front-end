@@ -2,8 +2,8 @@
 <div class="container">  
 
     <!--<ul>
-        <li ng-repeat="tool in tools | filter:toolFilter">
-            {{tool.platform}}::{{tool.price}}
+        <li ng-repeat="tool in tools | filter:toolFilter | orderBy:toolOrder">
+            {{tool.platform}}::{{tool.uploaded_date}}
         </li>
     </ul>-->
 
@@ -12,64 +12,100 @@
 	{{category | uppercase}}
 </h1>
 
-<div class="ui container">
-
-	<div class="ui styled accordion container fluid">
-
-	  <div class="title">
-	<h3><i class="filter icon"></i>Filters</h3>
-	  </div>
-	  <div class="content">
-	    <div class="transition">
-
-		<!--<table class="ui celled table segment">
-			<thead>
-		    	<tr>
-			    	<th>
-					  	<h4 class="ui horizontal divider header">
-						  <i class="laptop icon"></i>
-						  Platform
-						</h4>
-					</th>
-			    	<th>
-				      	<h4 class="ui horizontal divider header">
-						  <i class="options icon"></i>
-						  Other
-						</h4>
-					</th>
-		  		</tr>
-			</thead>
+<div class="ui right aligned grid stackable">
+  <div class="left floated left aligned fourteen wide column">
+    <div class="ui nine wide column">
+      <div class="ui top attached tabular menu" >
+	  <a class="item active" data-tab="first">Platforms</a>
+	  <a class="item" data-tab="second">Others</a>
+	  <!--<a class="item" data-tab="third">Third</a>-->
+		</div>
+		<div class="ui bottom attached tab segment active" data-tab="first">
+	  	<table class="ui very basic collapsing table">
 		  <tbody>
 		    <tr>
 		      <td>
-				<div class="ui toggle checkbox">
+				<div class="ui checkbox">
 				    <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
-				    <label for="web">Web</label>
-				</div><br><br>
-		      	<div class="ui toggle checkbox">
-				    <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
-				    <label for="Windows">Windows</label>
-				</div><br><br>
-		      	<div class="ui toggle checkbox">
-				    <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
-				    <label for="Linux">Linux</label>
-				</div><br><br>
-		      	<div class="ui toggle checkbox">
-				    <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
-				    <label for="mac">MacOS</label>
+				    <label for="web"><b>Web</b></label>
 				</div>
-			</td>
-		      <td>	      	
-		      	<div class="ui toggle checkbox">
-				    <input type="checkbox" ng-click="includeFilter('0')" tabindex="0" class="hidden" name="free" id="free">
-				    <label for="free">Free</label>
-				</div><br><br>
-			</td>
+		      </td>
+		      <td>
+		        <div class="ui checkbox">
+				    <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
+				    <label for="Windows"><b>Windows</b></label>
+				</div>
+		      </td>
+		       <td>
+		        <div class="ui checkbox">
+				    <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
+				    <label for="Linux"><b>Linux</b></label>
+				</div>
+		      </td>
+		       <td>
+		        <div class="ui checkbox">
+				    <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
+				    <label for="mac"><b>MacOS</b></label>
+				</div>
+		      </td>	
+		      <td>
+		        <div class="ui checkbox">
+				    <input type="checkbox" ng-click="includeFilter('iOS')" tabindex="0" class="hidden" name="iOS" id="iOS">
+				    <label for="iOS"><b>iOS</b></label>
+				</div>
+		      </td>	
+		      <td>
+		        <div class="ui checkbox">
+				    <input type="checkbox" ng-click="includeFilter('Android')" tabindex="0" class="hidden" name="Android" id="Android">
+				    <label for="Android"><b>Android</b></label>
+				</div>
+		      </td>		      
 		    </tr>
 		  </tbody>
-		</table>-->
-		
+		</table>
+		</div>
+		<div class="ui bottom attached tab segment" data-tab="second">
+				<table class="ui very basic collapsing table">
+			  	<tbody>
+			    <tr>
+			      <td>
+				        <div class="ui checkbox">
+						    <input type="checkbox" ng-click="includeFilter('0')" tabindex="0" class="hidden" name="free" id="free">
+						    <label for="free"><b>Free</b></label>
+						</div>
+				      </td>
+			    	</tr>
+			  	</tbody>
+			</table>
+		</div>
+		<div class="ui bottom attached tab segment" data-tab="third">
+		  Third
+		</div>
+    </div>
+  </div>
+  <div class="right floated left aligned two wide column">
+    <div class="ui">
+      <div class="ui compact menu left">
+		  <div class="ui simple dropdown item left">
+		    Order by
+		    <i class="dropdown icon"></i>
+		    <div class="menu">
+		      <div class="item" ng-click="toolOrder = '-name'">Name A-Z</div>
+		      <div class="item" ng-click="toolOrder = 'name'">Name Z-A</div>
+		      <div class="item" ng-click="toolOrder = 'uploaded_date'">Date released (incremental)</div>
+		      <div class="item" ng-click="toolOrder = '-uploaded_date'">Date released (decremental)</div>
+		      <div class="item" ng-click="toolOrder = 'updated_date'">Date updated (incremental)</div>
+		      <div class="item" ng-click="toolOrder = '-updated_date'">Date update (decremental)</div>
+		      <div class="item" ng-click="toolOrder = 'upvotes'">Upvotes</div>
+		      <div class="item" ng-click="toolOrder = 'downvotes'">Downvotes</div>
+		    </div>
+		  </div>
+		</div>
+    </div>
+  </div>
+</div>
 
+<!--
 		<h4 class="ui horizontal divider header">
 		  <i class="laptop icon"></i>
 		  Platform
@@ -115,6 +151,7 @@
 		    </tr>
 		  </tbody>
 		</table>
+		!-->
 	</div>
 	  </div>
 	</div><br>
@@ -122,7 +159,7 @@
 	<div class="three fields">
 
 		<div class="ui four column grid">
-			<div class="column" ng-repeat="tool in tools | filter:toolFilter">
+			<div class="column" ng-repeat="tool in tools | filter:toolFilter | orderBy:toolOrder">
 				<div class="ui cards">
 					<div class="card" style="margin-left: auto; margin-right: auto;">
 						<a ui-sref="tool({id: tool._id})" class="image">

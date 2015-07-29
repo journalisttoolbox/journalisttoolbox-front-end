@@ -7,14 +7,15 @@
 
 	/** @ngInject */
 	function ExploreController($scope, $http, $stateParams){
-		$scope.term = "";
+        $scope.term = "";
 		$scope.tools = {};
         $scope.categories = {};
 		$scope.FilterTools = [];
 		$scope.Findit = false;
 		$scope.category = $stateParams.cat;
-        //starting the semantic UI accordion
-        $('.ui.accordion').accordion();
+        //starting the semantic UI tab
+        $('.menu .item').tab();
+               
 
 		$http({method:'GET', url: 'http://localhost:3030/api/tools/category/' + $scope.category})
 			.success(function(data){
@@ -41,14 +42,12 @@
                 //free or not
                 if ($.inArray(tool.price, $scope.FilterTools) >= 0)
                     $scope.Findit  = true;  
-            }        
+            } 
             //if no filter or tool find, return the tool
             if($scope.Findit == true || $scope.FilterTools.length == 0)
     			return tool;
             else
             	return;
         }
-
-
 	}
 })();

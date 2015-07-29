@@ -27,6 +27,7 @@
 
 	        //starting the semantic UI accordion
 	        $('.ui.accordion').accordion();
+        $('.menu .item').tab();
 
 			toolService.toolResource.query()
         .$promise.then(function(data) {
@@ -65,11 +66,18 @@
                         $scope.Findit  = true;
             	};          
                 //free or not
-                if ($.inArray(tool.price, $scope.FilterTools) >= 0)
+                if ($.inArray(tool.price, $scope.FilterTools) >= 0 && !$scope.Findit)
                     $scope.Findit  = true; 
+                //array platorms
+                if(!$scope.Findit){
+	            	for (var i = tool.category.length - 1; i >= 0; i--) {
+	            		if ($.inArray(tool.category[i], $scope.FilterTools) >= 0)
+	                        $scope.Findit  = true;
+	            	};
+	            }
             }      
             //if no filter or tool find, return the tool
-            if($scope.Findit == true || $scope.FilterTools.length == 0)
+            if($scope.Findit || $scope.FilterTools.length == 0)
     			return tool;
             else
             	return;

@@ -1,13 +1,13 @@
 <div>
 
-    <form class="ui page grid">
+    <div class="ui page grid">
         <div class="sixteen wide column">
             <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
                 <input type="text" ng-model="term" ng-keyup="onKeyUp()" placeholder="What are you looking to create...?">
                 <i class="search icon"></i>
             </div>
         </div>
-    </form>
+    </div>
 
     <div class="ui page grid stackable" ng-show="noResults">
         <div class="twelve wide centered column">
@@ -25,85 +25,197 @@
             {{tool.platform}}::{{tool.price}}
         </li>
     </ul>-->
-
-<form class="ui page grid" ng-show="ShowFilter" style="margin:0px;">
-    <div class="sixteen wide column">
+     <div class="ui page grid" style="margin:0px;" ng-show="ShowFilter">
+        <div class="sixteen wide column">
+<div class="ui top attached tabular menu" >
+  <a class="item active" data-tab="first">Platforms</a>
+  <a class="item" data-tab="second">Others</a>
+  <!--<a class="item" data-tab="third">Third</a>-->
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+    <table class="ui very basic collapsing table">
+          <tbody>
+            <tr>
+              <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
+                    <label for="web"><b>Web</b></label>
+                </div>
+              </td>
+              <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
+                    <label for="Windows"><b>Windows</b></label>
+                </div>
+              </td>
+               <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
+                    <label for="Linux"><b>Linux</b></label>
+                </div>
+              </td>
+               <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
+                    <label for="mac"><b>MacOS</b></label>
+                </div>
+              </td>           
+            </tr>
+          </tbody>
+        </table>
+</div>
+<div class="ui bottom attached tab segment" data-tab="second">
+        <table class="ui very basic collapsing table">
+        <tbody>
+        <tr>
+          <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('0')" tabindex="0" class="hidden" name="free" id="free">
+                    <label for="free"><b>Free</b></label>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="ui bottom attached tab segment" data-tab="third">
+  Third
+</div>
+</div>
+</div>
+<!--<form class="ui page centered grid" ng-show="ShowFilter" style="margin:0px;">
+    <div class="eight wide column">
         <div class="ui styled accordion container fluid" style="margin:0px;">
         <div class="title">
             <h3><i class="filter icon"></i>Filters</h3>
         </div>
         <div class="content">
             <div class="transition">     
+            <div class="accordion">
+          <div class="title">
             <h4 class="ui horizontal divider header">
-                <i class="laptop icon"></i>
-                Platform
+              <i class="laptop icon"></i>
+              Platform
             </h4>
+          </div>
+          <div class="content">
             <table class="ui celled table segment">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
-                        <label for="web"><b>Web</b></label>
-                    </div></td>
-                  <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
-                        <label for="Windows"><b>Windows</b></label>
-                    </div></td>
-                  <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
-                        <label for="Linux"><b>Linux</b></label>
-                    </div></td>
-                  <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
-                        <label for="mac"><b>MacOS</b></label>
-                    </div></td>
-                </tr>
-              </tbody>
-            </table>
+          <tbody>
+            <tr>
+              <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
+                    <label for="web"><b>Web</b></label>
+                </div></td>
+              <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
+                    <label for="Windows"><b>Windows</b></label>
+                </div></td>
+              <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
+                    <label for="Linux"><b>Linux</b></label>
+                </div></td>
+              <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
+                    <label for="mac"><b>MacOS</b></label>
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+          </div>
+          <div class="title">
             <h4 class="ui horizontal divider header">
-              <i class="options icon"></i>
-              Other
+              <i class="tags icon"></i>
+              Category
             </h4>
+          </div>
+          <div class="content">
             <table class="ui celled table segment">
-              <tbody>
-                <tr>
-                    <td>
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" ng-click="includeFilter('0')" tabindex="0" class="hidden" name="free" id="free">
-                        <label for="free"><b>Free</b></label>
-                    </div></td>
-                </tr>
-              </tbody>
-            </table>
+          <tbody>
+            <tr>
+              <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Maps')" tabindex="0" class="hidden" name="maps" id="maps">
+                    <label for="maps"><b>Maps</b></label>
+                </div></td>
+              <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Videos')" tabindex="0" class="hidden" name="Videos" id="Videos">
+                    <label for="Videos"><b>Videos</b></label>
+                </div></td>
+              <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Images')" tabindex="0" class="hidden" name="Images" id="Images">
+                    <label for="Images"><b>Images</b></label>
+                </div></td>
+              <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Charts')" tabindex="0" class="hidden" name="Charts" id="Charts">
+                    <label for="Charts"><b>Charts</b></label>
+                </div>
+              </td>
+          </tr>
+          <tr>
+               <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Data Processing')" tabindex="0" class="hidden" name="Data" id="Data">
+                    <label for="Data"><b>Data Processing</b></label>
+                </div></td>
+                <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Timelines')" tabindex="0" class="hidden" name="Timelines" id="Timelines">
+                    <label for="Timelines"><b>Timelines</b></label>
+                </div></td>
+                <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Audio')" tabindex="0" class="hidden" name="Audio" id="Audio">
+                    <label for="Audio"><b>Audio</b></label>
+                </div></td>
+                <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('Design')" tabindex="0" class="hidden" name="Design" id="Design">
+                    <label for="Design"><b>Design</b></label>
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+          </div>
+          <div class="title">
+            <h4 class="ui horizontal divider header">
+          <i class="options icon"></i>
+          Other
+        </h4>
+          </div>
+          <div class="content">
+        <table class="ui celled table segment">
+          <tbody>
+            <tr>
+                <td>
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" ng-click="includeFilter('0')" tabindex="0" class="hidden" name="free" id="free">
+                    <label for="free"><b>Free</b></label>
+                </div></td>
+                <td><b>Developer:</b>
+                    <div class="ui input">
+                      <input type="text" ng-model="developer" placeholder="Developer name..">
+                    </div>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+          </div>
+        </div>
         </div>
         </div>
     </div>
 </div>
-</form>
+</form>-->
 
 
     <div class="ui page grid stackable" ng-show="!noResults">
-        <!-- <div class="four wide column">
-            <div class="ui fluid icon input">
-                <input type="text" ng-model="filters.acf.documentation_languages" placeholder="Documentation languages...">
-                <i class="search icon"></i>
-            </div>
-        </div>
-        <div class="three wide column">
-            <div class="ui toggle checkbox" style="margin-bottom: 5px;">
-                <input type="checkbox" ng-model="verified" ng-change="verifiedTick()" name="verified" id="verified">
-                <label for="verified">Verified</label>
-            </div>
-            <div class="ui toggle checkbox">
-                <input type="checkbox" ng-model="demo" ng-change="demoTick()" name="demo" id="demo">
-                <label for="demo">Demo</label>
-            </div>
-        </div> -->
-
 
         <div class="four wide column" ng-repeat="tool in tools | filter:toolFilter | filter:term">
             <div class="ui cards">
