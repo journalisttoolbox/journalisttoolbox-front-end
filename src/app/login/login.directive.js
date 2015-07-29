@@ -24,7 +24,7 @@
 
 		/** @ngInject */
 		function LoginController($scope, $state, Auth){
-
+			$scope.errors = null;
 			$scope.goToSignup = function(){
 				$scope.closeModal();
 				$state.go('signup');
@@ -40,7 +40,7 @@
 						$scope.closeModal();
 						$scope.user.email = "";
 						$scope.user.password = "";
-						$scope.errors = {};
+						$scope.errors = null;
 					}
 					else{
 						console.log(err);
