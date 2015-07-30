@@ -2,25 +2,28 @@
   <div class="text item bold">
   	<img src="assets/images/thebriefcase.png" style="max-width: 23px; vertical-align: -3px; margin-right: 2px;"> <span style="font-family: 'Roboto Slab'; font-weight: 100; text-transform: uppercase; color: #FFFFFF; letter-spacing: 2px;">Journalist</span> <span style="font-family: 'Roboto Slab'; font-weight: 700; text-transform: uppercase; color: #FFFFFF; letter-spacing: 3px;">Toolbox</span>
   </div>
-  <a ui-sref="home" ui-sref-active="active" class="item">
+  <a ui-sref="home" class="item">
     <i class="home icon"></i> Home
   </a>
-  <a ui-sref="interested" ui-sref-active="active" class="item">
+  <a ui-sref="interested" class="item">
     <i class="question icon"></i> Interested?
   </a>
-  <a ui-sref="create" ui-sref-active="active" class="item">
+  <a ui-sref="create" class="item">
     <i class="puzzle icon"></i> Create
   </a>
-  <a ui-sref="request" ui-sref-active="active" class="item">
-    <i class="spy icon"></i> Request
-  </a>
-  <div style="display:inline;" ng-hide="loggedInUser">
-    <a ng-click="showModal()" class="item right">Login</a>
+
+  <div style="display:inline;" class="item right" ng-hide="loggedInUser">
+    <a href="#" ng-click="showModal()">Login</a>
   </div>
-  <div style="display:inline;" ng-show="loggedInUser">
-    <a ng-click="logout()" class="item right"> Logout</a>
-    <div class="text item right">
-    	Hi {{ loggedInUser.firstName }}
-    </div>
+
+  <div ng-show="loggedInUser" class="ui simple dropdown item right navbar-dropdown">
+      <img src="http://www.gravatar.com/avatar/{{loggedInUser.email}}?d=mm"> <i class="dropdown icon"></i>
+      <div class="menu">
+        <a ui-sref="admin" class="item">Admin Panel</a>
+        <a class="item" href="#" ng-click="logout()"> Logout</a>
+      </div>
+  </div>
+  <div style="display:inline;" class="item right" >
+    
   </div>
 </div>
