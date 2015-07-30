@@ -14,7 +14,6 @@ angular.module('journalisttoolboxFrontend')
           password: user.password
         }, function(user) {
             // Store the current user in Browser's cookie.
-            console.log(user);
             $cookies.putObject('user', user);
             $rootScope.loggedInUser = $cookies.getObject('user');
             return cb();
