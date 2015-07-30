@@ -15,6 +15,9 @@
 		$scope.category = $stateParams.cat;
         //starting the semantic UI tab
         $('.menu .item').tab();
+        $('.ui.dropdown')
+  .dropdown()
+;
                
 
 		$http({method:'GET', url: 'http://localhost:3030/api/tools/category/' + $scope.category})

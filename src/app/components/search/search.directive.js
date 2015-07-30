@@ -23,11 +23,9 @@
 			//filter var			
 			$scope.FilterTools = [];
 			$scope.Findit = false;
-			$scope.ShowFilter = false;
 
 	        //starting the semantic UI accordion
-	        $('.ui.accordion').accordion();
-        $('.menu .item').tab();
+        	$('.menu .item').tab();
 
 			toolService.toolResource.query()
 	        .$promise.then(function(data) {
@@ -38,12 +36,12 @@
 				if($scope.term.length >= 3){
 					$scope.tools = $scope.allTools;
 					//show the filter options
-					$scope.ShowFilter = true;
+					//$scope.ShowFilter = true;
 				}
 				else{
 					$scope.tools = [];		
 					//hide the filter options
-					$scope.ShowFilter = false;
+					//$scope.ShowFilter = false;
 				}
 			};
 
