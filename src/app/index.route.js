@@ -43,6 +43,18 @@
       templateUrl: 'app/admin/admin.html',
       controller: 'AdminCtrl'
     };
+    var adminTools = {
+      name: 'admin.tools',
+      url: '/tools',
+      templateUrl: 'app/admin/adminTools/adminTools.html',
+      controller: 'AdminToolsCtrl'
+    };
+    var adminUsers = {
+      name: 'admin.users',
+      url: '/users',
+      templateUrl: 'app/admin/adminUsers/adminUsers.html',
+      controller: 'AdminUsersCtrl'
+    };
 
     var signup = {
       name: 'signup',
@@ -55,7 +67,11 @@
     $stateProvider.state(explore);
     $stateProvider.state(tool);
     $stateProvider.state(create);
+
     $stateProvider.state(admin);
+    $stateProvider.state(adminTools);
+    $stateProvider.state(adminUsers);
+
     $stateProvider.state(signup);
 
     $urlRouterProvider.otherwise('/');
