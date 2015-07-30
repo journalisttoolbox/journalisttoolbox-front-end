@@ -6,7 +6,7 @@
 	.controller('CreateCtrl', CreateController);
 
 	/** @ngInject */
-	function CreateController($scope, $http, $stateParams, $state, toolService) {
+	function CreateController($scope, $http, $stateParams, $state, toolService, $rootScope) {
 
     // Add the 'http://' if not already present
     $scope.prependHttp = function(url) {
@@ -23,6 +23,7 @@
       $scope.formData.git      = $scope.prependHttp($scope.formData.git);
       $scope.formData.home     = $scope.prependHttp($scope.formData.home);
       $scope.formData.download = $scope.prependHttp($scope.formData.download);
+      $scope.formData.owner = $rootScope.loggedInUser._id;
 
       toolService.toolResource.save($scope.formData)
         .$promise.then(function() {
