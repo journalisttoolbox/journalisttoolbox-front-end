@@ -1,0 +1,25 @@
+// Colors
+// --------------------------------------------------
+
+$btnText:                           #fff;
+$btnTextAlt:                        #000;
+
+$btnFacebookBackground:             #3B5998;
+$btnFacebookBackgroundHighlight:    #133783;
+$btnTwitterBackground:              #2daddc;
+$btnTwitterBackgroundHighlight:     #0271bf;
+$btnGithubBackground:               #fafafa;
+$btnGithubBackgroundHighlight:      #ccc;
+
+// Social buttons
+// --------------------------------------------------
+
+.btn-facebook {
+  @include button-variant($btnText, $btnFacebookBackgroundHighlight, $btnFacebookBackgroundHighlight);
+}
+.btn-twitter {
+  @include button-variant($btnText, $btnTwitterBackground, $btnTwitterBackgroundHighlight);
+}
+.btn-github {
+  @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
+}
