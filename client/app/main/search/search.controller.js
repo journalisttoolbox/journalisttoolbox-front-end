@@ -1,10 +1,10 @@
-(function(){
+(function() {
   'use strict';
+
   angular
     .module('jtApp')
     .directive('jtSearch', jtSearch);
 
-  /** @ngInject */
   function jtSearch(){
     var directive = {
       restirct: 'E',
