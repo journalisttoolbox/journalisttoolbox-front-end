@@ -1,1 +1,25 @@
-.trash { color:rgb(209, 91, 71); }
+.admin {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 20px;
+
+  .table {
+    margin-bottom: 10px!important;
+    font-size: 8px;
+
+    th {
+      span{
+        text-transform: capitalize;
+      }
+      width: 3%;
+    }
+
+    td {
+      word-break: break-word;
+    }
+  }
+}
+h2 {
+  font-size: 20px;
+  font-weight: 100;
+}

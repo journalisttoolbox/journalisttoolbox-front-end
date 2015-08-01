@@ -34,6 +34,36 @@ exports.create = function (req, res, next) {
   });
 };
 
+// Method for PUT requests
+exports.put = function(req, res) {
+  User.findOne({ '_id': req.params.id }, function(err, User) {
+    if(!User) {
+      // If User is not found
+      res.statusCode = 404;
+      return res.send({ error: 'Not found' });
+    }    
+    if(err) {
+      res.send(err.message);
+    } else {
+
+      // Update all fields
+      for(var field in req.body) {
+        User[field] = req.body[field];
+      }
+
+      User.save(function(err) {
+        if(err) {
+            console.log(err);
+          res.statusCode = 500;
+          res.send({ error: 'Error with put request' });
+        } else {
+          res.send({ status: 'OK', User: User });
+        }
+      });
+    }
+  });
+};
+
 /**
  * Get a single user
  */

@@ -57,17 +57,33 @@ exports.create = function(req,res) {
   });
 };
 
-// Updates an existing tool in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Tool.findById(req.params.id, function (err, tool) {
-    if (err) { return handleError(res, err); }
-    if(!tool) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(tool, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.status(200).json(tool);
-    });
+// Method for PUT requests
+exports.put = function(req, res) {
+  Tool.findOne({ '_id': req.params.id }, function(err, tool) {
+    if(!tool) {
+      // If tool is not found
+      res.statusCode = 404;
+      return res.send({ error: 'Not found' });
+    }    
+    if(err) {
+      res.send(err.message);
+    } else {
+
+      // Update all fields
+      for(var field in req.body) {
+        tool[field] = req.body[field];
+      }
+
+      tool.save(function(err) {
+        if(err) {
+            console.log(err);
+          res.statusCode = 500;
+          res.send({ error: 'Error with put request' });
+        } else {
+          res.send({ status: 'OK', tool: tool });
+        }
+      });
+    }
   });
 };
 

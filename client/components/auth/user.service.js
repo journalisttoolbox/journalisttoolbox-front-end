@@ -12,6 +12,12 @@ angular.module('jtApp')
           controller:'password'
         }
       },
+      update: { 
+        method : 'PUT', 
+        params: { 
+          id: '@id' 
+        } 
+      },
       get: {
         method: 'GET',
         params: {
