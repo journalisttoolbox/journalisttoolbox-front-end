@@ -8,7 +8,7 @@
 	/** @ngInject */
 	function ExploreController($scope, $http, $stateParams){
         $scope.term = "";
-		$scope.tools = {};
+		$scope.tools = [];
         $scope.categories = {};
 		$scope.FilterTools = [];
 		$scope.Findit = false;
