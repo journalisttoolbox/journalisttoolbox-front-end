@@ -3,10 +3,10 @@
   
   angular
   .module('jtApp')
-  .controller('AdminUsersCtrl', ['$scope', 'User', AdminUsersController ]);
+  .controller('AdminUsersCtrl', ['$scope', 'User', '$state', 'Auth', AdminUsersController ]);
 
   /** @ngInject */
-  function AdminUsersController($scope, User) {
+  function AdminUsersController($scope, User, $state, Auth) {
     $scope.forbidden = true;
     $scope.selectedRecordIds = [];
 
@@ -24,7 +24,11 @@
       });
     };
 
-    $scope.loadUsers();
+    if(!Auth.isAdmin()) {
+      $state.go('signup'); 
+    } else {
+      $scope.loadUsers();
+    }
 
     // DELETE a user
     $scope.removeUser = function(userID) {

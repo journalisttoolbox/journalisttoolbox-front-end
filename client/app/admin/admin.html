@@ -6,9 +6,9 @@
   </div>
 
   <button class="ui button" ng-click="toolsState()">TOOLS</button>
-  <button class="ui button" ng-click="usersState()">USERS</button>
+  <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
 
     <!-- For nested child views -->
-    <div ui-view></div>
+    <div class="adminComponents" ui-view></div>
 
 </div>

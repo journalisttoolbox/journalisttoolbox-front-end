@@ -1,32 +1,42 @@
 <div class="toolsAdmin">
-  <h2>TOOLS</h2>
-  <p>Click to edit field.</p>
+
+    <!-- LOADING -->
+    <div ng-show="!toolList.length && !toolsNotFound" class="ui active centered large inline loader adminLoader"></div>
+
+    <div ng-show="toolsNotFound" class="noTools">
+      <h1>No tools yet!</h1>
+      <p>Why don't you go and <a ui-sref="create">add some?</a></p>
+    </div>
+  
     <!-- TOOLS TABLE -->
-    <table class="ui celled striped tablet stackable table">
-      <thead>
-        <tr>
-          <th></th>
-          <th ng-repeat="(head, value) in toolList[0]"><span>{{ head }}</span></th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="row in toolList">
-          <td>
-            <input type="checkbox" ng-click="alterSelect(row._id)">
-          </td>
-          <td ng-repeat="(name, value) in row" ng-scope>
-            <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
-            <textarea ng-model="row[name]" ng-show="editing"></textarea>
-            <button ng-click="editing = false; updateTool(row)" ng-show="editing">UPDATE</button>
-          </td>
-          <td>
-            <button class="ui mini icon negative button" ng-really-message="Are you sure you want to delete this tool?" ng-really-click="removeTool(row._id)">
-              <i class="icon close"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button ng-really-message="Are you sure you want to delete all selected tools?" ng-really-click="removeTool(selectedRecordIds)" class="ui negative button">Remove selected tools</button>
+    <div ng-show="toolsFound"class="toolsTable">
+      <p>Click to edit field.</p>
+      <table  class="ui celled striped tablet stackable table">
+        <thead>
+          <tr>
+            <th></th>
+            <th ng-repeat="(head, value) in toolList[0]"><span>{{ head }}</span></th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in toolList">
+            <td>
+              <input type="checkbox" ng-click="alterSelect(row._id)">
+            </td>
+            <td ng-repeat="(name, value) in row" ng-scope>
+              <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
+              <textarea ng-model="row[name]" ng-show="editing"></textarea>
+              <button ng-click="editing = false; updateTool(row)" ng-show="editing">UPDATE</button>
+            </td>
+            <td>
+              <button class="ui mini icon negative button" ng-really-message="Are you sure you want to delete this tool?" ng-really-click="removeTool(row._id)">
+                <i class="icon close"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button ng-really-message="Are you sure you want to delete all selected tools?" ng-really-click="removeTool(selectedRecordIds)" class="ui negative button">Remove selected tools</button>
+    </div>
 </div>

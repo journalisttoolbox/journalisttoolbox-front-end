@@ -44,7 +44,7 @@ exports.create = function(req,res) {
           download_url: req.body.download,
           platforms: [req.body.pc,req.body.mac,req.body.linux,req.body.web],
           upvotes: 0,
-          downvotes:0,
+          downvotes: 0,
           owner: req.body.owner
         }
       );
@@ -114,6 +114,15 @@ exports.category = function(req,res) {
   Tool.find({'category': new RegExp('^'+req.params.name+'$', "i")}, function(err, tools) {
     if(err) res.send(err.message);
     res.json(tools);
+  });
+};
+
+exports.getUserTools = function(req, res, next) {
+  var error = '';
+  
+  Tool.find({'owner': new RegExp('^'+req.params.userID+'$', "i")}, function(err, tools) {
+  if(err) { return handleError(res, err); }
+    return res.status(200).json({ tools:tools });
   });
 };
 

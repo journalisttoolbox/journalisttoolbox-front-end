@@ -6,24 +6,53 @@
   .controller('AdminToolsCtrl', AdminToolsController);
 
   /** @ngInject */
-  function AdminToolsController($scope, $state, Tool) {
-
+  function AdminToolsController($scope, $state, Tool, Auth) {
     $scope.selectedRecordIds = [];
 
-    $scope.loadTools = function() {
+    $scope.loadUsersTools = function() {
+      Tool.getUsersTools({ user: user._id })
+      .$promise.then(function(tools) {
+        $scope.toolList = {};
+        $scope.toolList = tools.tools;
+
+        if($scope.toolList.length) {
+          $scope.toolsFound = true;
+        } else {
+          $scope.toolsNotFound = true;
+        }
+      });
+    };
+
+    $scope.loadAllTools = function() {
       Tool.query()
       .$promise.then(function(data) {
         $scope.toolList = {};
         $scope.toolList = data;
+
+        if($scope.toolList.length) {
+          $scope.toolsFound = true;
+        } else {
+          $scope.toolsNotFound = true;
+        }
       });
     };
 
-    $scope.loadTools();
+    if(!Auth.isLoggedIn()) {
+      $state.go('signup'); 
+    } else {
+      var user = Auth.getCurrentUser();
+
+      if(user.role === 'admin') {
+        $scope.loadAllTools();
+      } else {
+        $scope.loadUsersTools();
+      }
+    }
 
     // Remove a tool
     $scope.removeTool = function(toolID) {
       Tool.remove({ id: toolID }, function() {
-        $scope.loadTools();
+        $state.go($state.current, {}, {reload: true});
         $scope.selectedRecordIds = [];
       });
     };

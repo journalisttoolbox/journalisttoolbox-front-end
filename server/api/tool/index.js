@@ -7,6 +7,7 @@ var router = express.Router();
 
 router.get('/category/:name', controller.category);
 router.get('/', controller.index);
+router.get('/user/:userID', controller.getUserTools);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.put);
