@@ -14,10 +14,10 @@
             controller: LoginCtrl,
             bindToController: true,
             link: function($scope){
-                $('.ui.modal').modal();
-                $scope.closeModal = function(){
-                    $('.ui.modal').modal('hide');
-                };
+              $('.ui.modal.signIn').modal();
+              $scope.closeModal = function(){
+              $('.ui.modal.signIn').modal('hide');
+            };
             }
           };
 

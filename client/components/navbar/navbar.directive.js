@@ -15,7 +15,7 @@
       bindToController: true,
       link: function($scope){
         $scope.showModal = function(){
-          $('.ui.modal').modal('show');
+          $('.ui.modal.signIn').modal('show');
         };
       }
     };
