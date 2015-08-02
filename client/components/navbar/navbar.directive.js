@@ -23,7 +23,7 @@
   }
 
       /** @ngInject */
-    function NavbarCtrl($scope, Auth, $location, md5){
+    function NavbarCtrl(Auth, $scope, $location, $state){
       $scope.menu = [{
         'title': 'Home',
         'link': '/'
@@ -32,13 +32,11 @@
       $scope.isCollapsed = true;
       $scope.isLoggedIn = Auth.isLoggedIn;
       $scope.isAdmin = Auth.isAdmin;
-      $scope.getCurrentUser = Auth.getCurrentUser();
-      console.log("current user is: " + $scope.getCurrentUser.name);
-      $scope.hashedEmail = md5.createHash($scope.getCurrentUser.email || '');
+      $scope.getCurrentUser = Auth.getCurrentUser;
 
       $scope.logout = function() {
         Auth.logout();
-        $state.path($state.current);
+        $state.go($state.current, {}, {reload: true});
       };
 
       $scope.isActive = function(route) {

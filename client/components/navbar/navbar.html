@@ -18,7 +18,7 @@
   <jt-login></jt-login>
 
   <div ng-show="isLoggedIn()" class="ui simple dropdown item right navbar-dropdown">
-      <img src="http://www.gravatar.com/avatar/{{hashedEmail}}?d=mm"> <i class="dropdown icon"></i>
+      <img ng-src="{{ getCurrentUser().hashedEmail || default }}"> <i class="dropdown icon"></i>
       <div class="menu">
         <a ui-sref="admin" class="item">Admin Panel</a>
         <a class="item" href="#" ng-click="logout()"> Logout</a>
