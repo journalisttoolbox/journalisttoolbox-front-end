@@ -1,72 +1,53 @@
 {
-  "generator-gulp-angular": {
-    "version": "0.12.1",
-    "props": {
-      "angularVersion": "~1.4.0",
-      "angularModules": [
-        {
-          "key": "animate",
-          "module": "ngAnimate"
-        },
-        {
-          "key": "cookies",
-          "module": "ngCookies"
-        },
-        {
-          "key": "touch",
-          "module": "ngTouch"
-        },
-        {
-          "key": "sanitize",
-          "module": "ngSanitize"
-        }
-      ],
-      "jQuery": {
-        "key": "jquery2"
-      },
-      "resource": {
-        "key": "angular-resource",
-        "module": "ngResource"
-      },
-      "router": {
-        "key": "ui-router",
-        "module": "ui.router"
-      },
-      "ui": {
-        "key": "none",
-        "module": null
-      },
-      "cssPreprocessor": {
-        "key": "node-sass",
-        "extension": "scss"
-      },
-      "jsPreprocessor": {
-        "key": "none",
-        "extension": "js",
-        "srcExtension": "js"
-      },
-      "htmlPreprocessor": {
-        "key": "none",
-        "extension": "html"
-      },
-      "bootstrapComponents": {
-        "name": null,
-        "version": null,
-        "key": null,
-        "module": null
-      },
-      "foundationComponents": {
-        "name": null,
-        "version": null,
-        "key": null,
-        "module": null
-      },
-      "paths": {
-        "src": "src",
-        "dist": "dist",
-        "e2e": "e2e",
-        "tmp": ".tmp"
-      }
+  "generator-angular-fullstack": {
+    "insertRoutes": true,
+    "registerRoutesFile": "server/routes.js",
+    "routesNeedle": "// Insert routes below",
+    "routesBase": "/api/",
+    "pluralizeRoutes": true,
+    "insertSockets": true,
+    "registerSocketsFile": "server/config/socketio.js",
+    "socketsNeedle": "// Insert sockets below",
+    "filters": {
+      "babel": true,
+      "js": true,
+      "html": true,
+      "sass": true,
+      "uirouter": true,
+      "bootstrap": true,
+      "uibootstrap": true,
+      "socketio": true,
+      "mongoose": true,
+      "auth": true,
+      "oauth": true,
+      "facebookAuth": true,
+      "twitterAuth": true
     }
+  },
+  "generator-ng-component": {
+    "routeDirectory": "client/app/",
+    "directiveDirectory": "client/app/",
+    "filterDirectory": "client/app/",
+    "serviceDirectory": "client/app/",
+    "basePath": "client",
+    "moduleName": "",
+    "filters": [
+      "uirouter"
+    ],
+    "extensions": [
+      "babel",
+      "js",
+      "html",
+      "scss"
+    ],
+    "directiveSimpleTemplates": "",
+    "directiveComplexTemplates": "",
+    "filterTemplates": "",
+    "serviceTemplates": "",
+    "factoryTemplates": "",
+    "controllerTemplates": "",
+    "decoratorTemplates": "",
+    "providerTemplates": "",
+    "routeTemplates": ""
   }
 }

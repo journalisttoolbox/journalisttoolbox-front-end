@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="ui page centered grid stackable">
+      <div class="four wide column center">
+          <img src="assets/images/logo.png" style="width: 100%; margin: 20px auto; display: block; max-width: 400px; ">
+      </div>
+  </div>
+
+
+  <div class="ui column stackable page grid">
+    <form name="signupForm" class="ui six wide column centered form segment" ng-submit="register(signupForm)" novalidate>
+
+    <!-- NAME -->
+      <div class="input field" ng-class="{ 'error' : signupForm.name.$invalid && !signupForm.name.$pristine }">
+        <input type="text" ng-model="user.name" name="name" placeholder="Full name" required>
+         <p class="fieldRequired" ng-show="signupForm.name.$invalid && !signupForm.name.$pristine">Your first name is required.</p>
+      </div>
+
+    <!-- EMAIL -->
+      <div class="input field" ng-class="{ 'error' : signupForm.email.$invalid && !signupForm.email.$pristine }">
+        <input type="email" ng-model="user.email" name="email" placeholder="Email" required>
+        <p class="fieldRequired" ng-show="signupForm.email.$ && !signupForm.email.$pristine">Please ensure you enter a valid email format (x@x.com).</p>
+      </div>
+
+    <!-- PASSWORD -->
+      <div class="input field" ng-class="{ 'error' : signupForm.pass.$invalid && !signupForm.pass.$pristine }">
+        <input type="password" ng-model="user.pass" name="pass" placeholder="Password" required>
+      </div>
+
+    <!-- PASSWORD REPEAT -->
+      <div class="input field" ng-class="{ 'error' : signupForm.pass2.$error.match && !signupForm.pass2.$pristine }">
+        <input type="password" ng-model="user.pass2" name="pass2" placeholder="Repeat password" match="signupForm.pass" required>
+        <p class="fieldRequired" ng-show="signupForm.pass2.$error.match && !signupForm.pass2.$pristine">Your passwords need to match.</p>
+      </div>
+
+      <!-- SOCIAL SIGNUP -->
+  <!--       <div>
+          <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')">
+            <i class="fa fa-facebook"></i> Connect with Facebook
+          </a>
+          <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
+            <i class="fa fa-twitter"></i> Connect with Twitter
+          </a>
+        </div> -->
+
+      <button class="ui submit positive button center-button" ng-disabled="signupForm.$invalid">Signup</button>
+    </form>
+  </div>
+</div>

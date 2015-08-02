@@ -1,6 +1,10 @@
-node_modules/
+node_modules
+public
+.tmp
+.sass-cache
+.idea
+client/bower_components
+dist
+/server/config/local.env.js
+npm-debug.log
 bower_components/
-.sass-cache/
-.idea/
-.tmp/
-dist/

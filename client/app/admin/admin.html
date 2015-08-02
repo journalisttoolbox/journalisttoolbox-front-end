@@ -1,0 +1,14 @@
+<div class="container admin">
+  <div class="ui four column grid">
+    <div class="center aligned column row">
+      <h1 class="centered">ADMIN PANEL</h1>
+    </div>
+  </div>
+
+  <button class="ui button" ng-click="toolsState()">TOOLS</button>
+  <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
+
+    <!-- For nested child views -->
+    <div class="adminComponents" ui-view></div>
+
+</div>
