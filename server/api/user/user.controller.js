@@ -15,7 +15,7 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
+  User.find({}, '-salt -hashedPassword -__v', function (err, users) {
     if(err) return res.status(500).send(err);
     res.status(200).json(users);
   });
@@ -29,7 +29,7 @@ exports.create = function (req, res, next) {
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.gravUrl = gravatar.url(req.body.email);
-  
+
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });

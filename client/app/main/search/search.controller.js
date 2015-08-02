@@ -17,9 +17,11 @@
     function SearchController($scope, $http, Tool){
       $scope.term = "";
       $scope.noResults = false;
+      $scope.ShowFilter = false;
       $scope.filters = {};
       $scope.tools = [];
       $scope.allTools = {};
+
       //filter var      
       $scope.FilterTools = [];
       $scope.Findit = false;
@@ -33,15 +35,15 @@
         });
 
       $scope.onKeyUp = function(){
-        if($scope.term.length >= 3){
+        if($scope.term.length >= 3) {
           $scope.tools = $scope.allTools;
           //show the filter options
-          //$scope.ShowFilter = true;
+          $scope.ShowFilter = true;
         }
         else{
           $scope.tools = [];    
           //hide the filter options
-          //$scope.ShowFilter = false;
+          $scope.ShowFilter = false;
         }
       };
 

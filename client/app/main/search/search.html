@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="ui page grid" ng-show="(tools | filter:term).length === 0 && term.length>=3">
+    <div class="ui page grid" ng-show="(tools | filter:term).length <= 0 && term.length>=3">
         <div class="twelve wide centered column">
             <div class="ui negative message">
                   <div class="header">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="ui page grid stackable" style="margin:0px;" ng-show="(tools | filter:term).length > 0 && term.length>=3">
+    <div class="ui page grid" style="margin:0px;" ng-show="(tools | filter:term).length > 0 && term.length>=3">
       <div class="left floated left aligned thirteen wide column">
         <div class="ui top attached tabular menu" >
           <a class="item active" data-tab="first">Platforms</a>
@@ -154,7 +154,8 @@
       </div>
     </div>
 
-    <div class="ui page grid stackable" ng-show="!noResults">
+    <!-- FILTERS -->
+    <div class="ui page grid" ng-show="!noResults && ShowFilter">
 
         <div class="four wide column" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
             <div class="ui cards">
