@@ -3,19 +3,19 @@
 
   angular
     .module('jtApp')
-    .directive('jtExplore', jtExplore);
+    .directive('jtGrid', jtGrid);
 
-  function jtExplore(){
+  function jtGrid(){
     var directive = {
       restrict: 'E',
       templateUrl: '/app/main/grid/grid.html',
-      controller: ExploreCtrl,
+      controller: GridCtrl,
       bindToController: true
       };
 
     return directive;
 
-  function ExploreCtrl($scope){
+  function GridCtrl($scope){
     $scope.categories = [
         {
           name: 'Maps',

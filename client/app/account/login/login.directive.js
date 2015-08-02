@@ -14,10 +14,10 @@
             controller: LoginCtrl,
             bindToController: true,
             link: function($scope){
-              $('.ui.modal.signIn').modal();
-              $scope.closeModal = function(){
-              $('.ui.modal.signIn').modal('hide');
-            };
+                $('.ui.modal.signIn').modal();
+                $scope.closeModal = function(){
+                $('.ui.modal.signIn').modal('hide');
+              };
             }
           };
 
@@ -44,7 +44,7 @@
         .then( function() {
           // Logged in, redirect to home
           $scope.closeModal();
-          $location.path('/');
+          $state.go($state.current);
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

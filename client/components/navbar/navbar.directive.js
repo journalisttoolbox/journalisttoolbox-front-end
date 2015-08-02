@@ -33,11 +33,12 @@
       $scope.isLoggedIn = Auth.isLoggedIn;
       $scope.isAdmin = Auth.isAdmin;
       $scope.getCurrentUser = Auth.getCurrentUser();
+      console.log("current user is: " + $scope.getCurrentUser.name);
       $scope.hashedEmail = md5.createHash($scope.getCurrentUser.email || '');
 
       $scope.logout = function() {
         Auth.logout();
-        $location.path('/');
+        $state.path($state.current);
       };
 
       $scope.isActive = function(route) {

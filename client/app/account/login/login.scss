@@ -23,3 +23,8 @@ $btnGithubBackgroundHighlight:      #ccc;
 .btn-github {
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
+
+
+.ui.small.modal{
+	height:300px;
+}
