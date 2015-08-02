@@ -10,15 +10,17 @@ var User = require('../api/user/user.model');
 // User.find({}).remove(function() {
 //   User.create({
 //     provider: 'local',
-//     name: 'Test User',
-//     email: 'test@test.com',
-//     password: 'test'
+//     name: 'James Oldfield',
+//     email: 'hi@james-oldfield.co',
+//     gravUrl: 'http://www.gravatar.com/avatar/e61b9c5c249bc013475fb96f95a5b1f4.jpg',
+//     role: 'admin',
+//     password: 'james'
 //   }, {
 //     provider: 'local',
-//     role: 'admin',
-//     name: 'Admin',
-//     email: 'admin@admin.com',
-//     password: 'admin'
+//     name: 'nevo',
+//     email: 'nevosegal@gmail.com',
+//     gravUrl: 'http://www.gravatar.com/avatar/ed580faf7c8d4d3412083924169253de.jpg',
+//     password: 'nevo'
 //   }, function() {
 //       console.log('finished populating users');
 //     }

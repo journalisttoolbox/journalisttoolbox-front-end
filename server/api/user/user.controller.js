@@ -28,7 +28,7 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
-  newUser.hashedEmail = gravatar.url(req.body.email);
+  newUser.gravUrl = gravatar.url(req.body.email);
   
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
