@@ -125,8 +125,8 @@ exports.category = function(req,res) {
 
 exports.getUserTools = function(req, res, next) {
   var error = '';
-  
-  Tool.find({'owner': new RegExp('^'+req.params.userID+'$', "i")}, function(err, tools) {
+
+  Tool.find({'owner': new RegExp('^'+req.params.email+'$', "i")}, function(err, tools) {
   if(err) { return handleError(res, err); }
     return res.status(200).json({ tools:tools });
   });
