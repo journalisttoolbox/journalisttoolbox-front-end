@@ -16,6 +16,7 @@ angular.module('jtApp')
     $http({ method:'GET', url: 'http://localhost:9000/api/tools/category/' + $scope.category })
       .success(function(data) {
         $scope.tools = data;
+        console.log($scope.tools);
       });
 
         $scope.includeFilter = function(name) {

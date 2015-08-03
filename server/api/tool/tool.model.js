@@ -13,8 +13,8 @@ var ToolSchema = new Schema({
   companies: Array,
   categories: Array,
   platforms: Array,
-  upvotes: Number,
-  downvotes: Number,
+  upvotes: Array,
+  downvotes: Array,
   owner: String,
   uploaded_date: String
 });
