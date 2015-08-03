@@ -178,7 +178,7 @@
                             </div>
                         </a>
                         <div class="meta">
-                            <span><i class="file image outline icon"></i><span ng-repeat = "category in tool.category">{{category}}{{$last? '':', '}}</span></span>
+                            <span><i class="file image outline icon"></i><span ng-repeat = "category in tool.categories">{{category}}{{$last? '':', '}}</span></span>
                         </div>
                         <div class="ui divider"></div>
                         <div style="height: 50px; max-height: 50px;"><span class="tool-description">{{tool.description | limitTo: 90 }}{{tool.description.length > 90 ? '...' : ''}}</span></div>
