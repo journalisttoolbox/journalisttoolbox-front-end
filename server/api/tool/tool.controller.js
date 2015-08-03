@@ -126,6 +126,20 @@ exports.getUserTools = function(req, res, next) {
   });
 };
 
+exports.upvoteTool = function(req, res, next) {
+  var error = '';
+
+  Tool.findById(req.params.toolID, function (err, tool) {
+    if(err) { return handleError(res, err); }
+    if(!tool) { return res.status(404).send('Not Found'); }
+    return res.json(tool);
+  });
+
+  Tool.find({'upvotes': {$in: [ req.params.userID ] }}, function(err, data) {
+    console.log()
+  });
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }
