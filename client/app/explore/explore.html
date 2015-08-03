@@ -118,11 +118,11 @@
             <img ng-src="http://placehold.it/200x200">
           </a>    
           <div class="content">
-            <div class="ui floated right" ng-if="tool.downvotes <= tool.upvotes">
+            <div class="ui floated right" ng-if="tool.downvotes.length <= tool.upvotes.length">
               <i class="thumbs up icon green"></i> 
               <span class="text">{{ tool.upvotes.length }}</span>
             </div>
-            <div class="ui floated right" ng-if="tool.downvotes > tool.upvotes">
+            <div class="ui floated right" ng-if="tool.downvotes.length > tool.upvotes.length">
               <i class="thumbs down icon red"></i> 
               <span class="text">{{ tool.downvotes.length }}</span>
             </div>
