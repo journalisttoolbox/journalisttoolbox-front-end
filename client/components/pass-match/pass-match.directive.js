@@ -3,7 +3,7 @@
 'use strict';
 
  angular
-    .module('journalisttoolboxFrontend')
+    .module('jtApp')
     .directive('match', match);
 
   function match ($parse) {
