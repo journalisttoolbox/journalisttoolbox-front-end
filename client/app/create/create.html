@@ -80,7 +80,7 @@
   <div class="field input" ng-class="{'disabled': !currentUser}">
     <label>Category</label>
     <div class="ui left icon input">
-        <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.category" name="categories" id="companies" placeholder="Separate each category by a comma">
+        <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.categories" name="categories" id="companies" placeholder="Separate each category by a comma">
         <i class="tags icon"></i>
     </div>
   </div>
@@ -96,13 +96,13 @@
     <div class="ui label" ng-class="{'disabled': !currentUser}">
     http://
     </div>
-    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.home" placeholder="Home URL" name="home" id="home">
+    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.home_url" placeholder="Home URL" name="home" id="home">
 
     <!-- GIT LINK -->
     <div class="ui label" ng-class="{'disabled': !currentUser}">
     http://
     </div>
-    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.git" placeholder="Github URL" name="git" id="git">
+    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.github_url" placeholder="Github URL" name="git" id="git">
   </div>
 
   <div class="ui labeled input">
@@ -110,7 +110,7 @@
     <div class="ui label" ng-class="{'disabled': !currentUser}">
     http://
     </div>
-    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.download" placeholder="Download URL" name="download" id="download">
+    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.download_url" placeholder="Download URL" name="download" id="download">
   </div>
 
   <h2 class="ui horizontal divider header" ng-class="{'disabled': !currentUser}">
