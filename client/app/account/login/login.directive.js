@@ -42,7 +42,7 @@
           password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
+          // Logged in, redirect to current state
           $scope.closeModal();
           $state.go($state.current, {}, {reload: true});
         })

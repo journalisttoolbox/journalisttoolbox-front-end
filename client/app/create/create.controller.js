@@ -6,12 +6,7 @@
 
   function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User) {
 
-    // Check is user is logged in
-    if (Auth.isLoggedIn()) {
-      $scope.currentUser = User.get();
-    } else {
-      $scope.currentUser = false;
-    }
+    $scope.currentUser = Auth.getCurrentUser;
 
     // Add the 'http://' if not already present
     $scope.prependHttp = function(url) {
