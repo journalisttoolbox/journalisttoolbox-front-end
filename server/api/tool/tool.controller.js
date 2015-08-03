@@ -111,7 +111,7 @@ exports.destroy = function(req, res) {
 
 // listing all tools of a category
 exports.category = function(req,res) {
-  Tool.find({'category': new RegExp('^'+req.params.name+'$', "i")}, function(err, tools) {
+  Tool.find({'categories': new RegExp('^'+req.params.name+'$', "i")}, function(err, tools) {
     if(err) res.send(err.message);
     res.json(tools);
   });
