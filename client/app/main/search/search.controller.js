@@ -37,11 +37,6 @@
       $scope.onKeyUp = function(){
         if($scope.term.length >= 3) {
           $scope.tools = $scope.allTools;
-          
-          // If no tools present 
-          if(!$scope.tools) {
-            $scope.noResults = true;
-          }
           //show the filter options
           $scope.ShowFilter = true;
         }
@@ -51,6 +46,10 @@
           $scope.ShowFilter = false;
         }
       };
+
+      $scope.triggerDimmer = function() {
+           $('.ui.image').dimmer({on: 'hover'});
+      }
 
       $scope.includeFilter = function(name) {
         var i = $.inArray(name, $scope.FilterTools);

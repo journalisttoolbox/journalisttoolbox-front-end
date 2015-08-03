@@ -1,26 +1,27 @@
-<div>
 
-    <div class="ui page grid">
-        <div class="sixteen wide column">
-            <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
-                <input type="text" ng-model="term" ng-keyup="onKeyUp()" placeholder="What are you looking to create...?">
-                <i class="search icon"></i>
-            </div>
+
+<div class="container">
+  <div class="ui segment">
+    <div class="ui four column grid stackable">
+      <div class="sixteen wide column">
+        <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
+          <input type="text" ng-model="term" ng-keyup="onKeyUp()" placeholder="What are you looking to create...?">
+          <i class="search icon"></i>
         </div>
+      </div>
     </div>
 
-    <div class="ui page grid" ng-show="noResults">
-        <div class="twelve wide centered column">
-            <div class="ui negative message">
-                  <div class="header">
-                    No results found.
-                  </div>
-                  <p>Please try with a different search term</p>
-            </div>
+    <div class="ui page grid" ng-show="(tools | filter:term).length <= 0 && term.length>=3">
+      <div class="twelve wide centered column">
+        <div class="ui negative message">
+          <div class="header">
+            No results found.
+          </div>
+          <p>Please try with a different search term</p>
         </div>
+      </div>
     </div>
-
-    <div class="ui page grid" style="margin:0px;" ng-show="(tools | filter:term).length > 0 && term.length>=3">
+    <div class="ui four column grid" style="margin:0px;" ng-show="(tools | filter:term).length > 0 && term.length>=3">
       <div class="left floated left aligned thirteen wide column">
         <div class="ui top attached tabular menu" >
           <a class="item active" data-tab="first">Platforms</a>
@@ -153,43 +154,31 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- FILTERS -->
+  <div class="ui four column grid stackable" ng-show="!noResults && ShowFilter" ng-mouseover="triggerDimmer()">
 
-    <!-- FILTERS -->
-    <div class="ui page grid" ng-show="!noResults && ShowFilter">
-
-        <div class="four wide column" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
-            <div class="ui cards">
-                <div class="card" style="margin-left: auto; margin-right: auto;">
-                    <a ui-sref="tool({id: tool._id})" class="image">
-                        <img ng-src="http://placehold.it/250x250">
-                    </a>    
-                    <div class="content">
-                        <div class="ui floated right" ng-if="tool.downvotes <= tool.upvotes">
-                            <i class="thumbs up icon green"></i> 
-                            <span class="text">{{tool.upvotes}}</span>
-                        </div>
-                        <div class="ui floated right" ng-if="tool.downvotes > tool.upvotes">
-                            <i class="thumbs down icon red"></i> 
-                            <span class="text">{{tool.downvotes}}</span>
-                        </div>
-                        <a ui-sref="tool({id: tool._id})">
-                            <div class="header">
-                                <h3>{{tool.name}}</h3>
-                            </div>
-                        </a>
-                        <div class="meta">
-                            <span><i class="file image outline icon"></i><span ng-repeat = "category in tool.category">{{category}}{{$last? '':', '}}</span></span>
-                        </div>
-                        <div class="ui divider"></div>
-                        <div style="height: 50px; max-height: 50px;"><span class="tool-description">{{tool.description | limitTo: 90 }}{{tool.description.length > 90 ? '...' : ''}}</span></div>
-                    </div>
-                    <a ui-sref="tool({id: tool._id})" class="ui bottom attached button primary">
-                        <i class="eye icon"></i>
-                        View tool
-                    </a>
-                </div>
+    <a ui-sref="tool({id: tool._id})" class="column" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
+      <div class="ui medium image">
+        <div class="ui dimmer">
+          <div class="content">
+            <div class="center">
+              <div class="ui contaier">{{tool.description}}</div><br>
+              <div class="contaier">
+                <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.category">{{cat}}{{$last ? '' : ', '}}</span></span>
+              </div>
             </div>
+          </div>
         </div>
+        <img class="ui image" src="http://placehold.it/300x300">
+        <!--
+      <div class="ui green ribbon label">
+        <h4 class="ui inverted header">{{tool.name}}</h4>
+      </div>-->
+      <div class="ui top left orange attached label">
+        <h4>{{tool.name}}</h4>
+      </div>
     </div>
-
+    </a>
+  </div>
 </div>

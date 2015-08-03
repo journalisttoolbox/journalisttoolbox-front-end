@@ -26,6 +26,11 @@ angular.module('jtApp')
                 $scope.FilterTools.push(name);
             }
         };
+
+        $scope.triggerDimmer = function() {
+           $('.ui.image').dimmer({on: 'hover'});
+        }
+        
         
         $scope.toolFilter = function(tool) {
           $scope.Findit  = false;

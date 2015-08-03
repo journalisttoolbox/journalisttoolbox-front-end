@@ -104,44 +104,28 @@
     </div>
   </div>
 
-</div>
-</div>
-</div><br>
-
-<div class="three fields">
-
-  <div class="ui four column grid">
-    <div class="column" ng-repeat="tool in tools | filter:toolFilter | orderBy:toolOrder">
-      <div class="ui cards">
-        <div class="card" style="margin-left: auto; margin-right: auto;">
-          <a ui-sref="tool({id: tool._id})" class="image">
-            <img ng-src="http://placehold.it/200x200">
-          </a>    
+  <div class="ui four column grid stackable" ng-mouseover="triggerDimmer()">
+    <a ui-sref="tool({id: tool._id})" class="column" ng-repeat="tool in tools | filter:toolFilter | orderBy:toolOrder">
+      <div class="ui medium image">
+        <div class="ui dimmer">
           <div class="content">
-            <div class="ui floated right" ng-if="tool.downvotes <= tool.upvotes">
-              <i class="thumbs up icon green"></i> 
-              <span class="text">{{ tool.upvotes.length }}</span>
+            <div class="center">
+              <div class="ui container">{{tool.description}}</div><br>
+              <div class="container">
+                <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.category">{{cat}}{{$last ? '' : ', '}}</span></span>
+              </div>
             </div>
-            <div class="ui floated right" ng-if="tool.downvotes > tool.upvotes">
-              <i class="thumbs down icon red"></i> 
-              <span class="text">{{ tool.downvotes.length }}</span>
-            </div>
-            <a ui-sref="tool({id: tool._id})">
-              <div class="header"><h3>{{tool.name}}</h3></div>
-            </a>
-            <div class="meta">
-              <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.category">{{cat}}{{$last ? '' : ', '}}</span></span>
-            </div>
-            <div class="ui divider"></div>
-            <div style="height: 50px; max-height: 50px;"><span class="tool-description">{{tool.description | limitTo: 90 }}{{tool.description.length > 90 ? '...' : ''}}</span></div>
           </div>
-          <a ui-sref="tool({id: tool._id})" class="ui bottom attached button primary">
-            <i class="eye icon"></i>
-            View tool
-          </a>
         </div>
+        <img class="ui image" src="http://placehold.it/300x300">
+        <!--
+      <div class="ui green ribbon label">
+        <h4 class="ui inverted header">{{tool.name}}</h4>
+      </div>-->
+      <div class="ui top left orange attached label">
+        <h4>{{tool.name}}</h4>
       </div>
     </div>
-  </div>
+  </a>
 </div>
 </div>
