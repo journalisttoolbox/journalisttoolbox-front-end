@@ -5,7 +5,7 @@ var Tool = require('./tool.model');
 
 // Get list of tools
 exports.index = function(req, res) {
-  Tool.find(function (err, tools) {
+  Tool.find({}, '-JT_description', function (err, tools) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(tools);
   });

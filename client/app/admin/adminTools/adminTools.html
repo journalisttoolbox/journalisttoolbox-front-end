@@ -25,7 +25,7 @@
               <input type="checkbox" ng-click="alterSelect(row._id)">
             </td>
             <td ng-repeat="(name, value) in row" ng-scope>
-              <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
+              <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name]"></a>
               <textarea ng-model="row[name]" ng-show="editing"></textarea>
               <button ng-click="editing = false; updateTool(row)" ng-show="editing">UPDATE</button>
             </td>
