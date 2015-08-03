@@ -3,7 +3,7 @@
 angular.module('jtApp')
   .controller('ExploreCtrl', function ($scope, $stateParams, $http) {
     $scope.term = '';
-    $scope.tools = {};
+    $scope.tools = [];
     $scope.categories = {};
     $scope.FilterTools = [];
     $scope.Findit = false;
@@ -36,8 +36,8 @@ angular.module('jtApp')
           $scope.Findit  = false;
             if ($scope.FilterTools.length > 0) {
                 //array platorms
-              for (var i = tool.platform.length - 1; i >= 0; i--) {
-                if ($.inArray(tool.platform[i], $scope.FilterTools) >= 0)
+              for (var i = tool.platforms.length - 1; i >= 0; i--) {
+                if ($.inArray(tool.platforms[i], $scope.FilterTools) >= 0)
                         $scope.Findit  = true;
               };          
                 //free or not

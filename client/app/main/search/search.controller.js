@@ -20,7 +20,7 @@
       $scope.ShowFilter = false;
       $scope.filters = {};
       $scope.tools = [];
-      $scope.allTools = {};
+      $scope.allTools = [];
 
       //filter var      
       $scope.FilterTools = [];
@@ -65,8 +65,8 @@
 
             if ($scope.FilterTools.length > 0) {
                 //array platorms
-              for (var i = tool.platform.length - 1; i >= 0; i--) {
-                if ($.inArray(tool.platform[i], $scope.FilterTools) >= 0)
+              for (var i = tool.platforms.length - 1; i >= 0; i--) {
+                if ($.inArray(tool.platforms[i], $scope.FilterTools) >= 0)
                 $scope.Findit  = true;
               }          
                 //free or not
@@ -74,8 +74,8 @@
                   $scope.Findit  = true; 
                 //array platorms
                 if(!$scope.Findit){
-                for (var i = tool.category.length - 1; i >= 0; i--) {
-                  if ($.inArray(tool.category[i], $scope.FilterTools) >= 0)
+                for (var i = tool.categories.length - 1; i >= 0; i--) {
+                  if ($.inArray(tool.categories[i], $scope.FilterTools) >= 0)
                           $scope.Findit  = true;
                 }
               }

@@ -157,15 +157,14 @@
   </div>
   <!-- FILTERS -->
   <div class="ui four column grid stackable" ng-show="!noResults && ShowFilter" ng-mouseover="triggerDimmer()">
-
     <a ui-sref="tool({id: tool._id})" class="column" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
       <div class="ui medium image">
         <div class="ui dimmer">
           <div class="content">
             <div class="center">
-              <div class="ui contaier">{{tool.description}}</div><br>
-              <div class="contaier">
-                <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.category">{{cat}}{{$last ? '' : ', '}}</span></span>
+              <div class="ui">{{tool.description}}</div><br>
+              <div>
+                <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.categories">{{cat}}{{$last ? '' : ', '}}</span></span>
               </div>
             </div>
           </div>
