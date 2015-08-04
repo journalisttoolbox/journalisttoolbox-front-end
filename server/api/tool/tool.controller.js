@@ -123,7 +123,7 @@ exports.category = function(req,res) {
   });
 };
 
-exports.getUserTools = function(req, res, next) {
+exports.getUsersTools = function(req, res, next) {
   var error = '';
 
   Tool.find({'owner': new RegExp('^'+req.params.email+'$', "i")}, function(err, tools) {
@@ -132,19 +132,100 @@ exports.getUserTools = function(req, res, next) {
   });
 };
 
-exports.upvoteTool = function(req, res, next) {
-  var error = '';
+// Generic function to check if up or down votes exist already
+exports.checkForVotes = function(tool, userID) {
+  var existingVotes = {};
 
-  Tool.findById(req.params.toolID, function (err, tool) {
+  // Check if user has upvoted before
+  if (tool.upvotes.indexOf(userID) < 0) {
+    existingVotes.upvotes = false;
+  } else {
+    existingVotes.upvotes = true;
+  }
+
+  // Check if user has downvoted before
+  if(tool.downvotes.indexOf(userID) < 0) {
+    existingVotes.downvotes = false;
+  } else {
+    existingVotes.downvotes = true;
+  }
+
+  return existingVotes;
+
+};
+
+exports.voteTool = function(req, res, next) {
+  var error         = '';
+  var toolToVote    = {};
+  var existingVotes = {};
+  var index;
+
+  Tool.findById(req.params.id, function (err, tool) {
     if(err) { return handleError(res, err); }
     if(!tool) { return res.status(404).send('Not Found'); }
-    return res.json(tool);
-  });
+    toolToVote = tool;
 
-  Tool.find({'upvotes': {$in: [ req.params.userID ] }}, function(err, data) {
-    console.log()
+    existingVotes = exports.checkForVotes(toolToVote, req.user._id);
+
+    // Process the UPVOTE if the tool has been UPVOTED, see if it already exists
+    if(req.body.vote) {
+      console.log(existingVotes);
+
+      // If upvoted but downvote is already present, remove the downvote
+      if(existingVotes.downvotes) {
+        index = toolToVote.downvotes.indexOf(req.user._id);
+        toolToVote.downvotes.splice(index, 1);
+      }
+
+      // If there isn't already an upvote by this user, add an upvote
+      if(!existingVotes.upvotes) 
+        toolToVote.upvotes.push(req.user._id);
+
+      // Save the tool
+      toolToVote.save(function(err) {
+        if(err) {
+          res.statusCode = 500;
+          res.send({ error: 'Error with put request' });
+        } else {
+          res.send({ status: 'OK', toolToVote: toolToVote });
+        }
+      });
+    }
+
+    // Process the DOWNVOTE if the tool has been DOWNVOTED, see if it already exists
+    if(req.body.vote === false) {
+      console.log('downvote pressed ', existingVotes);
+
+      // If downvoted but upvote is already present, remove the upvote
+      if(existingVotes.upvotes) {
+        index = toolToVote.upvotes.indexOf(req.user._id);
+        toolToVote.upvotes.splice(index, 1);
+      }
+
+      // If there isn't already an downvote by this user, add an downvote
+      if(!existingVotes.downvotes) 
+        toolToVote.downvotes.push(req.user._id);
+
+      // Save the tool
+      toolToVote.save(function(err) {
+        if(err) {
+          res.statusCode = 500;
+          res.send({ error: 'Error with put request' });
+        } else {
+          res.send({ status: 'OK', toolToVote: toolToVote });
+        }
+      });
+    }
   });
 };
+
+
+  // // process the vote if voted down
+  // if(!req.body.vote) {
+  //   Tool.find({ _id: req.params.id, 'downvotes': req.user._id }, function(err, data) {
+  //     if(!data.length)
+  //   });
+  // }
 
 function handleError(res, err) {
   return res.status(500).send(err);

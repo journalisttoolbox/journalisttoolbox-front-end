@@ -10,7 +10,7 @@
     $scope.selectedRecordIds = [];
 
     $scope.loadUsersTools = function() {
-      Tool.getUsersTools({ user: user.email })
+      Tool.getUsersTools({ controller: user.email })
       .$promise.then(function(tools) {
         $scope.toolList = {};
         $scope.toolList = tools.tools;

@@ -2,8 +2,8 @@
 
 angular.module('jtApp')
   .factory('Tool', function ($resource) {
-    return $resource('/api/tools/:id/:user', { 
-      id: '@_id' 
+    return $resource('/api/tools/:id/:controller', { 
+      id: '@_id'
     }, 
     {
       save: { 
@@ -16,11 +16,12 @@ angular.module('jtApp')
           id: '@id' 
         }
       },
-      getUsersTools: {
-        method: 'GET',
+      voteTool: {
+        method: 'PATCH',
         params: {
-          id: 'user',
-          isArray: true
+          id: '@toolID',
+          controller: 'vote',
+          vote: '@vote'
         }
       }
     });
