@@ -5,7 +5,7 @@ var Tool = require('./tool.model');
 
 // Get list of tools
 exports.index = function(req, res) {
-  Tool.find({}, '-JT_description', function (err, tools) {
+  Tool.find({}, '-__v', function (err, tools) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(tools);
   });
@@ -23,31 +23,37 @@ exports.show = function(req, res) {
 //creating a new tool
 exports.create = function(req,res) {
 
-  var ArrayCategories = req.body.category.split(",");
+  var ArrayCategories = req.body.categories.split(",");
   ArrayCategories = ArrayCategories.map(function (val) { return val; });
 
   var ArrayOrganizations = req.body.companies.split(",");
   ArrayOrganizations = ArrayOrganizations.map(function (val) { return val; });
+  
+  var newTool = new Tool(req.body);
 
-  var newTool = new Tool(
-        {
-          name: req.body.name,
-          developer: req.body.developer,  
-          description: req.body.description,
-          free: req.body.free,
-          price: req.body.price,
-          version: req.body.version,
-          organization: ArrayOrganizations,
-          category: ArrayCategories,
-          home_url: req.body.home,
-          github_url: req.body.git,
-          download_url: req.body.download,
-          platforms: [req.body.pc,req.body.mac,req.body.linux,req.body.web],
-          upvotes: 0,
-          downvotes: 0,
-          owner: req.body.owner
-        }
-      );
+  newTool.companies = ArrayOrganizations;
+  newTool.category  = ArrayCategories;
+  newTool.upvotes  = [];
+  newTool.downvotes  = [];
+  newTool.owner = req.body.owner;
+  newTool.platforms = [req.body.pc,req.body.mac,req.body.linux,req.body.web];
+
+  // DATE
+  var now = new Date();
+  var day = now.getDate();
+  var month = now.getMonth();
+  var year = now.getFullYear();
+
+  var fullDate = day+'/'+month+1+'/'+year;
+
+  newTool.uploaded_date = fullDate;
+    
+
+  // Redundant platform urls to populate for now
+  newTool.windows_url = '';
+  newTool.mac_url = '';
+  newTool.linux_url = '';
+
   newTool.save();
 
   //return all results including the new one.
@@ -119,8 +125,8 @@ exports.category = function(req,res) {
 
 exports.getUserTools = function(req, res, next) {
   var error = '';
-  
-  Tool.find({'owner': new RegExp('^'+req.params.userID+'$', "i")}, function(err, tools) {
+
+  Tool.find({'owner': new RegExp('^'+req.params.email+'$', "i")}, function(err, tools) {
   if(err) { return handleError(res, err); }
     return res.status(200).json({ tools:tools });
   });

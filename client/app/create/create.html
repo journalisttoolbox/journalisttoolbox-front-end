@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ui grid">
     <div class="eight wide centered column">
-      <div align="center" ng-show="!currentUser" class="ui negative message">
+      <div align="center" ng-show="currentUser().name === undefined" class="ui negative message">
           <div class="header">
             <i class="warning sign icon"></i> Restricted area
           </div>
@@ -13,31 +13,31 @@
 
 <form name="createToolForm" ng-submit="submitTool()" class="ui form" novalidate>
 
-  <h2 class="ui horizontal divider header" ng-class="{'disabled': !currentUser}">
+  <h2 class="ui horizontal divider header" ng-class="{'disabled': currentUser().name === undefined}">
     <i class="cube icon"></i>
     Tool Information
   </h2>
 
   <div class="two fields">
     <!-- NAME FIELD -->
-    <div class="input field" ng-class="{ 'error' : createToolForm.name.$invalid && !createToolForm.name.$pristine, 'disabled' : !currentUser }">
+    <div class="input field" ng-class="{ 'error' : createToolForm.name.$invalid && !createToolForm.name.$pristine, 'disabled' : currentUser().name === undefined }">
       <label>Name</label>
-      <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.name" name="name" id="name" placeholder="Tool Name" required>
+      <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.name" name="name" id="name" placeholder="Tool Name" required>
       <p class="fieldRequired" ng-show="createToolForm.name.$invalid && !createToolForm.name.$pristine">Your name is required.</p>
     </div>
 
     <!-- DEVELOPER FIELD -->
-    <div class="input field" ng-class="{ 'error' : createToolForm.developer.$invalid && !createToolForm.developer.$pristine, 'disabled': !currentUser}">
+    <div class="input field" ng-class="{ 'error' : createToolForm.developer.$invalid && !createToolForm.developer.$pristine, 'disabled': currentUser().name === undefined}">
       <label>Developer</label>
-      <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.developer" name="developer" id="developer" placeholder="Developer Name" required>
+      <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.developer" name="developer" id="developer" placeholder="Developer Name" required>
       <p class="fieldRequired" ng-show="createToolForm.developer.$invalid && !createToolForm.developer.$pristine">The developer name is required.</p>
     </div>
   </div>
 
-  <div class="input field" ng-class="{ 'error' : createToolForm.description.$invalid && !createToolForm.description.$pristine, 'disabled': !currentUser}">
+  <div class="input field" ng-class="{ 'error' : createToolForm.description.$invalid && !createToolForm.description.$pristine, 'disabled': currentUser().name === undefined}">
     <!-- DESCRIPTION FIELD -->
     <label>Description</label>
-    <textarea ng-disabled="{{!currentUser}}" ng-model="formData.description" name="description" id="description" required ng-maxlength="300"></textarea>
+    <textarea ng-disabled="currentUser().name === undefined" ng-model="formData.description" name="description" id="description" required ng-maxlength="300"></textarea>
     <p class="fieldRequired" ng-show="createToolForm.description.$invalid && !createToolForm.description.$pristine && !createToolForm.description.$error.maxlength">You need to provide a description.</p>
     <p class="fieldRequired" ng-show="createToolForm.description.$error.maxlength && !createToolForm.description.$pristine">You have entered too many characters. Please reduce to 300.</p>
   </div>
@@ -46,21 +46,21 @@
     <div class="field" align="center">
       <div class="ui checkbox">
         <!-- FREE TO USE CONDITIONAL -->
-        <input ng-disabled="{{!currentUser}}" ng-model="formData.free" type="checkbox" tabindex="0" class="hidden" name="free" id="free">
+        <input ng-disabled="currentUser().name === undefined" ng-model="formData.free" type="checkbox" tabindex="0" class="hidden" name="free" id="free">
         <label for="free">Free to use</label>
       </div>
     </div>
 
     <!-- PRICE FIELD -->
-    <div class="field ui left icon input" ng-class="{ 'error' : createToolForm.price.$invalid && !createToolForm.price.$pristine, 'disabled': !currentUser || formData.free }">
-      <input ng-disabled="{{!currentUser}}" ng-disabled="formData.free" ng-required="!formData.free" ng-model="formData.price" type="number" placeholder="Price" name="price" id="price">      
+    <div class="field ui left icon input" ng-class="{ 'error' : createToolForm.price.$invalid && !createToolForm.price.$pristine, 'disabled': currentUser().name === undefined || formData.free }">
+      <input ng-disabled="currentUser().name === undefined" ng-disabled="formData.free" ng-required="!formData.free" ng-model="formData.price" type="number" placeholder="Price" name="price" id="price">      
       <i class="dollar icon"></i>
       <p class="fieldRequired" ng-show="createToolForm.price.$invalid && !createToolForm.price.$pristine">Please enter a valid number</p>
     </div>
     
     <!-- VERSION FIELD -->
     <div class="field ui left icon input">
-      <input ng-disabled="{{!currentUser}}" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version" required>      
+      <input ng-disabled="currentUser().name === undefined" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version" required>      
       <i class="cubes icon"></i>
        <p class="fieldRequired" ng-show="createToolForm.version.$invalid && !createToolForm.version.$pristine">Please enter a version number</p>
     </div>
@@ -68,24 +68,24 @@
   </div>
 
   <!-- COMAPNIES FIELD -->
-  <div class="field input" ng-class="{'disabled': !currentUser}">
+  <div class="field input" ng-class="{'disabled': currentUser().name === undefined}">
     <label>Company(ies) using this tool</label>
     <div class="ui left icon input">
-        <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.companies" name="companies" id="companies" placeholder="Separate each company by a comma">
+        <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.companies" name="companies" id="companies" placeholder="Separate each company by a comma">
         <i class="users icon"></i>
     </div>
   </div>
 
   <!-- CATEGORY FIELD -->
-  <div class="field input" ng-class="{'disabled': !currentUser}">
+  <div class="field input" ng-class="{'disabled': currentUser().name === undefined}">
     <label>Category</label>
     <div class="ui left icon input">
-        <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.category" name="categories" id="companies" placeholder="Separate each category by a comma">
+        <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.categories" name="categories" id="companies" placeholder="Separate each category by a comma">
         <i class="tags icon"></i>
     </div>
   </div>
 
-  <h2 class="ui horizontal divider header" ng-class="{'disabled': !currentUser}">
+  <h2 class="ui horizontal divider header" ng-class="{'disabled': currentUser().name === undefined}">
     <i class="linkify icon"></i>
     Links
   </h2>
@@ -93,63 +93,63 @@
   <div class="ui labeled input">
 
     <!-- HOME LINK -->
-    <div class="ui label" ng-class="{'disabled': !currentUser}">
+    <div class="ui label" ng-class="{'disabled': currentUser().name === undefined}">
     http://
     </div>
-    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.home" placeholder="Home URL" name="home" id="home">
+    <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.home_url" placeholder="Home URL" name="home" id="home">
 
     <!-- GIT LINK -->
-    <div class="ui label" ng-class="{'disabled': !currentUser}">
+    <div class="ui label" ng-class="{'disabled': currentUser().name === undefined}">
     http://
     </div>
-    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.git" placeholder="Github URL" name="git" id="git">
+    <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.github_url" placeholder="Github URL" name="git" id="git">
   </div>
 
   <div class="ui labeled input">
     <!-- DOWNLOAD LINK -->
-    <div class="ui label" ng-class="{'disabled': !currentUser}">
+    <div class="ui label" ng-class="{'disabled': currentUser().name === undefined}">
     http://
     </div>
-    <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.download" placeholder="Download URL" name="download" id="download">
+    <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.download_url" placeholder="Download URL" name="download" id="download">
   </div>
 
-  <h2 class="ui horizontal divider header" ng-class="{'disabled': !currentUser}">
+  <h2 class="ui horizontal divider header" ng-class="{'disabled': currentUser().name === undefined}">
     <i class="laptop icon"></i>
     Platforms
   </h2>
 
   <div class="inline fields" align="center">
-    <div class="input field" ng-class="{'disabled': !currentUser}">
+    <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
       <div class="ui checkbox">
-        <input ng-disabled="{{!currentUser}}" type="checkbox" ng-model="formData.pc" tabindex="0" class="hidden" name="pc" id="pc">
+        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.pc" tabindex="0" class="hidden" name="pc" id="pc">
         <label for="pc">Windows</label>
       </div>
     </div>
-    <div class="input field" ng-class="{'disabled': !currentUser}">
+    <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
       <div class="ui checkbox">
-        <input ng-disabled="{{!currentUser}}" type="checkbox" ng-model="formData.mac" tabindex="0" class="hidden" name="mac" id="mac">
+        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.mac" tabindex="0" class="hidden" name="mac" id="mac">
         <label for="mac">MacOS</label>
       </div>
     </div>
-    <div class="input field" ng-class="{'disabled': !currentUser}">
+    <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
       <div class="ui checkbox">
-        <input ng-disabled="{{!currentUser}}" type="checkbox" ng-model="formData.linux" tabindex="0" class="hidden" name="linux" id="linux">
+        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.linux" tabindex="0" class="hidden" name="linux" id="linux">
         <label for="linux">Linux</label>
       </div>
     </div>
-    <div class="input field" ng-class="{'disabled': !currentUser}">
+    <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
       <div class="ui checkbox">
-        <input ng-disabled="{{!currentUser}}" type="checkbox" ng-model="formData.web" tabindex="0" class="hidden" name="web" id="web">
+        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.web" tabindex="0" class="hidden" name="web" id="web">
         <label for="web">Web</label>
       </div>
     </div>
-    <div class="input field" ng-class="{'disabled': !currentUser}">
+    <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
         <label>Other</label>
-        <input ng-disabled="{{!currentUser}}" type="text" ng-model="formData.other" placeholder="Other platform" name="platform-extra" id="platform-extra">
+        <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.other" placeholder="Other platform" name="platform-extra" id="platform-extra">
     </div>
   </div><br><br>
 <div align="center">
-  <button type="submit" ng-disabled="createToolForm.$invalid || !currentUser" class="huge positive ui button">Submit</button>
+  <button type="submit" ng-disabled="createToolForm.$invalid || currentUser().name === undefined" class="huge positive ui button">Submit</button>
 </div>
 <br><br>
 </form>

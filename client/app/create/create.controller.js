@@ -6,12 +6,7 @@
 
   function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User) {
 
-    // Check is user is logged in
-    if (Auth.isLoggedIn()) {
-      $scope.currentUser = User.get();
-    } else {
-      $scope.currentUser = false;
-    }
+    $scope.currentUser = Auth.getCurrentUser;
 
     // Add the 'http://' if not already present
     $scope.prependHttp = function(url) {
@@ -25,13 +20,13 @@
 
     $scope.submitTool = function() {
       // Add the tool creator
-      $scope.formData.owner    = $scope.currentUser._id;
+      $scope.formData.owner    = $scope.currentUser().email;
       $scope.toolName          = $scope.formData.name;
 
       // Sort out links
-      $scope.formData.git      = $scope.prependHttp($scope.formData.git);
-      $scope.formData.home     = $scope.prependHttp($scope.formData.home);
-      $scope.formData.download = $scope.prependHttp($scope.formData.download);
+      $scope.formData.github_url   = $scope.prependHttp($scope.formData.github_url);
+      $scope.formData.home_url     = $scope.prependHttp($scope.formData.home_url);
+      $scope.formData.download_url = $scope.prependHttp($scope.formData.download_url);
 
       Tool.save($scope.formData)
         .$promise.then(function() {

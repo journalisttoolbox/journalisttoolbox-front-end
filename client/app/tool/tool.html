@@ -23,11 +23,11 @@
       <h2>Votes</h2>
         <div class="center aligned column">
           <i ng-class="(tool.upvotes>=tool.downvotes) ? 'huge': 'large'" class="thumbs up icon green"></i> 
-          <span class="text huge">{{tool.upvotes.length}}</span>
+          <span class="text huge">{{ tool.upvotes.length }}</span>
         </div>
         <div class="center aligned column">
           <i ng-class="(tool.downvotes>tool.upvotes) ? 'huge': 'large'" class="thumbs down icon red"></i> 
-          <span class="text large">{{tool.downvotes.length}}</span>
+          <span class="text large">{{ tool.downvotes.length }}</span>
         </div>
       </div>
     </div>
