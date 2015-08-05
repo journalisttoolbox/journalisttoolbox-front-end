@@ -4,7 +4,7 @@
   angular.module('jtApp')
     .controller('CreateCtrl', CreateCtrl);
 
-  function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User) {
+  function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User, $location) {
 
     $scope.currentUser = Auth.getCurrentUser;
 
@@ -31,17 +31,18 @@
       Tool.save($scope.formData)
         .$promise.then(function(tool) {
 
-          $('.ui.basic.modal.toolCreated').modal();
-          $('.ui.basic.modal.toolCreated').modal('show');
-
           // Once the tool has been created, add this tool's ID to the user object 
-          User.addTool({ id: $scope.currentUser()._id }, {
+          User.addRemoveTool({ id: $scope.currentUser()._id }, {
             toolID: tool._id,
+            addTool: true
           }, function(user) {
             console.log(user);
           }, function(err) {
             console.log(err);
           });
+
+          $('.ui.basic.modal.toolCreated').modal();
+          $('.ui.basic.modal.toolCreated').modal('show');
 
           $state.go('main', {}, {reload: true});
           window.scroll(0, 0); 

@@ -8,12 +8,14 @@
   /** @ngInject */
   function AdminToolsController($scope, $state, User, Tool, Auth) {
     $scope.selectedRecordIds = [];
-    var user = Auth.getCurrentUser();
+    $scope.toolList = {};
+
+    $scope.getCurrentUser = Auth.getCurrentUser;
+    var user = $scope.getCurrentUser();
 
     $scope.loadUsersTools = function(toolsArray) {
       Tool.get({ id: toolsArray })
       .$promise.then(function(tools) {
-        $scope.toolList = {};
         $scope.toolList = tools;
 
         if($scope.toolList.length) {
@@ -49,8 +51,6 @@
         $scope.toolsNotFound = true;
       }      
     }
-
-
 
     // Remove a tool
     $scope.removeTool = function(toolID) {

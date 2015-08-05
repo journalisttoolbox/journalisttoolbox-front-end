@@ -14,7 +14,7 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.put('/:id', auth.hasRole('admin'), controller.put);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
-router.put('/:id/tool', auth.isAuthenticated(), controller.addTool);
+router.put('/:id/tool', auth.isAuthenticated(), controller.addRemoveTool);
 
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 

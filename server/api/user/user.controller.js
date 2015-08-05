@@ -69,25 +69,30 @@ exports.put = function(req, res) {
 };
 
 // Associates a toolID with a user when they create a tool
-exports.addTool = function(req, res, next) {
-  var userId = req.params.id;
-  var toolIdToAdd = req.body.toolID;
-
-  console.log('user id ' + userId + ' wishing to add toolID ' + toolIdToAdd);
+exports.addRemoveTool = function(req, res, next) {
+  var userId      = req.params.id;
+  var toolId      = req.body.toolID;
+  var addTool     = req.body.addTool; // req.body.addTool will be falsey if wishing to remove
 
   User.findOne({ '_id': userId }, function(err, User) {
     if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
     if(err) {
       res.send(err.message);
     } else {
-      // Push the toolsID to the user's tools array
-      User.tools.push(toolIdToAdd);
+
+      if(addTool) {
+        // Push the toolsID to the user's tools array
+        User.tools.push(toolId);
+      } else if (!addTool) {
+        var index = User.tools.indexOf(toolId);
+        User.tools.splice(index, 1);
+      }
 
       User.save(function(err) {
         if(err) {
           console.log(err);
           res.statusCode = 500;
-          res.send({ error: 'Error saving the tool to the user object' });
+          res.send({ error: 'Error processing the users tool record' });
         } else {
           console.log(User);
           res.send({ status: 'OK', User: User.tools });
@@ -95,6 +100,7 @@ exports.addTool = function(req, res, next) {
       });
     }
   });
+
 };
 
 /**
