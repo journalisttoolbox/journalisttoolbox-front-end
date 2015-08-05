@@ -6,9 +6,11 @@ angular.module('jtApp')
       id: '@_id'
     }, 
     {
+      get: {
+        isArray: true
+      },
       save: { 
-        method: 'POST', 
-        isArray: true 
+        method: 'POST'
       },
       update: {
         method : 'PUT', 

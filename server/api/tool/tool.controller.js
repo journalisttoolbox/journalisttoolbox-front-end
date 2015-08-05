@@ -11,9 +11,9 @@ exports.index = function(req, res) {
   });
 };
 
-// Get a single tool
+// Get a certain tool(s)
 exports.show = function(req, res) {
-  Tool.findById(req.params.id, function (err, tool) {
+  Tool.find({ '_id': { $in: [ req.params.id ] } }, function(err, tool) {
     if(err) { return handleError(res, err); }
     if(!tool) { return res.status(404).send('Not Found'); }
     return res.json(tool);
@@ -55,12 +55,7 @@ exports.create = function(req,res) {
   newTool.linux_url = '';
 
   newTool.save();
-
-  //return all results including the new one.
-  Tool.find(function(err, tools){
-    if(err) res.send(err.message);
-    res.json(tools);
-  });
+  res.json(newTool);
 };
 
 // Method for PUT requests
@@ -119,15 +114,6 @@ exports.category = function(req,res) {
   Tool.find({'categories': new RegExp('^'+req.params.name+'$', "i")}, function(err, tools) {
     if(err) res.send(err.message);
     res.json(tools);
-  });
-};
-
-exports.getUsersTools = function(req, res, next) {
-  var error = '';
-
-  Tool.find({'owner': new RegExp('^'+req.params.email+'$', "i")}, function(err, tools) {
-  if(err) { return handleError(res, err); }
-    return res.status(200).json({ tools:tools });
   });
 };
 

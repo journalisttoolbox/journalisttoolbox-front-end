@@ -6,20 +6,22 @@
   .controller('AdminToolsCtrl', AdminToolsController);
 
   /** @ngInject */
-  function AdminToolsController($scope, $state, Tool, Auth) {
+  function AdminToolsController($scope, $state, User, Tool, Auth) {
     $scope.selectedRecordIds = [];
 
-    $scope.loadUsersTools = function() {
-      Tool.getUsersTools({ controller: user.email })
+    $scope.loadUsersTools = function(toolsArray) {
+      console.log(toolsArray);
+      Tool.get({ id: toolsArray })
       .$promise.then(function(tools) {
-        $scope.toolList = {};
-        $scope.toolList = tools.tools;
+        console.log(tools);
+        // $scope.toolList = {};
+        // $scope.toolList = tools.tools;
 
-        if($scope.toolList.length) {
-          $scope.toolsFound = true;
-        } else {
-          $scope.toolsNotFound = true;
-        }
+        // if($scope.toolList.length) {
+        //   $scope.toolsFound = true;
+        // } else {
+        //   $scope.toolsNotFound = true;
+        // }
       });
     };
 
@@ -45,7 +47,7 @@
       if(user.role === 'admin') {
         $scope.loadAllTools();
       } else {
-        $scope.loadUsersTools();
+        $scope.loadUsersTools(user.tools);
       }
     }
 

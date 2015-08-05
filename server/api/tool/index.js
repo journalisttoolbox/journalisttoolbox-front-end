@@ -17,6 +17,4 @@ router.put('/:id', auth.isAuthenticated(), controller.put);
 
 router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
-// router.get('/:email', auth.isAuthenticated(), controller.getUsersTools); // Get tools made by a certain user
-
 module.exports = router;

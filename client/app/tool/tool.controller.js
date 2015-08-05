@@ -12,7 +12,7 @@
 
     Tool.get({ id: $stateParams.id })
       .$promise.then(function(data) {
-        $scope.tool = data;
+        $scope.tool = data[0];
       });
 
     $scope.toolVote = function(verdict) {

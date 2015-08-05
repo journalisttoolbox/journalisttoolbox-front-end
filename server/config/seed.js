@@ -22,6 +22,12 @@ var User = require('../api/user/user.model');
 //     gravUrl: 'http://www.gravatar.com/avatar/ed580faf7c8d4d3412083924169253de.jpg?d=mm',
 //     role: 'admin',
 //     password: 'nevo'
+//   }, {
+//     provider: 'local',
+//     name: 'bob',
+//     email: 'bob@bob.com',
+//     role: 'user',
+//     password: 'bob'
 //   }, function() {
 //       console.log('finished populating users');
 //     }

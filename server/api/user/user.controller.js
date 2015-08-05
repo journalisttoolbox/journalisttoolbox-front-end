@@ -29,6 +29,7 @@ exports.create = function (req, res, next) {
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.gravUrl = gravatar.url(req.body.email)+"?d=mm";
+  newUser.tools = [];
 
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
@@ -61,6 +62,35 @@ exports.put = function(req, res) {
           res.send({ error: 'Error with put request' });
         } else {
           res.send({ status: 'OK', User: User });
+        }
+      });
+    }
+  });
+};
+
+// Associates a toolID with a user when they create a tool
+exports.addTool = function(req, res, next) {
+  var userId = req.params.id;
+  var toolIdToAdd = req.body.toolID;
+
+  console.log('user id ' + userId + ' wishing to add toolID ' + toolIdToAdd);
+
+  User.findOne({ '_id': userId }, function(err, User) {
+    if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
+    if(err) {
+      res.send(err.message);
+    } else {
+      // Push the toolsID to the user's tools array
+      User.tools.push(toolIdToAdd);
+
+      User.save(function(err) {
+        if(err) {
+          console.log(err);
+          res.statusCode = 500;
+          res.send({ error: 'Error saving the tool to the user object' });
+        } else {
+          console.log(User);
+          res.send({ status: 'OK', User: User.tools });
         }
       });
     }
