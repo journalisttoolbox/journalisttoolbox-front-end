@@ -82,9 +82,8 @@ exports.put = function(req, res) {
 
       tool.save(function(err) {
         if(err) {
-            console.log(err);
           res.statusCode = 500;
-          res.send({ error: 'Error with put request' });
+          res.send({ error: err });
         } else {
           res.send({ status: 'OK', tool: tool });
         }
@@ -169,7 +168,6 @@ exports.voteTool = function(req, res, next) {
 
     // Process the UPVOTE if the tool has been UPVOTED, see if it already exists
     if(req.body.vote) {
-      console.log(existingVotes);
 
       // If upvoted but downvote is already present, remove the downvote
       if(existingVotes.downvotes) {
@@ -177,9 +175,13 @@ exports.voteTool = function(req, res, next) {
         toolToVote.downvotes.splice(index, 1);
       }
 
-      // If there isn't already an upvote by this user, add an upvote
-      if(!existingVotes.upvotes) 
+      // If there isn't already an upvote by this user, add an upvote, else remove it
+      if(!existingVotes.upvotes) {
         toolToVote.upvotes.push(req.user._id);
+      } else {
+        index = toolToVote.upvotes.indexOf(req.user._id);
+        toolToVote.upvotes.splice(index, 1);
+      }
 
       // Save the tool
       toolToVote.save(function(err) {
@@ -194,7 +196,6 @@ exports.voteTool = function(req, res, next) {
 
     // Process the DOWNVOTE if the tool has been DOWNVOTED, see if it already exists
     if(req.body.vote === false) {
-      console.log('downvote pressed ', existingVotes);
 
       // If downvoted but upvote is already present, remove the upvote
       if(existingVotes.upvotes) {
@@ -203,8 +204,12 @@ exports.voteTool = function(req, res, next) {
       }
 
       // If there isn't already an downvote by this user, add an downvote
-      if(!existingVotes.downvotes) 
+      if(!existingVotes.downvotes) {
         toolToVote.downvotes.push(req.user._id);
+      } else {
+        index = toolToVote.downvotes.indexOf(req.user._id);
+        toolToVote.downvotes.splice(index, 1);
+      }
 
       // Save the tool
       toolToVote.save(function(err) {
@@ -218,14 +223,6 @@ exports.voteTool = function(req, res, next) {
     }
   });
 };
-
-
-  // // process the vote if voted down
-  // if(!req.body.vote) {
-  //   Tool.find({ _id: req.params.id, 'downvotes': req.user._id }, function(err, data) {
-  //     if(!data.length)
-  //   });
-  // }
 
 function handleError(res, err) {
   return res.status(500).send(err);

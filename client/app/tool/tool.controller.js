@@ -7,8 +7,9 @@
     .controller('ToolCtrl', ToolController);
 
   /** @ngInject */
-  function ToolController($scope, Tool, $stateParams){
+  function ToolController($scope, Tool, $stateParams, $state) {
     $scope.tool = {};
+
     Tool.get({ id: $stateParams.id })
       .$promise.then(function(data) {
         $scope.tool = data;
@@ -18,9 +19,8 @@
       Tool.voteTool({
         toolID: $scope.tool._id,
         vote: verdict
-      }, function(err, data) {
-        console.log('error', err);
-        console.log('data', data);
+      }, function() {
+        $state.go($state.current, {}, {reload: true});
       });
     };
   }
