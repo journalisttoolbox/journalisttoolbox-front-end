@@ -43,7 +43,7 @@
             console.log(err);
           });
 
-          $state.go('main');
+          $state.go('main', {}, {reload: true});
           window.scroll(0, 0); 
         }, function(error) {
           console.log('error ' + error);

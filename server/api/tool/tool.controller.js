@@ -13,7 +13,9 @@ exports.index = function(req, res) {
 
 // Get a certain tool(s)
 exports.show = function(req, res) {
-  Tool.find({ '_id': { $in: [ req.params.id ] } }, function(err, tool) {
+  var query = req.params.id.split(",");
+  
+  Tool.find({ '_id': { $in: query } }, function(err, tool) {
     if(err) { return handleError(res, err); }
     if(!tool) { return res.status(404).send('Not Found'); }
     return res.json(tool);
