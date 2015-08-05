@@ -29,26 +29,39 @@
           <i ng-click="toolVote(false)" ng-class="(tool.downvotes.length>tool.upvotes.length) ? 'huge': 'large'" class="thumbs down icon red"></i> 
           <span ng-class="(tool.downvotes.length>tool.upvotes.length)? 'huge': 'large'" class="text large">{{ tool.downvotes.length }}</span>
         </div>
+
+        <!-- REVIEW STATE BUTTON -->
+        <div ng-show="hasUserVoted" class="ui message reviewState">
+          <div class="content">
+            <div class="header">
+              Thanks for voting! Care to leave a review?
+            </div>
+            <button class="ui button" ng-click="reviewState()">Leave a review</button>
+          </div>
+        </div>
+
       </div>
     </div>
     </div>
 
     <div class="ui divider"></div>
 
-    <div class="ui page grid">
-      <div class="eight wide column">
-        <div class="ui segment">
-          <p><strong>Description</strong></p>
-          <div ng-bind-html="tool.description"></div>
-        </div>
-      </div>
+      <div ui-view> <!-- For nested reviews child -->
+        <div class="ui page grid">
+          <div class="eight wide column">
+            <div class="ui segment">
+              <p><strong>Description</strong></p>
+              <div ng-bind-html="tool.description"></div>
+            </div>
+          </div>
 
-      <div class="eight wide column">
-        <div class="ui segment">
-          <img src="http://placehold.it/500x300?text=Screenshots">
+          <div class="eight wide column">
+            <div class="ui segment">
+              <img src="http://placehold.it/500x300?text=Screenshots">
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </div> <!-- End ui view -->
 
   </div>
 
