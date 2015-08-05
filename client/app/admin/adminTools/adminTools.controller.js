@@ -45,8 +45,13 @@
     } else {
       if(user.role === 'admin') {
         $scope.loadAllTools();
-      } else if (user.tools.length) {
-        $scope.loadUsersTools(user.tools);
+      } else if (user.role === 'user') {
+        // Get user's tools from the DB, global user variable might not be up to date
+        User.get()
+          .$promise.then(function(user) {
+            // load the tools of this user
+            $scope.loadUsersTools(user.tools);
+          });
       } else {
         $scope.toolsNotFound = true;
       }      
