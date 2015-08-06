@@ -10,6 +10,7 @@
   color: $mainGreen;
 }
 .label.ui.question {
+  white-space: initial;
   background: none!important;
   padding: 0px;
   font-size: 20px;
@@ -30,8 +31,9 @@
     float: right;
   }
 }
-.percentageShow {
-  margin: 0 auto;
+.valueResponse h4 {
+  clear: both;
+  margin: 0 auto!important;
   color: $mainGreen;
   font-size: 20px;
 }

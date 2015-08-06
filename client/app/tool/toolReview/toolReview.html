@@ -8,7 +8,7 @@
 
   <form class="form ui">
 
-  <h3>On a scale of 1-100...</h3>
+  <h3>On a scale of 1-10...</h3>
 
   <!-- HOW HARD TO USE -->
     <div class="grouped fields">
@@ -17,14 +17,16 @@
       </div>
 
       <div class="ui slider range">
-        <input type="range" ng-model="slider.easeOfUse" min="0" max="100" value="50" />
+        <input type="range" ng-model="slider.easeOfUse" min="0" max="10" value="5" />
       </div>
       <div class="options">
         <h4 class="leftOption">Easy</h4>
         <h4 class="rightOption">Hard</h4>
       </div>
 
-      <h4 class="percentageShow">{{ slider.easeOfUse || 50}} %</h4>
+      <div class="valueResponse">
+        <h4>{{ slider.easeOfUse || 5 }}</h4>
+      </div>
     </div>
 
   <!-- HOW MUCH TIME SPENT LEARNING -->
@@ -34,14 +36,16 @@
       </div>
 
       <div class="ui slider range">
-        <input type="range" ng-model="slider.timeSpentLearning" min="0" max="100" value="50" />
+        <input type="range" ng-model="slider.timeSpentLearning" min="0" max="10" value="5" />
       </div>
       <div class="options">
         <h4 class="leftOption">Less than 15 minutes</h4>
         <h4 class="rightOption">More than a day</h4>
       </div>
 
-      <h4 class="percentageShow">{{ slider.timeSpentLearning || 50}} %</h4>
+      <div class="valueResponse">
+        <h4>{{ slider.timeSpentLearning || 5 }}</h4>
+      </div>
     </div>
 
   <!-- HOW MUCH TIME TO PRODUCE SOMETHING -->
@@ -51,14 +55,16 @@
       </div>
 
       <div class="ui slider range">
-        <input type="range" ng-model="slider.timeSpentProducing" min="0" max="100" value="50" />
+        <input type="range" ng-model="slider.timeSpentProducing" min="0" max="10" value="5" />
       </div>
       <div class="options">
         <h4 class="leftOption">Less than 15 minutes</h4>
         <h4 class="rightOption">More than a day</h4>
       </div>
 
-      <h4 class="percentageShow">{{ slider.timeSpentProducing || 50}} %</h4>
+      <div class="valueResponse">
+        <h4>{{ slider.timeSpentProducing || 5 }}</h4>
+      </div>
     </div>
 
   <!-- HOW SATISFIED  -->
@@ -68,34 +74,40 @@
       </div>
 
       <div class="ui slider range">
-        <input type="range" ng-model="slider.satisfiedWithTool" min="0" max="100" value="50" />
+        <input type="range" ng-model="slider.satisfiedWithTool" min="0" max="10" value="5" />
       </div>
       <div class="options">
         <h4 class="leftOption">Very unsatisfied</h4>
         <h4 class="rightOption">Very satisfied</h4>
       </div>
 
-      <h4 class="percentageShow">{{ slider.satisfiedWithTool || 50}} %</h4>
+      <div class="valueResponse">
+        <h4>{{ slider.satisfiedWithTool || 5 }}</h4>
+      </div>
     </div>
 
   <!-- WOULD USE AGAIN?  -->
     <div class="grouped fields">
       <div class="label ui question">
-        <label for="satisfiedWithTool">Would you use this tool again?</label>
+        <label for="wouldUseAgain">Would you use this tool again?</label>
       </div>
 
       <div class="ui slider range">
-        <input type="range" ng-model="slider.satisfiedWithTool" min="0" max="100" value="50" />
+        <input type="range" ng-model="slider.wouldUseAgain" min="0" max="10" value="5" />
       </div>
       <div class="options">
         <h4 class="leftOption">Absolutely not</h4>
         <h4 class="rightOption">Yes, definitely</h4>
       </div>
 
-      <h4 class="percentageShow">{{ slider.satisfiedWithTool || 50}} %</h4>
+      <div class="valueResponse">
+        <h4>{{ slider.wouldUseAgain || 5 }}</h4>
+      </div>
     </div>
 
-    <button class="ui button toolReviewSubmit" type="submit">Submit</button>
+    <button ng-click="postReview()" class="ui button toolReviewSubmit" type="submit">Submit</button>
   </form>
+
+  <div ng-include="'app/tool/toolReview/toolReviewMessage/toolReviewMessage.html'"></div>
 
 </div>
