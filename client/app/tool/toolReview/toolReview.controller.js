@@ -8,6 +8,5 @@
 
   /** @ngInject */
   function ToolReviewCtrl($scope, $state, $stateParams) {
-    console.log('hi');
   }
 })();
