@@ -25,6 +25,14 @@ angular.module('jtApp')
           controller: 'vote',
           vote: '@vote'
         }
+      },
+      postReview: {
+        method: 'PUT',
+        params: {
+          id: '@toolID',
+          controller: 'review',
+          review: '@review'
+        }
       }
     });
   });

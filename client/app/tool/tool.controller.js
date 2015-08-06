@@ -9,10 +9,12 @@
   /** @ngInject */
   function ToolController($scope, Tool, $stateParams, $state) {
     $scope.tool = {};
+    $scope.toolAvailable = false;
 
     Tool.get({ id: $stateParams.id })
       .$promise.then(function(data) {
         $scope.tool = data[0];
+        $scope.toolAvailable = true;
       });
 
     $scope.reviewState = function() {

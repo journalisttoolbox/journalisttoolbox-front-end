@@ -12,7 +12,6 @@
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;
       $state.go('tool', { id: $scope.toolID }, {reload: true});
-      window.scroll(0, 0); 
     };
 
     $scope.showToolMessage = function() {
@@ -21,7 +20,7 @@
       // Hide the tool message automatically
       $timeout(function() {
         $scope.hideToolMessage();
-      }, 3000);
+      }, 5000);
     };
 
     // Add the 'http://' if not already present

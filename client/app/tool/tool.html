@@ -50,19 +50,17 @@
 
     <div class="ui divider"></div>
 
-      <div ui-view> <!-- For nested reviews child -->
-        <div class="ui page grid">
-          <div class="eight wide column">
-            <div class="ui segment">
-              <p><strong>Description</strong></p>
-              <div ng-bind-html="tool.description"></div>
-            </div>
+      <div class="ui page grid" ui-view> <!-- For nested reviews child -->
+        <div class="eight wide column">
+          <div class="ui segment">
+            <p><strong>Description</strong></p>
+            <div ng-bind-html="tool.description"></div>
           </div>
+        </div>
 
-          <div class="eight wide column">
-            <div class="ui segment">
-              <img src="http://placehold.it/500x300?text=Screenshots">
-            </div>
+        <div class="eight wide column">
+          <div class="ui segment">
+            <img src="http://placehold.it/500x300?text=Screenshots">
           </div>
         </div>
       </div> <!-- End ui view -->

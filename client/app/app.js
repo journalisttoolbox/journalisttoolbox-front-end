@@ -27,10 +27,10 @@ angular.module('jtApp', [
         return config;
       },
 
-      // Intercept 401s and redirect you to login
+      // Intercept 401s and redirect you to signup
       responseError: function(response) {
         if(response.status === 401) {
-          $location.path('/login');
+          $location.path('/signup');
           // remove any stale tokens
           $cookieStore.remove('token');
           return $q.reject(response);

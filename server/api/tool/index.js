@@ -13,6 +13,7 @@ router.get('/:id', controller.show); // Get a single tool by ID
 
 router.post('/', auth.isAuthenticated(), controller.create); // Post a new tool
 router.patch('/:id/vote', auth.isAuthenticated(), controller.voteTool); // Vote for a tool
+router.put('/:id/review', auth.isAuthenticated(), controller.postReview); // Vote for a tool
 router.put('/:id', auth.isAuthenticated(), controller.put);
 
 router.delete('/:id', auth.isAuthenticated(), controller.destroy);

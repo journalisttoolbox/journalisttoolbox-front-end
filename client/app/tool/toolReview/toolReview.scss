@@ -1,0 +1,42 @@
+.reviewForm {
+  margin: 50px 0!important;
+  text-align: center!important;
+
+  form {
+    margin-top: 20px;
+  }
+}
+.toolReviewName {
+  color: $mainGreen;
+}
+.label.ui.question {
+  white-space: initial;
+  background: none!important;
+  padding: 0px;
+  font-size: 20px;
+  margin: 20px 0 10px 0;
+}
+.ui.button.toolReviewSubmit {
+  margin-top: 20px;
+}
+.options {
+  margin-bottom: 20px;
+
+  .leftOption {
+    margin-top: 5px;
+    float: left;
+  }
+  .rightOption {
+    margin-top: 5px;
+    float: right;
+  }
+}
+.valueResponse h4 {
+  clear: both;
+  margin: 0 auto!important;
+  color: $mainGreen;
+  font-size: 20px;
+}
+.grouped.fields {
+  margin-bottom: 50px!important;
+}

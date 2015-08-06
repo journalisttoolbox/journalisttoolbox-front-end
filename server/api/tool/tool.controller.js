@@ -212,6 +212,23 @@ exports.voteTool = function(req, res, next) {
   });
 };
 
+// PUT a review
+exports.postReview = function(req, res, next) {
+  Tool.findById(req.params.id, function (err, tool) {
+    if(err) res.send(err.message);
+    tool.reviews.push(req.body.review);
+
+    tool.save(function(err) {
+      if(err) {
+        res.statusCode = 500;
+        res.send({ error: 'Error with put request' });
+      } else {
+        res.send({ status: 'OK', tool: tool });
+      }
+    });
+  });
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }

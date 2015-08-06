@@ -3,17 +3,111 @@
     back to tool
   </button>
 
-  <h2>Leave a review for <b>{{tool.name}}</b></h2>
+  <h2>Leave a review for <b class="toolReviewName">{{tool.name}}</b></h2>
 
-  <form class="ui form">
-  <div class="field">
-    <label>Question 1</label>
-    <input type="text" name="first-name" placeholder="First Name">
-  </div>
-  <div class="field">
-    <label>Question 2</label>
-    <input type="text" name="last-name" placeholder="Last Name">
-  </div>
-  <button class="ui button" type="submit">Submit</button>
-</form>
+
+  <form class="form ui">
+
+  <h3>On a scale of 1-10...</h3>
+
+  <!-- HOW HARD TO USE -->
+    <div class="grouped fields">
+      <div class="label ui question">
+        <label for="easeOfUse">How hard was this tool to use?</label>
+      </div>
+
+      <div class="ui slider range">
+        <input type="range" ng-model="slider.easeOfUse" min="0" max="10" value="5" />
+      </div>
+      <div class="options">
+        <h4 class="leftOption">Easy</h4>
+        <h4 class="rightOption">Hard</h4>
+      </div>
+
+      <div class="valueResponse">
+        <h4>{{ slider.easeOfUse || 5 }}</h4>
+      </div>
+    </div>
+
+  <!-- HOW MUCH TIME SPENT LEARNING -->
+    <div class="grouped fields">
+      <div class="label ui question">
+        <label for="timeSpentLearning">How much time did you spend learning to use this tool?</label>
+      </div>
+
+      <div class="ui slider range">
+        <input type="range" ng-model="slider.timeSpentLearning" min="0" max="10" value="5" />
+      </div>
+      <div class="options">
+        <h4 class="leftOption">Less than 15 minutes</h4>
+        <h4 class="rightOption">More than a day</h4>
+      </div>
+
+      <div class="valueResponse">
+        <h4>{{ slider.timeSpentLearning || 5 }}</h4>
+      </div>
+    </div>
+
+  <!-- HOW MUCH TIME TO PRODUCE SOMETHING -->
+    <div class="grouped fields">
+      <div class="label ui question">
+        <label for="timeSpentProducing">How much time did it take you to produce a final piece of work using this tool?</label>
+      </div>
+
+      <div class="ui slider range">
+        <input type="range" ng-model="slider.timeSpentProducing" min="0" max="10" value="5" />
+      </div>
+      <div class="options">
+        <h4 class="leftOption">Less than 15 minutes</h4>
+        <h4 class="rightOption">More than a day</h4>
+      </div>
+
+      <div class="valueResponse">
+        <h4>{{ slider.timeSpentProducing || 5 }}</h4>
+      </div>
+    </div>
+
+  <!-- HOW SATISFIED  -->
+    <div class="grouped fields">
+      <div class="label ui question">
+        <label for="satisfiedWithTool">How satisfied were you with this tool?</label>
+      </div>
+
+      <div class="ui slider range">
+        <input type="range" ng-model="slider.satisfiedWithTool" min="0" max="10" value="5" />
+      </div>
+      <div class="options">
+        <h4 class="leftOption">Very unsatisfied</h4>
+        <h4 class="rightOption">Very satisfied</h4>
+      </div>
+
+      <div class="valueResponse">
+        <h4>{{ slider.satisfiedWithTool || 5 }}</h4>
+      </div>
+    </div>
+
+  <!-- WOULD USE AGAIN?  -->
+    <div class="grouped fields">
+      <div class="label ui question">
+        <label for="wouldUseAgain">Would you use this tool again?</label>
+      </div>
+
+      <div class="ui slider range">
+        <input type="range" ng-model="slider.wouldUseAgain" min="0" max="10" value="5" />
+      </div>
+      <div class="options">
+        <h4 class="leftOption">Absolutely not</h4>
+        <h4 class="rightOption">Yes, definitely</h4>
+      </div>
+
+      <div class="valueResponse">
+        <h4>{{ slider.wouldUseAgain || 5 }}</h4>
+      </div>
+    </div>
+
+    <button ng-click="postReview()" class="ui button toolReviewSubmit" type="submit">Submit</button>
+  </form>
+
+  <div ng-include="'app/tool/toolReview/toolReviewMessage/toolReviewMessage.html'"></div>
+
 </div>
