@@ -21,7 +21,7 @@
 
     $scope.toolState = function() {
       $state.go('tool');
-    }
+    };
 
     $scope.toolVote = function(verdict) {
       Tool.voteTool({

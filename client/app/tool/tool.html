@@ -22,12 +22,16 @@
       <div class="ui center aligned segment">
       <h2>Votes</h2>
         <div class="center aligned column">
-          <i ng-click="toolVote(true)" ng-class="(tool.upvotes.length>tool.downvotes.length) ? 'huge': 'large'" class="thumbs up icon green"></i> 
-          <span ng-class="(tool.upvotes.length>tool.downvotes.length)? 'huge': 'large'" class="text large">{{ tool.upvotes.length }}</span>
+          <div ng-click="toolVote(true)" class="ui icon button buttonVote">
+            <i ng-class="(tool.upvotes.length>tool.downvotes.length) ? 'huge': 'large'" class="thumbs up icon green"></i> </button>
+            <span ng-class="(tool.upvotes.length>tool.downvotes.length)? 'huge': 'large'" class="text large">{{ tool.upvotes.length }}</span>
+          </div>
         </div>
         <div class="center aligned column">
-          <i ng-click="toolVote(false)" ng-class="(tool.downvotes.length>tool.upvotes.length) ? 'huge': 'large'" class="thumbs down icon red"></i> 
-          <span ng-class="(tool.downvotes.length>tool.upvotes.length)? 'huge': 'large'" class="text large">{{ tool.downvotes.length }}</span>
+          <div ng-click="toolVote(false)" class="ui icon button buttonVote">
+            <i ng-class="(tool.downvotes.length>tool.upvotes.length) ? 'huge': 'large'" class="thumbs down icon red"></i> </button>
+            <span ng-class="(tool.downvotes.length>tool.upvotes.length)? 'huge': 'large'" class="text large">{{ tool.downvotes.length }}</span>
+          </div>
         </div>
 
         <!-- REVIEW STATE BUTTON -->

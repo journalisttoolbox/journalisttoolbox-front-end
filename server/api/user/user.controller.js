@@ -94,7 +94,6 @@ exports.addRemoveTool = function(req, res, next) {
           res.statusCode = 500;
           res.send({ error: 'Error processing the users tool record' });
         } else {
-          console.log(User);
           res.send({ status: 'OK', User: User.tools });
         }
       });
