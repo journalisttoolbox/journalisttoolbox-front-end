@@ -1,19 +1,10 @@
-<div class="ui basic modal toolCreated">
-  <i class="close icon"></i>
-  <div class="header">
-    Tool successfully inserted!
-  </div>
-  <div class="image content">
-    <div class="image">
-      <i class="archive icon"></i>
-    </div>
-    <div class="description">
-      <p>You can now find {{ toolName }} in our collection.</p>
+<a ui-sref="tool({ id: toolID })">
+  <div ng-show="toolMessage" class="toolCreatedWrapper" ng-click="hideToolMessage()">
+    <div class="content">
+      <h1>Success!</h1>
+      <i class="configure green icon"></i>
+      <h2> <span class="toolName">{{ toolName }}</span> has been successfully added to JT.</h2>
+      <h3>Click anywhere to close, else we will redirect you automatically...</h3>
     </div>
   </div>
-  <div class="actions">
-    <div class="ui green basic inverted button">
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</div>
+</a>

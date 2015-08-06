@@ -11,9 +11,11 @@ exports.index = function(req, res) {
   });
 };
 
-// Get a single tool
+// Get a certain tool(s)
 exports.show = function(req, res) {
-  Tool.findById(req.params.id, function (err, tool) {
+  var query = req.params.id.split(",");
+  
+  Tool.find({ '_id': { $in: query } }, function(err, tool) {
     if(err) { return handleError(res, err); }
     if(!tool) { return res.status(404).send('Not Found'); }
     return res.json(tool);
@@ -55,12 +57,7 @@ exports.create = function(req,res) {
   newTool.linux_url = '';
 
   newTool.save();
-
-  //return all results including the new one.
-  Tool.find(function(err, tools){
-    if(err) res.send(err.message);
-    res.json(tools);
-  });
+  res.json(newTool);
 };
 
 // Method for PUT requests
@@ -82,9 +79,8 @@ exports.put = function(req, res) {
 
       tool.save(function(err) {
         if(err) {
-            console.log(err);
           res.statusCode = 500;
-          res.send({ error: 'Error with put request' });
+          res.send({ error: err });
         } else {
           res.send({ status: 'OK', tool: tool });
         }
@@ -123,12 +119,96 @@ exports.category = function(req,res) {
   });
 };
 
-exports.getUserTools = function(req, res, next) {
-  var error = '';
+// Generic function to check if up or down votes exist already
+exports.checkForVotes = function(tool, userID) {
+  var existingVotes = {};
 
-  Tool.find({'owner': new RegExp('^'+req.params.email+'$', "i")}, function(err, tools) {
-  if(err) { return handleError(res, err); }
-    return res.status(200).json({ tools:tools });
+  // Check if user has upvoted before
+  if (tool.upvotes.indexOf(userID) < 0) {
+    existingVotes.upvotes = false;
+  } else {
+    existingVotes.upvotes = true;
+  }
+
+  // Check if user has downvoted before
+  if(tool.downvotes.indexOf(userID) < 0) {
+    existingVotes.downvotes = false;
+  } else {
+    existingVotes.downvotes = true;
+  }
+
+  return existingVotes;
+
+};
+
+exports.voteTool = function(req, res, next) {
+  var error         = '';
+  var toolToVote    = {};
+  var existingVotes = {};
+  var index;
+
+  Tool.findById(req.params.id, function (err, tool) {
+    if(err) { return handleError(res, err); }
+    if(!tool) { return res.status(404).send('Not Found'); }
+    toolToVote = tool;
+
+    existingVotes = exports.checkForVotes(toolToVote, req.user._id);
+
+    // Process the UPVOTE if the tool has been UPVOTED, see if it already exists
+    if(req.body.vote) {
+
+      // If upvoted but downvote is already present, remove the downvote
+      if(existingVotes.downvotes) {
+        index = toolToVote.downvotes.indexOf(req.user._id);
+        toolToVote.downvotes.splice(index, 1);
+      }
+
+      // If there isn't already an upvote by this user, add an upvote, else remove it
+      if(!existingVotes.upvotes) {
+        toolToVote.upvotes.push(req.user._id);
+      } else {
+        index = toolToVote.upvotes.indexOf(req.user._id);
+        toolToVote.upvotes.splice(index, 1);
+      }
+
+      // Save the tool
+      toolToVote.save(function(err) {
+        if(err) {
+          res.statusCode = 500;
+          res.send({ error: 'Error with put request' });
+        } else {
+          res.send({ status: 'OK', toolToVote: toolToVote });
+        }
+      });
+    }
+
+    // Process the DOWNVOTE if the tool has been DOWNVOTED, see if it already exists
+    if(req.body.vote === false) {
+
+      // If downvoted but upvote is already present, remove the upvote
+      if(existingVotes.upvotes) {
+        index = toolToVote.upvotes.indexOf(req.user._id);
+        toolToVote.upvotes.splice(index, 1);
+      }
+
+      // If there isn't already an downvote by this user, add an downvote
+      if(!existingVotes.downvotes) {
+        toolToVote.downvotes.push(req.user._id);
+      } else {
+        index = toolToVote.downvotes.indexOf(req.user._id);
+        toolToVote.downvotes.splice(index, 1);
+      }
+
+      // Save the tool
+      toolToVote.save(function(err) {
+        if(err) {
+          res.statusCode = 500;
+          res.send({ error: 'Error with put request' });
+        } else {
+          res.send({ status: 'OK', toolToVote: toolToVote });
+        }
+      });
+    }
   });
 };
 

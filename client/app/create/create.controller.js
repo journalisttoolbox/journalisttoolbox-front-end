@@ -4,9 +4,25 @@
   angular.module('jtApp')
     .controller('CreateCtrl', CreateCtrl);
 
-  function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User) {
+  function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User, $timeout) {
 
     $scope.currentUser = Auth.getCurrentUser;
+    $scope.toolMessage = false;
+
+    $scope.hideToolMessage = function() {
+      $scope.toolMessage = false;
+      $state.go('tool', { id: $scope.toolID }, {reload: true});
+      window.scroll(0, 0); 
+    };
+
+    $scope.showToolMessage = function() {
+      $scope.toolMessage = true;
+
+      // Hide the tool message automatically
+      $timeout(function() {
+        $scope.hideToolMessage();
+      }, 3000);
+    };
 
     // Add the 'http://' if not already present
     $scope.prependHttp = function(url) {
@@ -20,8 +36,8 @@
 
     $scope.submitTool = function() {
       // Add the tool creator
-      $scope.formData.owner    = $scope.currentUser().email;
-      $scope.toolName          = $scope.formData.name;
+      $scope.formData.owner = $scope.currentUser().email;
+      $scope.toolName       = $scope.formData.name;
 
       // Sort out links
       $scope.formData.github_url   = $scope.prependHttp($scope.formData.github_url);
@@ -29,13 +45,19 @@
       $scope.formData.download_url = $scope.prependHttp($scope.formData.download_url);
 
       Tool.save($scope.formData)
-        .$promise.then(function() {
+        .$promise.then(function(tool) {
 
-          $('.ui.basic.modal.toolCreated').modal();
-          $('.ui.basic.modal.toolCreated').modal('show');
+          // Once the tool has been created, add this tool's ID to the user object 
+          User.addRemoveTool({ id: $scope.currentUser()._id }, {
+            toolID: tool._id,
+            addTool: true
+          }, function(err) {
+            console.log(err);
+          });
 
-          $state.go('main');
-          window.scroll(0, 0); 
+          $scope.toolID = tool._id;
+          $scope.showToolMessage();
+
         }, function(error) {
           console.log('error ' + error);
         });

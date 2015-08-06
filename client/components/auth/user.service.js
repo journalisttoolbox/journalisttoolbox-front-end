@@ -12,6 +12,12 @@ angular.module('jtApp')
           controller:'password'
         }
       },
+      addRemoveTool : {
+        method: 'PUT',
+        params: {
+          controller: 'tool'
+        }
+      },
       update: { 
         method : 'PUT', 
         params: { 
