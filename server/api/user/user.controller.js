@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var ToolList = require('../toolList/toolList.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');

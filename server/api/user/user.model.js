@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var ToolList = require('../toolList/toolList.model');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
@@ -15,7 +16,8 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  tools: [String],
+  tools: [String], // Array of string Tool IDs
+  toolLists: [{ type: Schema.Types.ObjectId, ref: 'ToolList' }],
   salt: String,
   facebook: {},
   twitter: {},
