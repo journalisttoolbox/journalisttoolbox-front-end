@@ -19,7 +19,9 @@ angular.module('jtApp')
       update: {
         method : 'PUT', 
         params: {
-          id: '@id' 
+          id: '@id',
+          toolToAdd: '@toolToAdd',
+          toolToRemove: '@toolToRemove' 
         }
       }
     });

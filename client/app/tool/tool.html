@@ -20,6 +20,20 @@
     </div>
     <div class="eight wide column">
       <div class="ui center aligned segment">
+
+
+
+    <div class="ui dropdown list">
+      <div class="ui label addToList">
+        <i class="plus icon"></i> Add to list
+        <i class="dropdown icon"></i>
+      </div>
+      <div class="menu">
+        <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
+        <div ng-click="createNewList()" class="item">New List...</div>
+      </div>
+    </div>
+
       <h2>Votes</h2>
         <div class="center aligned column">
           <div ng-click="toolVote(true)" class="ui icon button buttonVote">

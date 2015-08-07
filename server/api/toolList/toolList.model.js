@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var ToolListSchema = new Schema({
   userID: String,
   toolListName: String,
-  tools: [String]
+  tools: [{ type: Schema.Types.ObjectId, ref: 'Tool' }]
 });
 
 module.exports = mongoose.model('ToolList', ToolListSchema);
