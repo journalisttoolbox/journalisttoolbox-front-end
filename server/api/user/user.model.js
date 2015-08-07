@@ -16,7 +16,7 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  tools: [String], // Array of string Tool IDs
+  tools: [{ type: Schema.Types.ObjectId, ref: 'Tool' }],
   toolLists: [{ type: Schema.Types.ObjectId, ref: 'ToolList' }],
   salt: String,
   facebook: {},

@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var Tool = require('../tool/tool.model');
 var ToolList = require('../toolList/toolList.model');
 var passport = require('passport');
 var config = require('../../config/environment');
@@ -75,32 +76,38 @@ exports.addRemoveTool = function(req, res, next) {
   var toolId      = req.body.toolID;
   var addTool     = req.body.addTool; // req.body.addTool will be falsey if wishing to remove
 
-  User.findOne({ '_id': userId }, function(err, User) {
-    if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
-    if(err) {
-      res.send(err.message);
+  Tool.findOne({ '_id': toolId }, function(err, Tool) {
+    if(!Tool) { res.statusCode = 404; return res.send({ error: 'Tool not found' }); }
+    if(err) { 
+      res.send(err.message) 
     } else {
-
-      if(addTool) {
-        // Push the toolsID to the user's tools array
-        User.tools.push(toolId);
-      } else if (!addTool) {
-        var index = User.tools.indexOf(toolId);
-        User.tools.splice(index, 1);
-      }
-
-      User.save(function(err) {
+      User.findOne({ '_id': userId }, function(err, User) {
+        if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
         if(err) {
-          console.log(err);
-          res.statusCode = 500;
-          res.send({ error: 'Error processing the users tool record' });
+          res.send(err.message);
         } else {
-          res.send({ status: 'OK', User: User.tools });
+
+          if(addTool) {
+            // Push the Tool object to the user's tools array
+            User.tools.push(Tool);
+          } else if (!addTool) {
+            var index = User.tools.indexOf(Tool);
+            User.tools.splice(index, 1);
+          }
+
+          User.save(function(err) {
+            if(err) {
+              console.log(err);
+              res.statusCode = 500;
+              res.send({ error: 'Error processing the users tool record' });
+            } else {
+              res.send({ status: 'OK', User: User.tools });
+            }
+          });
         }
       });
     }
   });
-
 };
 
 /**
