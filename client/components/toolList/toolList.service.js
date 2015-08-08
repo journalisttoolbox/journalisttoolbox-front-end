@@ -7,13 +7,14 @@ angular.module('jtApp')
     }, 
     {
       get: {
-        isArray: true
+        isArray: true,
       },
       save: { 
         method: 'POST',
         params: {
           userID: '@userID',
-          toolListName: '@toolListName'
+          toolListName: '@toolListName',
+          description: '@description'
         }
       },
       update: {

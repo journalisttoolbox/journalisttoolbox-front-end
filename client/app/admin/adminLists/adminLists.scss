@@ -1,0 +1,17 @@
+.adminLists .cards {
+  display: inline-block!important;
+}
+.description {
+  word-break: break-all!important;
+}
+.createListWrapper {
+  margin-top: 50px;
+
+  .createForm {
+    margin-top: 25px;
+
+    .ui.button.addList {
+      margin-top: 25px;
+    }
+  }
+}

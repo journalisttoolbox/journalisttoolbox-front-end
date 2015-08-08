@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var ToolListSchema = new Schema({
   userID: String,
   toolListName: String,
+  description: String,
   tools: [{ type: Schema.Types.ObjectId, ref: 'Tool' }]
 });
 

@@ -7,63 +7,52 @@
 
   /** @ngInject */
   function AdminListsController($scope, $state, User, ToolList, Auth) {
-    $scope.selectedRecordIds = [];
-    $scope.toolList = {};
+    $scope.toolLists = {};
+    $scope.user = null;
 
-    $scope.getCurrentUser = Auth.getCurrentUser;
-    var user = $scope.getCurrentUser();
+    $scope.loadUsersToolLists = function(toolListsArray) {
+      ToolList.get({ 'id': toolListsArray })
+      .$promise.then(function(toolLists) {
+        $scope.toolLists = toolLists;
 
-    $scope.loadUsersTools = function() {
-      // ToolList.save({ userID: user._id, toolListName: 'toolListName' });
-      // .$promise.then(function(tools) {
-      //   $scope.toolList = tools;
-
-      //   if($scope.toolList.length) {
-      //     $scope.toolsFound = true;
-      //   } else {
-      //     $scope.toolsNotFound = true;
-      //   }
-      // });
+        if($scope.toolLists.length) {
+          $scope.toolListsFound = true;
+        } else {
+          $scope.toolListsNotFound = true;
+        }
+      });
     };
 
-    $scope.loadUsersTools();
+    $scope.saveList = function() {
+      $scope.newList.userID = $scope.user._id;
+      ToolList.save($scope.newList)
+      .$promise.then(function(data, err) {
+        if(err) { $scope.errors = err; }
+        $scope.toolLists.push(data);
+      });
+    };
 
-    // $scope.loadAllTools = function() {
-    //   Tool.query()
-    //   .$promise.then(function(data) {
-    //     $scope.toolList = {};
-    //     $scope.toolList = data;
+    if(!Auth.isLoggedIn()) {
+      $state.go('signup'); 
+    } else {
+      // Get user's toolLists from the DB, global user variable might not be up to date
+      User.get()
+        .$promise.then(function(user) {
+          $scope.user = user;
+          if(user.toolLists.length) { 
+            // load the toolLists of this user
+            $scope.loadUsersToolLists(user.toolLists);
+          } else {
+            $scope.toolListsNotFound = true; 
+          }
+        });
+    }
 
-    //     console.log($scope.toolList);
-
-    //     if($scope.toolList.length) {
-    //       $scope.toolsFound = true;
-    //     } else {
-    //       $scope.toolsNotFound = true;
-    //     }
-    //   });
-    // };
-
-    // if(!Auth.isLoggedIn()) {
-    //   $state.go('signup'); 
-    // } else {
-    //   if(user.role === 'admin') {
-    //     $scope.loadAllTools();
-    //   } else if (user.role === 'user') {
-    //     // Get user's tools from the DB, global user variable might not be up to date
-    //     User.get()
-    //       .$promise.then(function(user) {
-    //         if(user.tools.length) { 
-    //           // load the tools of this user
-    //           $scope.loadUsersTools(user.tools);
-    //         } else {
-    //           $scope.toolsNotFound = true; 
-    //         }
-    //       });
-    //   } else {
-    //     $scope.toolsNotFound = true;
-    //   }      
-    // }
+    // Remove a toolList
+    $scope.removeToolList = function(list) {
+      ToolList.remove({ id: list._id });
+      $state.go($state.current, {}, {reload: true});
+    };
 
   }
 })();
