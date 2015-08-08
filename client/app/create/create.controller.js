@@ -17,10 +17,12 @@
     $scope.showToolMessage = function() {
       $scope.toolMessage = true;
 
-      // Hide the tool message automatically
-      $timeout(function() {
-        $scope.hideToolMessage();
-      }, 5000);
+        // Hide the tool message automatically
+        $timeout(function() {
+          if($scope.toolMessage) {
+            $scope.hideToolMessage();
+          }
+        }, 5000);
     };
 
     // Add the 'http://' if not already present

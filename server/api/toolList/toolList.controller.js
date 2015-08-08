@@ -54,7 +54,6 @@ exports.update = function(req, res) {
       toolList.tools.push(tool);
       toolList.save(function(err) {
         if(err) { return handleError(res, err) }
-        console.log(toolList);
         return res.status(201).json(toolList);
       });
     });

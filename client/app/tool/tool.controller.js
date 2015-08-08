@@ -7,11 +7,13 @@
     .controller('ToolCtrl', ToolController);
 
   /** @ngInject */
-  function ToolController($scope, Tool, $stateParams, $state, Auth, ToolList) {
+  function ToolController($scope, Tool, $stateParams, $state, Auth, ToolList, $timeout) {
     $scope.tool = {};
     $scope.toolLists = {};
     $scope.toolAvailable = false;
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.addedToList = false;
+    $scope.errors = {};
     var user = {};
 
     $scope.loadToolLists = function() {
@@ -25,23 +27,58 @@
       }
     };
 
-    $scope.addToolToList = function(toolListID) {
-      ToolList.update({ 
-        id: toolListID, 
-        toolToAdd: $scope.tool._id 
-      })
-      .$promise.then(function(err, data) {
+    /*
+     * Functions to deal with showing error or success messages when a tool has been added to a user's list
+     */
+      $scope.addToolToList = function(toolListID) {
+        ToolList.update({ 
+          id: toolListID, 
+          toolToAdd: $scope.tool._id 
+        })
+        .$promise.then(function(data, err) {
+          if(err) {
+            $scope.errors.toolList = err;
+          }
+          $scope.toolListAltered = data;
+          $scope.showAddedToListMessage();
+        });
+      };
 
-      });
-    };
+      $scope.hideAddedToListMessage = function() {
+        $scope.addedToList = false;
+        $state.go('admin.lists', {}, {reload: true});
+      };
 
-    $scope.reviewState = function() {
-      $state.go('tool.review');
-    };
+      $scope.showAddedToListMessage = function() {
+        $scope.addedToList = true;
 
-    $scope.toolState = function() {
-      $state.go('tool');
-    };
+        // Hide the tool list success message automatically
+        $timeout(function() {
+          if($scope.addedToList) {
+            $scope.hideAddedToListMessage();
+          }
+        }, 5000);
+      };
+
+      // redirect the user to their admin panel if new list is created.
+      $scope.createNewList = function() {
+        if($scope.isLoggedIn()) {
+          $state.go('admin.lists');
+        } else {
+          $state.go('signup');
+        }
+      };
+
+    /*
+     * State functions
+     */
+      $scope.reviewState = function() {
+        $state.go('tool.review');
+      };
+
+      $scope.toolState = function() {
+        $state.go('tool');
+      };
 
     $scope.toolVote = function(verdict) {
       Tool.voteTool({
@@ -58,31 +95,23 @@
       });
     };
 
-    // redirect the user to their admin panel
-    $scope.createNewList = function() {
-      if($scope.isLoggedIn()) {
-        $state.go('admin.lists');
-      } else {
-        $state.go('signup');
-      }
-    };
+    // DEFAULT FUNCTION
+      $scope.runDefault = (function() {
 
-    $scope.runDefault = (function() {
+        if($scope.isLoggedIn()) {
+          $scope.getCurrentUser = Auth.getCurrentUser;
+          user = $scope.getCurrentUser();
+        }
+        
+        // instantiate the list dropdown
+        $('.ui.dropdown.list').dropdown();
 
-      if($scope.isLoggedIn()) {
-        $scope.getCurrentUser = Auth.getCurrentUser;
-        user = $scope.getCurrentUser();
-      }
-      
-      // instantiate the list dropdown
-      $('.ui.dropdown.list').dropdown();
-
-      Tool.get({ id: $stateParams.id })
-        .$promise.then(function(data) {
-          $scope.tool = data[0];
-          $scope.toolAvailable = true;
-        });
-    })();
+        Tool.get({ id: $stateParams.id })
+          .$promise.then(function(data) {
+            $scope.tool = data[0];
+            $scope.toolAvailable = true;
+          });
+      })();
 
   }
   
