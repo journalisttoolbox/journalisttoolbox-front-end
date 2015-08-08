@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AdminListsController($scope, $state, User, ToolList, Auth) {
-    $scope.toolLists = {};
+    $scope.toolLists = [];
     $scope.user = null;
 
     $scope.loadUsersToolLists = function(toolListsArray) {
@@ -29,6 +29,7 @@
       .$promise.then(function(data, err) {
         if(err) { $scope.errors = err; }
         $scope.toolLists.push(data);
+        $state.go($state.current, {}, {reload: true});
       });
     };
 

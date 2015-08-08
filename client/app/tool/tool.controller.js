@@ -7,16 +7,18 @@
     .controller('ToolCtrl', ToolController);
 
   /** @ngInject */
-  function ToolController($scope, Tool, $stateParams, $state, Auth, ToolList, $timeout) {
+  function ToolController($scope, Tool, $stateParams, $state, User, Auth, ToolList, $timeout) {
     $scope.tool = {};
-    $scope.toolLists = {};
     $scope.toolAvailable = false;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.addedToList = false;
     $scope.errors = {};
-    var user = {};
 
+    $scope.getCurrentUser = Auth.getCurrentUser;
+    var user = User.get();
+  
     $scope.loadToolLists = function() {
+      $scope.toolLists = {};
       if(user.toolLists.length) { 
         ToolList.get({ 'id': user.toolLists })
         .$promise.then(function(lists) {
@@ -97,12 +99,6 @@
 
     // DEFAULT FUNCTION
       $scope.runDefault = (function() {
-
-        if($scope.isLoggedIn()) {
-          $scope.getCurrentUser = Auth.getCurrentUser;
-          user = $scope.getCurrentUser();
-        }
-        
         // instantiate the list dropdown
         $('.ui.dropdown.list').dropdown();
 
