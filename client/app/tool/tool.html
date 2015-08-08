@@ -21,10 +21,8 @@
     <div class="eight wide column">
       <div class="ui center aligned segment">
 
-
-
-    <div class="ui dropdown list">
-      <div class="ui label addToList">
+    <div ng-show="isLoggedIn()" class="ui dropdown list">
+      <div class="ui label addToList" ng-click="loadToolLists()" >
         <i class="plus icon"></i> Add to list
         <i class="dropdown icon"></i>
       </div>

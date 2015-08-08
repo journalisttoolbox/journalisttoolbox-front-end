@@ -11,14 +11,18 @@
     $scope.tool = {};
     $scope.toolLists = {};
     $scope.toolAvailable = false;
-
     $scope.isLoggedIn = Auth.isLoggedIn;
+    var user = {};
 
-    $scope.loadToolLists = function(toolLists) {
-      ToolList.get({ 'id': toolLists })
-      .$promise.then(function(lists) {
-        $scope.toolLists = lists;
-      });
+    $scope.loadToolLists = function() {
+      if(user.toolLists.length) { 
+        ToolList.get({ 'id': user.toolLists })
+        .$promise.then(function(lists) {
+          $scope.toolLists = lists;
+        });
+      } else {
+        $scope.toolLists = false; 
+      }
     };
 
     $scope.addToolToList = function(toolListID) {
@@ -67,14 +71,7 @@
 
       if($scope.isLoggedIn()) {
         $scope.getCurrentUser = Auth.getCurrentUser;
-        var user = $scope.getCurrentUser();
-
-        if(user.toolLists.length) { 
-          // load the toolLists of this user
-          $scope.loadToolLists(user.toolLists);
-        } else {
-          $scope.toolLists = false; 
-        }
+        user = $scope.getCurrentUser();
       }
       
       // instantiate the list dropdown
