@@ -15,7 +15,11 @@
     $scope.errors = {};
 
     $scope.getCurrentUser = Auth.getCurrentUser;
-    var user = User.get();
+    $scope.isLoggedIn = Auth.isLoggedIn;
+
+    if($scope.isLoggedIn()) {
+      var user = User.get();
+    }
   
     $scope.loadToolLists = function() {
       $scope.toolLists = {};
