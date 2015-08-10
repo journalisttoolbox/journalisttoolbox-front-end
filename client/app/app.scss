@@ -94,9 +94,11 @@ hr {
 // injector
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
+@import 'admin/adminLists/adminLists.scss';
 @import 'create/create.scss';
 @import 'create/toolCreated/toolCreated.scss';
 @import 'explore/explore.scss';
+@import 'list/list.scss';
 @import 'main/grid/grid.scss';
 @import 'main/main.scss';
 @import 'tool/tool.scss';

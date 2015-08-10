@@ -14,7 +14,7 @@
     var user = $scope.getCurrentUser();
 
     $scope.loadUsersTools = function(toolsArray) {
-      Tool.get({ id: toolsArray })
+      Tool.get({ 'id': toolsArray })
       .$promise.then(function(tools) {
         $scope.toolList = tools;
 
@@ -31,6 +31,8 @@
       .$promise.then(function(data) {
         $scope.toolList = {};
         $scope.toolList = data;
+
+        console.log($scope.toolList);
 
         if($scope.toolList.length) {
           $scope.toolsFound = true;
