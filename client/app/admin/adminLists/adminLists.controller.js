@@ -51,6 +51,7 @@
 
     // Remove a toolList
     $scope.removeToolList = function(list) {
+      list.userID = $scope.user._id;
       ToolList.remove({ id: list._id });
       $state.go($state.current, {}, {reload: true});
     };

@@ -16,6 +16,7 @@ var User = require('../api/user/user.model');
 //     role: 'admin',
 //     tools: [],
 //     toolLists: [],
+//     favourites: [],
 //     password: 'james'
 //   }, {
 //     provider: 'local',
@@ -25,6 +26,7 @@ var User = require('../api/user/user.model');
 //     role: 'admin',
 //     tools: [],
 //     toolLists: [],
+//     favourites: [],
 //     password: 'nevo'
 //   }, function() {
 //       console.log('finished populating users');

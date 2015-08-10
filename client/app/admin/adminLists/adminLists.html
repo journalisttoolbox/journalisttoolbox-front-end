@@ -1,11 +1,24 @@
 <div class="adminLists">
   <h2>LISTS</h2>
 
-  <!-- LOADING -->
-  <div ng-show="!toolLists.length && !toolListsNotFound" class="ui active centered large inline loader adminLoader"></div>
+  <div class="ui cards">
+    <!-- FAVOURITES -->
+    <div class="card favourite">
+      <div class="content">
+        <div class="header">FAVOURITES</div>
+        <i class="star icon"></i>
+        <div class="meta">{{ user.favourites.length || 0 }} tools</div>
+        <div class="description">
+          Your favourite tools.
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div ng-show="toolListsFound">
     <div class="ui cards">
+
+
       <div class="card" ng-repeat="list in toolLists">
         <div class="content">
           <div class="header">{{ list.toolListName }}</div>
