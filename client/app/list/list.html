@@ -1,0 +1,31 @@
+<div class="list container">  
+  <h1 class="ui horizontal divider header">
+    {{ toolList.toolListName | uppercase }}
+  </h1>
+  <h3>{{ toolList.description }}</h3>
+
+  <div ng-show="noTools">
+    <h1>Woops!</h1>
+    <p>Looks like this list doesn't have any tools yet. If you're the owner, you can add tools to it from any tool page.</p>
+  </div>
+
+  <div class="ui four column grid stackable">
+    <a ui-sref="tool({id: tool._id})" class="column" ng-repeat="tool in tools">
+      <div class="ui medium image">
+        <div class="ui dimmer">
+          <div class="content">
+            <div class="center">
+              <div class="ui">{{tool.description}}</div><br>
+                <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.categories">{{cat}}{{$last ? '' : ', '}}</span></span>
+            </div>
+          </div>
+        </div>
+        <img class="ui image" src="http://placehold.it/300x300">
+        <div class="ui top left orange attached label">
+          <h4>{{tool.name}}</h4>
+        </div>
+    </div>
+  </a>
+</div>
+
+</div>

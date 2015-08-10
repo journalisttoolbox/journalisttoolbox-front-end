@@ -23,6 +23,10 @@
       });
     };
 
+    $scope.goToList = function(listID) {
+      $state.go('list', { id: listID }, {reload: true});
+    };
+
     $scope.saveList = function() {
       $scope.newList.userID = $scope.user._id;
       ToolList.save($scope.newList)
