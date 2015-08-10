@@ -7,10 +7,9 @@
     .controller('ListCtrl', ListController);
 
   /** @ngInject */
-  function ListController($scope, Tool, $stateParams, $state, User, Auth, ToolList) {
+  function ListController($scope, Tool, $stateParams, ToolList) {
     $scope.tools = {};
     $scope.toolList = {};
-    $scope.toolsAvailable = false;
     $scope.errors = {};
     $scope.noTools = true;
   
@@ -37,7 +36,6 @@
 
     // DEFAULT FUNCTION
       $scope.runDefault = (function() {
-        $('.ui.dropdown.list').dropdown();
         $scope.loadToolList();
       })();
 
