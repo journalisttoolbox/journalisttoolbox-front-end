@@ -44,7 +44,7 @@
         .then( function() {
           // Logged in, redirect to current state
           $scope.closeModal();
-          $state.go($state.current, {}, {reload: true});
+          $window.location.reload();
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

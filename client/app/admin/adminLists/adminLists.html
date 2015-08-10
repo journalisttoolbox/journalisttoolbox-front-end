@@ -1,0 +1,59 @@
+<div class="adminLists">
+  <h2>LISTS</h2>
+
+  <div class="ui cards">
+    <!-- FAVOURITES -->
+    <div class="card favourite">
+      <div class="content">
+        <div class="header">FAVOURITES</div>
+        <i class="star icon"></i>
+        <div class="meta">{{ user.favourites.length || 0 }} tools</div>
+        <div class="description">
+          Your favourite tools.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="toolListsFound">
+    <div class="ui cards">
+
+
+      <div class="card" ng-repeat="list in toolLists">
+        <div class="content">
+          <div class="header">{{ list.toolListName }}</div>
+          <div class="meta">{{ list.tools.length }} tools</div>
+          <div class="description">
+            {{ list.description | limitTo: 100 }}
+          </div>
+            <a ng-really-message="Are you sure you want to delete this list?" ng-really-click="removeToolList(list)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="createListWrapper">
+    <button ng-show="!createState" ng-click="createState=!createState" class="ui positive button createList">Create a new custom tool list</button>
+    <button ng-show="createState" ng-click="createState=!createState" class="ui positive button createList">Hide create form</button>
+
+    <div class="ui page createForm" ng-show="createState">
+
+      <div class="ui cards">
+        <div class="card">
+          <div class="content">
+            <form name="createList" class="ui page form" novalidate>
+            <div class="input field" ng-class="{ 'error' : createList.toolListName.$invalid && !createList.toolListName.$pristine }">
+              <input type="text" name="toolListName" placeholder="New Tool List Name" ng-model="newList.toolListName" required>
+              <p class="fieldRequired" ng-show="createList.toolListName.$invalid && !createList.toolListName.$pristine">The list's name is required.</p>
+            </div>
+              <textarea placeholder="Write your own description here..." ng-model="newList.description"></textarea>
+              <button ng-disabled="createList.$invalid" class="ui button addList" ng-click="saveList()" type="submit">Create List</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  </div>
+
+</div>

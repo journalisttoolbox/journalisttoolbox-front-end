@@ -15,8 +15,11 @@ angular.module('jtApp')
     $scope.usersState = function() {
       $state.go('admin.users', {}, { reload: true });
     };
-    // State for the tools
     $scope.toolsState = function() {
       $state.go('admin.tools', {}, { reload: true });
     };
+    $scope.listsState = function() {
+      $state.go('admin.lists', {}, { reload: true });
+    };
+
   });

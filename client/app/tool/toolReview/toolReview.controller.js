@@ -21,7 +21,9 @@
 
       // Hide the review message automatically
       $timeout(function() {
-        $scope.hideReviewMessage();
+        if($scope.reviewPosted) {
+          $scope.hideReviewMessage();
+        }
       }, 5000);
     };
 
