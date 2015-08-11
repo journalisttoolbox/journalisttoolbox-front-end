@@ -21,6 +21,14 @@
     <div class="eight wide column">
       <div class="ui center aligned segment">
 
+    <div class="ui error message listErrors" ng-show="listErrors.error">
+      <div class="header">
+        There was a problem adding this tool to your list
+      </div>
+      <ul class="list">
+        <li>{{ listErrors.error }}</li>
+      </ul>
+    </div>
     <div ng-show="isLoggedIn()" class="ui dropdown list">
       <div class="ui label addToList" ng-click="loadToolLists()" >
         <i class="plus icon"></i> Add to list
@@ -28,7 +36,8 @@
       </div>
       <div class="menu">
         <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
-        <div ng-click="createNewList()" class="item">New List...</div>
+        <div ng-click="addToFavourites(tool._id)" class="item">Favourites <i class="star icon"></i></div>
+        <div ng-click="createNewList()" class="item newList">New List...</div>
       </div>
     </div>
 

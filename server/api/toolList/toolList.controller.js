@@ -49,7 +49,7 @@ exports.update = function(req, res) {
 
     ToolList.findById(req.body.id, function(err, toolList) {
       // If exists, return error
-      if(toolList.tools.indexOf(tool._id) > -1) { return res.status(409).send('Tool already exists in this list') }
+      if(toolList.tools.indexOf(tool._id) > -1) { return res.status(409).send({ error: 'Tool already exists in this custom list' }) }
 
       toolList.tools.push(tool);
       toolList.save(function(err) {

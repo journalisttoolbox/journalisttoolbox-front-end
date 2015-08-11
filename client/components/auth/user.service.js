@@ -18,6 +18,12 @@ angular.module('jtApp')
           controller: 'tool'
         }
       },
+      addRemoveFavourites : {
+        method: 'PUT',
+        params: {
+          controller: 'favourites'
+        }
+      },
       update: { 
         method : 'PUT', 
         params: { 

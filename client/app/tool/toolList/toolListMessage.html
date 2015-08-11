@@ -3,7 +3,7 @@
     <div class="content">
       <h1>Success!</h1>
       <i class="write icon green"></i>
-      <h2>You've added {{ tool.name }} to your list, <span class="toolName">{{ toolListAltered.toolListName }}</span>.</h2>
+      <h2>You've added {{ tool.name }} to your list, <span class="toolName">{{ toolListAltered.toolListName || 'favourites' }}</span>.</h2>
       <h3>Click anywhere to close, else we will redirect you automatically...</h3>
     </div>
   </div>
