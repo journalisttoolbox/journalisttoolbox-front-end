@@ -5,13 +5,13 @@
     <div class="ui four column grid stackable">
       <div class="sixteen wide column">
         <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
-          <input type="text" ng-model="term" ng-keyup="onKeyUp()" placeholder="What are you looking to create...?">
+          <input type="text" ng-model="term" ng-change="onKeyUp()" placeholder="What are you looking to create...?" ng-model-options="{debounce: 500}">
           <i class="search icon"></i>
         </div>
       </div>
     </div>
 
-    <div class="ui page grid" ng-show="(tools | filter:term).length <= 0 && term.length>=3">
+    <div class="ui page grid" ng-show="(tools | filter:term).length <= 0 && term.length>=1">
       <div class="twelve wide centered column">
         <div class="ui negative message">
           <div class="header">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="ui four column grid" style="margin:0px;" ng-show="(tools | filter:term).length > 0 && term.length>=3">
+    <div class="ui four column grid" style="margin:0px;" ng-show="(tools | filter:term).length > 0">
       <div class="left floated left aligned thirteen wide column">
         <div class="ui top attached tabular menu" >
           <a class="item active" data-tab="first">Platforms</a>
