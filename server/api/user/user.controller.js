@@ -152,14 +152,14 @@ exports.addRemoveFavourites = function(req, res) {
         } else {
 
           if(addTool) {
-            var index = User.favourites.indexOf(Tool);
+            var index = User.favourites.indexOf(Tool._id);
             if(index > -1) {
-              User.favourites.push(Tool);
-            } else {
               return res.status(409).send({ error: 'Already present in favourites' });
+            } else {
+              User.favourites.push(Tool);
             }
           } else if (!addTool) {
-            var index = User.favourites.indexOf(Tool);
+            var index = User.favourites.indexOf(Tool._id);
             if(index > -1) {
               return res.status(409).send({ error: 'Tool not found in favourites' });
             } else {

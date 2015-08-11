@@ -32,8 +32,6 @@
         $scope.toolList = {};
         $scope.toolList = data;
 
-        console.log($scope.toolList);
-
         if($scope.toolList.length) {
           $scope.toolsFound = true;
         } else {
