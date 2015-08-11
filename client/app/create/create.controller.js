@@ -8,6 +8,7 @@
 
     $scope.currentUser = Auth.getCurrentUser;
     $scope.toolMessage = false;
+    $scope.githubLoaderUrl = '';
 
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;
@@ -62,6 +63,23 @@
         }, function(error) {
           console.log('error ' + error);
         });
+    };
+
+    $scope.populateForm = function() {
+      console.log($scope.githubLoaderUrl);
+      var url = $scope.githubLoaderUrl.split('/')[0];
+      console.log(url);
+
+
+
+// $http.get('https://api.github.com/repos/'+repoOwner+'/'+repoName+'/'+'contents/toolbox.json').
+//   then(function(data) {
+//     // this callback will be called asynchronously
+//     // when the response is available
+//   }, function(err) {
+//     // called asynchronously if an error occurs
+//     // or server returns response with an error status.
+//   });
     };
 
   }

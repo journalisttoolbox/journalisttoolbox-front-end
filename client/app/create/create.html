@@ -10,13 +10,14 @@
     </div>
   </div>
 
-
 <form name="createToolForm" ng-submit="submitTool()" class="ui form" novalidate>
 
   <h2 class="ui horizontal divider header" ng-class="{'disabled': currentUser().name === undefined}">
     <i class="cube icon"></i>
     Tool Information
   </h2>
+
+  <div class="githubLoader" ng-include="'app/create/github/github.html'"></div>
 
   <div class="two fields">
     <!-- NAME FIELD -->
