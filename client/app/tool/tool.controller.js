@@ -13,6 +13,7 @@
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.addedToList = false;
     $scope.errors = {};
+    $scope.listErrors = {};
 
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -40,13 +41,12 @@
         ToolList.update({ 
           id: toolListID, 
           toolToAdd: $scope.tool._id 
-        })
-        .$promise.then(function(data, err) {
-          if(err) {
-            $scope.errors.toolList = err;
-          }
+        }, function(data) {
+          $scope.listErrors = {};
           $scope.toolListAltered = data;
           $scope.showAddedToListMessage();
+        }, function(err) {
+          $scope.listErrors.error = err.data.error;
         });
       };
 
@@ -98,6 +98,18 @@
           });
 
         $scope.hasUserVoted = true;
+      });
+    };
+
+    $scope.addToFavourites = function(toolID) {
+      User.addRemoveFavourites({ id: user._id }, {
+        toolID: toolID,
+        addTool: true
+      }, function(data) {
+        $scope.toolListAltered = data;
+        $scope.showAddedToListMessage();
+      }, function(err) {
+        $scope.listErrors.error = err.data.error;
       });
     };
 

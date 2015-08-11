@@ -134,6 +134,55 @@ exports.destroy = function(req, res) {
   });
 };
 
+// Adds/removes a tool from favourites list
+exports.addRemoveFavourites = function(req, res) {
+  var userId  = req.params.id;
+  var toolId  = req.body.toolID;
+  var addTool = req.body.addTool; // req.body.addTool will be falsey if wishing to remove
+
+  Tool.findOne({ '_id': toolId }, function(err, Tool) {
+    if(!Tool) { res.statusCode = 404; return res.send({ error: 'Tool not found' }); }
+    if(err) { 
+      res.send(err.message) 
+    } else {
+      User.findOne({ '_id': userId }, function(err, User) {
+        if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
+        if(err) {
+          res.send(err.message);
+        } else {
+
+          if(addTool) {
+            var index = User.favourites.indexOf(Tool);
+            if(index > -1) {
+              User.favourites.push(Tool);
+            } else {
+              return res.status(409).send({ error: 'Already present in favourites' });
+            }
+          } else if (!addTool) {
+            var index = User.favourites.indexOf(Tool);
+            if(index > -1) {
+              return res.status(409).send({ error: 'Tool not found in favourites' });
+            } else {
+              User.favourites.splice(index, 1);
+            }
+          }
+
+          User.save(function(err) {
+            if(err) {
+              console.log(err);
+              res.statusCode = 500;
+              res.send({ error: 'Error processing the users favourites record' });
+            } else {
+              res.send({ status: 'OK', User: User.favourites });
+            }
+          });
+        }
+      });
+    }
+  });
+
+};
+
 /**
  * Change a users password
  */
