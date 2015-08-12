@@ -35,13 +35,11 @@
         });
 
       $scope.onKeyUp = function(){
-        if($scope.term.length >= 3) {
-          $scope.tools = $scope.allTools;
+        $scope.tools = $scope.allTools;
           //show the filter options
           $scope.ShowFilter = true;
-        }
-        else{
-          $scope.tools = [];    
+          if($scope.term.length == 0) {
+            $scope.tools = [];    
           //hide the filter options
           $scope.ShowFilter = false;
         }

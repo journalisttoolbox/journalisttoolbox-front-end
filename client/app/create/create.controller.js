@@ -78,7 +78,6 @@
       $http.get('https://api.github.com/repos/'+owner+'/'+repo+'/'+'contents/toolbox.json').
         then(function(data) {
           $scope.decodeData(data.data.content);
-          console.log(data);
           $scope.errors.githubError = false;
         }, function(err) {
           $scope.errors.githubError = 'GitHub API error: ' + err;
@@ -86,6 +85,11 @@
     };
 
     $scope.populateForm = function() {
+      if(!$scope.githubLoaderUrl.url) {
+        $scope.errors.githubError = 'Invalid entry';
+        return;
+      }
+
       var url = $scope.githubLoaderUrl.url;
       if (url.indexOf('github.com') > -1) {
         var details = url.split('github.com/')[1];
