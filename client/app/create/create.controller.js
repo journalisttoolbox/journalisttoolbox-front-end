@@ -8,7 +8,7 @@
 
     $scope.currentUser = Auth.getCurrentUser;
     $scope.toolMessage = false;
-    $scope.githubLoaderUrl = '';
+    $scope.githubLoaderUrl = {};
 
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;
@@ -65,21 +65,44 @@
         });
     };
 
+    $scope.decodeData = function(encString) {
+      var decoded = atob(encString);
+      var obj = JSON.parse(decoded);
+
+      console.log(obj);
+      $scope.formData = obj;
+    };
+
+
+    // $http.get('https://api.github.com/repos/journalisttoolbox/tool-test/contents/toolbox.json').
+    //     then(function(data) {
+    //       // $scope.decodeData(data.data.content);
+    //       console.log(data);
+    //     }, function(err) {
+    //       console.log(err);
+    //     });
+
+    $scope.hitGithubApi = function(owner, repo) {
+      $http.get('https://api.github.com/repos/'+owner+'/'+repo+'/'+'contents/toolbox.json').
+        then(function(data) {
+          $scope.decodeData(data.data.content);
+          console.log(data);
+        }, function(err) {
+          console.log(err);
+        });
+    };
+
     $scope.populateForm = function() {
-      console.log($scope.githubLoaderUrl);
-      var url = $scope.githubLoaderUrl.split('/')[0];
-      console.log(url);
+      var url = $scope.githubLoaderUrl.url;
+      if (url.indexOf('github.com') > -1) {
+        var details = url.split('github.com/')[1];
+        var owner = details.split('/')[0];
+        var repo = details.split('/')[1];
 
-
-
-// $http.get('https://api.github.com/repos/'+repoOwner+'/'+repoName+'/'+'contents/toolbox.json').
-//   then(function(data) {
-//     // this callback will be called asynchronously
-//     // when the response is available
-//   }, function(err) {
-//     // called asynchronously if an error occurs
-//     // or server returns response with an error status.
-//   });
+        $scope.hitGithubApi(owner, repo);
+        return;
+      }
+      $scope.errors.githubError = 'Invalid GitHub url';
     };
 
   }
