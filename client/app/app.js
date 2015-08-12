@@ -21,7 +21,7 @@ angular.module('jtApp', [
       // Add authorization token to headers
       request: function (config) {
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
+        if ($cookieStore.get('token') && config.url.indexOf('github.com') === -1) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
         return config;

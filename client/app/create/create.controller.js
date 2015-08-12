@@ -66,21 +66,13 @@
     };
 
     $scope.decodeData = function(encString) {
+      encString = encString.replace(/\s/g, '');
       var decoded = atob(encString);
       var obj = JSON.parse(decoded);
 
       console.log(obj);
       $scope.formData = obj;
     };
-
-
-    // $http.get('https://api.github.com/repos/journalisttoolbox/tool-test/contents/toolbox.json').
-    //     then(function(data) {
-    //       // $scope.decodeData(data.data.content);
-    //       console.log(data);
-    //     }, function(err) {
-    //       console.log(err);
-    //     });
 
     $scope.hitGithubApi = function(owner, repo) {
       $http.get('https://api.github.com/repos/'+owner+'/'+repo+'/'+'contents/toolbox.json').
