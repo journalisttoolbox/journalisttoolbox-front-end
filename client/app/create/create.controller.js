@@ -9,6 +9,7 @@
     $scope.currentUser = Auth.getCurrentUser;
     $scope.toolMessage = false;
     $scope.githubLoaderUrl = {};
+    $scope.errors = {};
 
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;
@@ -70,7 +71,6 @@
       var decoded = atob(encString);
       var obj = JSON.parse(decoded);
 
-      console.log(obj);
       $scope.formData = obj;
     };
 
@@ -79,8 +79,9 @@
         then(function(data) {
           $scope.decodeData(data.data.content);
           console.log(data);
+          $scope.errors.githubError = false;
         }, function(err) {
-          console.log(err);
+          $scope.errors.githubError = 'GitHub API error: ' + err;
         });
     };
 

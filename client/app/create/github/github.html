@@ -7,6 +7,16 @@
   Hide GitHub upload
 </div>
 
+<div class="ui message" ng-show="errors.githubError">
+<h1>test</h1>
+  <div class="header">
+    There was a problem fetching data from this repository
+  </div>
+  <ul class="list">
+    <li>{{ errors.githubError }}</li>
+  </ul>
+</div>
+
 <div ng-show="showGithub" class="showGithub">
   <input type="text" ng-model="githubLoaderUrl.url" placeholder="Paste the link to your github repository here">
   <div class="populateForm" ng-click="populateForm()">
