@@ -15,7 +15,13 @@
     
     $scope.loadsTools = function(toolsArray) {
       if(toolsArray.length) {
-        Tool.get({ id: toolsArray })
+        var toolIDs = [];
+
+        for(var i=0; i<toolsArray.length;i++) {
+          toolIDs.push(toolsArray[i]._id);
+        }
+
+        Tool.get({ id: toolIDs })
         .$promise.then(function(tools) {
           $scope.tools = tools;
           $scope.noTools = false;
@@ -27,7 +33,7 @@
 
     $scope.triggerDimmer = function() {
      $('.ui.image').dimmer({on: 'hover'});
-   }
+   };
    
    $scope.loadToolList = function() {
     ToolList.get({ id: $stateParams.id })
