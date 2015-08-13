@@ -161,9 +161,9 @@ exports.addRemoveFavourites = function(req, res) {
           } else if (!addTool) {
             var index = User.favourites.indexOf(Tool._id);
             if(index > -1) {
-              return res.status(409).send({ error: 'Tool not found in favourites' });
-            } else {
               User.favourites.splice(index, 1);
+            } else {
+              return res.status(409).send({ error: 'Tool not found in favourites' });
             }
           }
 

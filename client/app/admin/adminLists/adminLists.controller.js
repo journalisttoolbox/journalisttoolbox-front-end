@@ -44,6 +44,7 @@
       User.get()
         .$promise.then(function(user) {
           $scope.user = user;
+          $scope.favourites = user.favourites;
           if(user.toolLists.length) { 
             // load the toolLists of this user
             $scope.loadUsersToolLists(user.toolLists);
@@ -58,6 +59,17 @@
       list.userID = $scope.user._id;
       ToolList.remove({ id: list._id });
       $state.go($state.current, {}, {reload: true});
+    };
+
+    $scope.removeFromFavourites = function(toolID) {
+      User.addRemoveFavourites({ id: $scope.user._id }, {
+        toolID: toolID,
+        addTool: false
+      }, function(data) {
+        $state.go($state.current, {}, {reload: true});
+      }, function(err) {
+        $scope.errors.removeFavourite = err.data.error;
+      });
     };
 
   }

@@ -1,5 +1,15 @@
-.adminLists .cards {
-  display: inline-block!important;
+.adminLists {
+  .cards {
+    display: inline-block!important;
+  }
+
+  i.edit.icon {
+    float: right;
+    font-size: 20px;
+  }
+  .glyphicon-trash {
+    font-size: 20px;
+  }
 }
 .description {
   word-break: break-all!important;
