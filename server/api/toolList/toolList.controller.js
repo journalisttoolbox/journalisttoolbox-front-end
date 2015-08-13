@@ -66,19 +66,11 @@ exports.destroy = function(req, res) {
     if(err) { return handleError(res, err); }
     if(!toolList) { return res.status(404).send('Not Found'); }
 
-    User.findById(toolList.userID, function(err, user) {
-      var ind = user.toolLists.indexOf(toolList);
-      user.toolLists.splice(ind, 1);
-
-      user.save(function(err) {
-        if(err) { return handleError(res, err); }
-      });
-    });
-
     toolList.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });
+
   });
 };
 
