@@ -11,7 +11,7 @@
       templateUrl: '/app/main/grid/grid.html',
       controller: GridCtrl,
       bindToController: true
-      };
+    };
 
     return directive;
 

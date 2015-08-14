@@ -7,6 +7,10 @@ var ToolListSchema = new Schema({
   userID: String,
   toolListName: String,
   description: String,
+  featured: {
+    type: Boolean,
+    default: false
+  },
   tools: [{
     _id: { type: Schema.Types.ObjectId, ref: 'Tool' },
     name: String,

@@ -1,0 +1,23 @@
+<div class="ui four column grid stackable">
+    <div class="sixteen wide column">
+      <h1>Featured Tool Lists</h1>
+    </div>
+</div>
+
+<div class="ui cards">
+  <div ng-repeat="list in featuredLists" class="card">
+    <div class="content">
+      <div class="header">{{ list.toolListName }}</div>
+      <!-- <div class="meta">Friend</div> -->
+      <div class="description">
+        {{ list.description }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui page grid stackable">
+  <div class="sixteen wide column">
+    <div class="ui divider"></div>
+  </div>
+</div>

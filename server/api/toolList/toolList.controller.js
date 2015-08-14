@@ -13,6 +13,15 @@ exports.index = function(req, res) {
   });
 };
 
+// Get a list of the featured toolLists 
+exports.getFeatured = function(req, res) {
+  ToolList.find({ 'featured' : true }, function(err, toolList) {
+    if(err) { return handleError(res, err); }
+    if(!toolList) { return res.status(404).send('No featured toolLists found'); }
+    return res.json({featured: toolList});
+  });
+};
+
 // Get a toolList(s)
 exports.show = function(req, res) {
   var query = req.params.id.split(",");

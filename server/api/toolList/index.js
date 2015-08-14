@@ -6,6 +6,7 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
+router.get('/featured', controller.getFeatured);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 

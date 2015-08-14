@@ -24,6 +24,13 @@ angular.module('jtApp')
           toolToAdd: '@toolToAdd',
           toolToRemove: '@toolToRemove' 
         }
+      },
+      getFeatured: {
+        method: 'GET',
+        params: {
+          isArray: true,
+          id: 'featured'
+        }
       }
     });
   });
