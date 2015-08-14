@@ -40,7 +40,8 @@
       $scope.addToolToList = function(toolListID) {
         ToolList.update({ 
           id: toolListID, 
-          toolToAdd: $scope.tool._id 
+          addTool: true,
+          toolID: $scope.tool._id 
         }, function(data) {
           $scope.listErrors = {};
           $scope.toolListAltered = data;
@@ -101,9 +102,10 @@
       });
     };
 
-    $scope.addToFavourites = function(toolID) {
+    $scope.addToFavourites = function(toolID, name) {
       User.addRemoveFavourites({ id: user._id }, {
         toolID: toolID,
+        name: name,
         addTool: true
       }, function(data) {
         $scope.toolListAltered = data;

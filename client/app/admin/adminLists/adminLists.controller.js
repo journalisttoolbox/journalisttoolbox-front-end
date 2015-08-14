@@ -61,11 +61,24 @@
       $state.go($state.current, {}, {reload: true});
     };
 
-    $scope.removeFromFavourites = function(toolID) {
+    $scope.removeFromToolList = function(listID, toolID) {
+      ToolList.update({ 
+        id: listID, 
+        addTool: false,
+        toolID: toolID
+      }, function() {
+        $state.go($state.current, {}, {reload: true});
+      }, function(err) {
+        $scope.errors.removeTool = err.data.error;
+      });
+    };
+
+    $scope.removeFromFavourites = function(toolID, name) {
       User.addRemoveFavourites({ id: $scope.user._id }, {
         toolID: toolID,
+        name: name,
         addTool: false
-      }, function(data) {
+      }, function() {
         $state.go($state.current, {}, {reload: true});
       }, function(err) {
         $scope.errors.removeFavourite = err.data.error;

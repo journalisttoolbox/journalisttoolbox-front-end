@@ -43,15 +43,28 @@ exports.create = function(req, res) {
 
 // Adds a tool to the tool list
 exports.update = function(req, res) {
-  Tool.findById(req.body.toolToAdd, function(err, tool) {
+  Tool.findById(req.body.toolID, function(err, tool) {
     if(err) { return handleError(res, err); }
     if(!tool) { return res.status(404).send('Tool to add Not Found'); }
 
     ToolList.findById(req.body.id, function(err, toolList) {
-      // If exists, return error
-      if(toolList.tools.indexOf(tool._id) > -1) { return res.status(409).send({ error: 'Tool already exists in this custom list' }) }
+      if(req.body.addTool) {
+        // If exists, return error
+        for (var i = 0; i < toolList.tools.length; i++) {
+          if (toolList.tools[i]._id.toString() === tool._id.toString()) {
+            return res.status(409).send({ error: 'Tool already exists in this custom list' });
+          }
+        }
+        toolList.tools.push(tool);
+      } else if(!req.body.addTool) {
+        for (var i= 0; i < toolList.tools.length; i++) {
+          if (toolList.tools[i]._id.toString() === tool._id.toString()) {
+            toolList.tools.splice(i, 1);
+            break;
+          }
+        }
+      }
 
-      toolList.tools.push(tool);
       toolList.save(function(err) {
         if(err) { return handleError(res, err) }
         return res.status(201).json(toolList);

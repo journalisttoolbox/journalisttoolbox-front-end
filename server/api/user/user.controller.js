@@ -138,6 +138,7 @@ exports.destroy = function(req, res) {
 exports.addRemoveFavourites = function(req, res) {
   var userId  = req.params.id;
   var toolId  = req.body.toolID;
+  var name    = req.body.name;
   var addTool = req.body.addTool; // req.body.addTool will be falsey if wishing to remove
 
   Tool.findOne({ '_id': toolId }, function(err, Tool) {
@@ -152,18 +153,19 @@ exports.addRemoveFavourites = function(req, res) {
         } else {
 
           if(addTool) {
-            var index = User.favourites.indexOf(Tool._id);
-            if(index > -1) {
-              return res.status(409).send({ error: 'Already present in favourites' });
-            } else {
-              User.favourites.push(Tool);
+            // If already present, return 409 conflict.
+            for (var i = 0; i < User.favourites.length; i++) {
+              if (User.favourites[i]._id.toString() === Tool._id.toString()) {
+                return res.status(409).send({ error: 'Already present in favourites' });
+              }
             }
+            User.favourites.push(Tool);
           } else if (!addTool) {
-            var index = User.favourites.indexOf(Tool._id);
-            if(index > -1) {
-              User.favourites.splice(index, 1);
-            } else {
-              return res.status(409).send({ error: 'Tool not found in favourites' });
+            for (var i= 0; i < User.favourites.length; i++) {
+              if (User.favourites[i]._id.toString() === Tool._id.toString()) {
+                User.favourites.splice(i, 1);
+                break;
+              }
             }
           }
 

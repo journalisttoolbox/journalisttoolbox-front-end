@@ -37,7 +37,7 @@
       </div>
       <div class="menu">
         <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
-        <div ng-click="addToFavourites(tool._id)" class="item">Favourites <i class="star icon"></i></div>
+        <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
         <div ng-click="createNewList()" class="item newList">New List...</div>
       </div>
     </div>

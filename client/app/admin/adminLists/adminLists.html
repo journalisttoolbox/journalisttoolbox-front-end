@@ -10,8 +10,8 @@
         <div class="meta">
           {{ user.favourites.length || 0 }} tools
           <p ng-repeat="tool in favourites track by $index">
-            <a ui-sref="tool({ id: tool })">{{tool}}</a>
-            <i class="remove icon button" ng-really-message="Are you sure you want to remove this tool from favourites?" ng-really-click="removeFromFavourites(tool)"></i>
+            <a ui-sref="tool({ id: tool._id })">{{tool.name}}</a>
+            <i class="remove icon button" ng-really-message="Are you sure you want to remove this tool from favourites?" ng-really-click="removeFromFavourites(tool._id, tool.name)"></i>
           </p>
         </div>
         <div class="description">
@@ -26,9 +26,15 @@
 
 
         <div class="card ui button" style="padding:5px;" ng-repeat="list in toolLists">
-          <div class="content" ng-click="goToList(list._id)">
-            <div class="header">{{ list.toolListName }}</div>
-            <div class="meta">{{ list.tools.length }} tools</div>
+          <div class="content">
+            <div class="header" ng-click="goToList(list._id)">{{ list.toolListName }}</div>
+            <div class="meta">
+              {{ list.tools.length }} tools
+              <p ng-repeat="tool in list.tools track by $index">
+                <a ui-sref="tool({ id: tool._id })">{{tool.name}}</a>
+                <i class="remove icon button" ng-really-message="Are you sure you want to remove this tool from favourites?" ng-really-click="removeFromToolList(list._id, tool._id)"></i>
+              </p>
+            </div>
             <div class="description">
               {{ list.description | limitTo: 100 }}
             </div>

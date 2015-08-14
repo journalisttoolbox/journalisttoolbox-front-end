@@ -16,7 +16,10 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   tools: [{ type: Schema.Types.ObjectId, ref: 'Tool' }],
-  favourites: [{ type: Schema.Types.ObjectId, ref: 'Tool' }],
+  favourites: [{ 
+    _id: { type: Schema.Types.ObjectId, ref: 'Tool' },
+    name: String,
+  }],
   toolLists: [{ type: Schema.Types.ObjectId, ref: 'ToolList' }],
   salt: String,
   facebook: {},
