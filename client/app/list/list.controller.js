@@ -24,6 +24,22 @@
         Tool.get({ id: toolIDs })
         .$promise.then(function(tools) {
           $scope.tools = tools;
+
+          if(toolsArray[0].jtWhat != undefined) {
+            toolsArray.forEach(function(toolFromList) {
+              $scope.tools.forEach(function(scopedTool) {
+                if(toolFromList._id === scopedTool._id) {
+                  scopedTool.jtWhat = toolFromList.jtWhat;
+                  scopedTool.jtWhy = toolFromList.jtWhy;
+                }
+              });
+            });
+            $scope.noJtDetails = false;
+          } else {
+            $scope.noJtDetails = true;
+          }
+
+
           $scope.noTools = false;
         });
       } else {

@@ -5,8 +5,8 @@
 </div>
 
 <div class="ui cards">
-  <div ng-repeat="list in featuredLists" class="card">
-    <div class="content">
+  <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="card">
+    <div class="content ui button">
       <div class="header">{{ list.toolListName }}</div>
       <!-- <div class="meta">Friend</div> -->
       <div class="description">

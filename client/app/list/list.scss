@@ -1,3 +1,9 @@
 .list.container {
   text-align: center;
+  p {
+    word-break: break-word;
+  }
+}
+.ui.cards.listCards>.card {
+  width: 23%!important;
 }
