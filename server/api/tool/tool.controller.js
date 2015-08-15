@@ -27,19 +27,16 @@ exports.create = function(req,res) {
 
   var NumberOfPlatforms = 0;
 
-  var cats  = req.body.categories.replace(/\s/g, '');
-  var comps = req.body.companies.replace(/\s/g, '');
+  var cats  = req.body.categories.split(/\s*,\s*/);
+  var comps = req.body.companies.split(/\s*,\s*/);
 
-  var ArrayCategories = cats.split(",");
-  var ArrayCompanies = comps.split(",");
-
-  ArrayCompanies = ArrayCompanies.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
-  ArrayCategories = ArrayCategories.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
+  comps = comps.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
+  cats  = cats.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
   
   var newTool = new Tool(req.body);
 
-  newTool.companies = ArrayCompanies;
-  newTool.categories  = ArrayCategories;
+  newTool.companies = comps;
+  newTool.categories  = cats;
   newTool.upvotes  = [];
   newTool.downvotes  = [];
   newTool.owner = req.body.owner;
