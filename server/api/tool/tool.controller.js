@@ -71,20 +71,10 @@ exports.create = function(req,res) {
     newTool.platforms[NumberOfPlatforms] = "Web";
     NumberOfPlatforms++;
   }
-  if(req.body.other != undefined)
+  if(req.body.other !== undefined)
   {    
     newTool.platforms[NumberOfPlatforms] = req.body.other;
   }
-
-
-var http = require('http'),
-    options = {method: 'HEAD', host: req.body.logo_url, port: 80, path: '/'},
-    req = http.request(options, function(r) {
-        console.log(JSON.stringify(r.headers));
-    });
-req.end();
-
-
 
   // DATE
   var now = new Date();
