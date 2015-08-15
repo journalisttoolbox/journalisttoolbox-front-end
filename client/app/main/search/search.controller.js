@@ -68,7 +68,7 @@
                 $scope.Findit  = true;
               }          
                 //free or not
-                if ($.inArray(tool.price, $scope.FilterTools) >= 0 && !$scope.Findit)
+                if ($.inArray(tool.free, $scope.FilterTools) >= 0 && !$scope.Findit)
                   $scope.Findit  = true; 
                 //array platorms
                 if(!$scope.Findit){

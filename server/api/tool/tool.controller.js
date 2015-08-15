@@ -25,20 +25,66 @@ exports.show = function(req, res) {
 //creating a new tool
 exports.create = function(req,res) {
 
-  var ArrayCategories = req.body.categories.split(",");
-  ArrayCategories = ArrayCategories.map(function (val) { return val; });
+  var NumberOfPlatforms = 0;
 
+  var ArrayCategories = req.body.categories.split(",");
   var ArrayOrganizations = req.body.companies.split(",");
-  ArrayOrganizations = ArrayOrganizations.map(function (val) { return val; });
+
+  ArrayOrganizations = ArrayOrganizations.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
+  ArrayCategories = ArrayCategories.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
   
   var newTool = new Tool(req.body);
 
   newTool.companies = ArrayOrganizations;
-  newTool.category  = ArrayCategories;
+  newTool.categories  = ArrayCategories;
   newTool.upvotes  = [];
   newTool.downvotes  = [];
   newTool.owner = req.body.owner;
-  newTool.platforms = [req.body.pc,req.body.mac,req.body.linux,req.body.web];
+
+  if(req.body.free || req.body.price === 0)
+  {
+    newTool.price = 0;
+    newTool.free = true;
+  }
+  else
+  {
+    newTool.free = false;
+  }
+
+  if(req.body.pc)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "Windows";
+    NumberOfPlatforms++;
+  }
+  if(req.body.mac)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "MacOS";
+    NumberOfPlatforms++;
+  }
+  if(req.body.linux)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "Linux";
+    NumberOfPlatforms++;
+  }
+  if(req.body.web)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "Web";
+    NumberOfPlatforms++;
+  }
+  if(req.body.other != undefined)
+  {    
+    newTool.platforms[NumberOfPlatforms] = req.body.other;
+  }
+
+
+var http = require('http'),
+    options = {method: 'HEAD', host: req.body.logo_url, port: 80, path: '/'},
+    req = http.request(options, function(r) {
+        console.log(JSON.stringify(r.headers));
+    });
+req.end();
+
+
 
   // DATE
   var now = new Date();
