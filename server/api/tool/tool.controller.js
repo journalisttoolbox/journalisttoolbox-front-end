@@ -27,15 +27,18 @@ exports.create = function(req,res) {
 
   var NumberOfPlatforms = 0;
 
-  var ArrayCategories = req.body.categories.split(",");
-  var ArrayOrganizations = req.body.companies.split(",");
+  var cats  = req.body.categories.replace(/\s/g, '');
+  var comps = req.body.companies.replace(/\s/g, '');
 
-  ArrayOrganizations = ArrayOrganizations.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
+  var ArrayCategories = cats.split(",");
+  var ArrayCompanies = comps.split(",");
+
+  ArrayCompanies = ArrayCompanies.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
   ArrayCategories = ArrayCategories.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
   
   var newTool = new Tool(req.body);
 
-  newTool.companies = ArrayOrganizations;
+  newTool.companies = ArrayCompanies;
   newTool.categories  = ArrayCategories;
   newTool.upvotes  = [];
   newTool.downvotes  = [];
