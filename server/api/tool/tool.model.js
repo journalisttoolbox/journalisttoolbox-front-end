@@ -16,6 +16,7 @@ var ToolSchema = new Schema({
   home_url: String,
   github_url: String,
   download_url: String,
+  logo_url: String,
   upvotes: Array,
   downvotes: Array,
   owner: String,

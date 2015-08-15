@@ -81,7 +81,7 @@
   <div class="field input" ng-class="{'disabled': currentUser().name === undefined}">
     <label>Category</label>
     <div class="ui left icon input">
-        <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.categories" name="categories" id="companies" placeholder="Separate each category by a comma">
+        <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.categories" name="categories" id="categories" placeholder="Separate each category by a comma">
         <i class="tags icon"></i>
     </div>
   </div>
@@ -112,6 +112,12 @@
     http://
     </div>
     <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.download_url" placeholder="Download URL" name="download" id="download">
+
+    <!-- LOGO LINK -->
+    <div class="ui label" ng-class="{'disabled': currentUser().name === undefined}">
+    http://
+    </div>
+    <input ng-disabled="currentUser().name === undefined" type="text" ng-model="formData.logo_url" placeholder="Logo URL" name="logo" id="logo">
   </div>
 
   <h2 class="ui horizontal divider header" ng-class="{'disabled': currentUser().name === undefined}">
@@ -122,13 +128,13 @@
   <div class="inline fields" align="center">
     <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
       <div class="ui checkbox">
-        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.pc" tabindex="0" class="hidden" name="pc" id="pc">
+        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.pc" tabindex="0" class="hidden" name="pc" id="pc" value="Windows">
         <label for="pc">Windows</label>
       </div>
     </div>
     <div class="input field" ng-class="{'disabled': currentUser().name === undefined}">
       <div class="ui checkbox">
-        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.mac" tabindex="0" class="hidden" name="mac" id="mac">
+        <input ng-disabled="currentUser().name === undefined" type="checkbox" ng-model="formData.mac" tabindex="0" class="hidden" name="mac" id="mac" value="Windows">
         <label for="mac">MacOS</label>
       </div>
     </div>

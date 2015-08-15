@@ -25,20 +25,59 @@ exports.show = function(req, res) {
 //creating a new tool
 exports.create = function(req,res) {
 
-  var ArrayCategories = req.body.categories.split(",");
-  ArrayCategories = ArrayCategories.map(function (val) { return val; });
+  var NumberOfPlatforms = 0;
 
-  var ArrayOrganizations = req.body.companies.split(",");
-  ArrayOrganizations = ArrayOrganizations.map(function (val) { return val; });
+  var cats  = req.body.categories.replace(/\s/g, '');
+  var comps = req.body.companies.replace(/\s/g, '');
+
+  var ArrayCategories = cats.split(",");
+  var ArrayCompanies = comps.split(",");
+
+  ArrayCompanies = ArrayCompanies.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
+  ArrayCategories = ArrayCategories.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
   
   var newTool = new Tool(req.body);
 
-  newTool.companies = ArrayOrganizations;
-  newTool.category  = ArrayCategories;
+  newTool.companies = ArrayCompanies;
+  newTool.categories  = ArrayCategories;
   newTool.upvotes  = [];
   newTool.downvotes  = [];
   newTool.owner = req.body.owner;
-  newTool.platforms = [req.body.pc,req.body.mac,req.body.linux,req.body.web];
+
+  if(req.body.free || req.body.price === 0)
+  {
+    newTool.price = 0;
+    newTool.free = true;
+  }
+  else
+  {
+    newTool.free = false;
+  }
+
+  if(req.body.pc)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "Windows";
+    NumberOfPlatforms++;
+  }
+  if(req.body.mac)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "MacOS";
+    NumberOfPlatforms++;
+  }
+  if(req.body.linux)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "Linux";
+    NumberOfPlatforms++;
+  }
+  if(req.body.web)
+  {    
+    newTool.platforms[NumberOfPlatforms] = "Web";
+    NumberOfPlatforms++;
+  }
+  if(req.body.other !== undefined)
+  {    
+    newTool.platforms[NumberOfPlatforms] = req.body.other;
+  }
 
   // DATE
   var now = new Date();

@@ -41,7 +41,7 @@ angular.module('jtApp')
                         $scope.Findit  = true;
               };          
                 //free or not
-                if ($.inArray(tool.price, $scope.FilterTools) >= 0)
+                if ($.inArray(tool.free, $scope.FilterTools) >= 0)
                     $scope.Findit  = true;  
             } 
             //if no filter or tool find, return the tool
