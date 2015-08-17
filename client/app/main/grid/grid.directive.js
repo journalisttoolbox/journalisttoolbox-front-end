@@ -65,6 +65,18 @@
           color: 'purple',
           link: 'design'
         },
+        {
+          name: 'Text Editor',
+          icon: 'write',
+          color: 'black',
+          link: 'text-editor'
+        },
+        {
+          name: 'Research',
+          icon: 'student',
+          color: 'blue',
+          link: 'research'
+        },
       ];
   }
 }

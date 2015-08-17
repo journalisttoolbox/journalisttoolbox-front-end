@@ -1,13 +1,13 @@
 <div class="container">
 
-    <div class="ui page grid">
-      <div class="four wide column">
-        <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || 'http://simpleicon.com/wp-content/uploads/wrench.png'}}" />
-        <img ng-src="http://placehold.it/250/ffffff/ffffff" /> 
+  <div class="ui page grid">
+    <div class="four wide column">
+      <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || 'http://simpleicon.com/wp-content/uploads/wrench.png'}}" />
+      <img ng-src="http://placehold.it/250/ffffff/ffffff" /> 
     </div>
     <div class="four wide column">
       <h1>{{tool.name}}
-        
+
       </h1>
 
       <p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
@@ -22,27 +22,27 @@
     <div class="eight wide column">
       <div class="ui center aligned segment">
 
-    <div class="ui error message listErrors" ng-show="listErrors.error">
-      <div class="header">
-        There was a problem adding this tool to your list
-      </div>
-      <ul class="list">
-        <li>{{ listErrors.error }}</li>
-      </ul>
-    </div>
-    <div ng-show="isLoggedIn()" class="ui dropdown list">
-      <div class="ui label addToList" ng-click="loadToolLists()" >
-        <i class="plus icon"></i> Add to list
-        <i class="dropdown icon"></i>
-      </div>
-      <div class="menu">
-        <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
-        <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
-        <div ng-click="createNewList()" class="item newList">New List...</div>
-      </div>
-    </div>
+        <div class="ui error message listErrors" ng-show="listErrors.error">
+          <div class="header">
+            There was a problem adding this tool to your list
+          </div>
+          <ul class="list">
+            <li>{{ listErrors.error }}</li>
+          </ul>
+        </div>
+        <div ng-show="isLoggedIn()" class="ui dropdown list">
+          <div class="ui label addToList" ng-click="loadToolLists()" >
+            <i class="plus icon"></i> Add to list
+            <i class="dropdown icon"></i>
+          </div>
+          <div class="menu">
+            <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
+            <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
+            <div ng-click="createNewList()" class="item newList">New List...</div>
+          </div>
+        </div>
 
-      <h2>Votes</h2>
+        <h2>Votes</h2>
         <div class="center aligned column">
           <div ng-click="toolVote(true)" class="ui icon button buttonVote">
             <i ng-class="(tool.upvotes.length>tool.downvotes.length) ? 'huge': 'large'" class="thumbs up icon green"></i> </button>
@@ -68,24 +68,55 @@
 
       </div>
     </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui page grid" ui-view> <!-- For nested reviews child -->
+    <div class="eight wide column">
+      <div class="ui segment">
+        <div class="ui equal width center aligned padded grid segmentinternally celled stackable">
+          <div class="row">
+            <div class="column">
+              <p><strong>Description</strong></p>
+              <div ng-bind-html="tool.description"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column">
+              <p><strong>Company(ies) using this tool</strong></p>
+              <div ng-bind-html="tool.companies"></div>
+            </div>
+            <div class="column">
+              <p><strong>Platform(s) in which is available</strong></p>
+              <div ng-bind-html="tool.platforms"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column">
+              <p><strong>Price</strong></p>
+              <div ng-bind-html="tool.price | currency"></div>
+            </div>
+            <div class="column">
+              <p><strong>Version</strong></p>
+              <div ng-bind-html="tool.version"></div>
+            </div>
+            <div class="column">
+              <p><strong>Uploaded date</strong></p>
+              <div ng-bind-html="tool.uploaded_date"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div> <!-- End ui view -->
+    <div class="eight wide column">
+      <div class="ui segment">
+        <img src="http://placehold.it/500x300?text=Screenshots">
+      </div>
     </div>
-
-    <div class="ui divider"></div>
-
-      <div class="ui page grid" ui-view> <!-- For nested reviews child -->
-        <div class="eight wide column">
-          <div class="ui segment">
-            <p><strong>Description</strong></p>
-            <div ng-bind-html="tool.description"></div>
-          </div>
-        </div>
-
-        <div class="eight wide column">
-          <div class="ui segment">
-            <img src="http://placehold.it/500x300?text=Screenshots">
-          </div>
-        </div>
-      </div> <!-- End ui view -->
 
   </div>
 
