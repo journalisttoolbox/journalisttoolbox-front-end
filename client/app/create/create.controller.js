@@ -27,31 +27,10 @@
         }, 5000);
     };
 
-    // Add the 'http://' if not already present
-    $scope.prependHttp = function(url) {
-      if(url.indexOf('http') < 0) {
-        var prefixedUrl = 'http://' + url;
-        return prefixedUrl;
-      } else {
-        return url;
-      }
-    };
-
     $scope.submitTool = function() {
       // Add the tool creator
       $scope.formData.owner = $scope.currentUser().email;
       $scope.toolName       = $scope.formData.name;
-
-      var gh       = $scope.formData.github_url;
-      var home     = $scope.formData.home_url;
-      var download = $scope.formData.download_url;
-      var logo     = $scope.formData.logo_url;
-
-      // Sort out links
-      if(logo) { $scope.formData.logo_url         = $scope.prependHttp(logo); }
-      if(home) { $scope.formData.home_url         = $scope.prependHttp(home); }
-      if(download) { $scope.formData.download_url = $scope.prependHttp(download); }
-      if(gh) { $scope.formData.github_url         = $scope.prependHttp(gh); }
 
       Tool.save($scope.formData)
         .$promise.then(function(tool) {

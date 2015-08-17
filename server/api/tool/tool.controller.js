@@ -22,6 +22,16 @@ exports.show = function(req, res) {
   });
 };
 
+// Add the 'http://' if not already present
+exports.prependHttp = function(url) {
+  if(url.indexOf('http') < 0) {
+    var prefixedUrl = 'http://' + url;
+    return prefixedUrl;
+  } else {
+    return url;
+  }
+};
+
 //creating a new tool
 exports.create = function(req,res) {
 
@@ -32,8 +42,29 @@ exports.create = function(req,res) {
 
   comps = comps.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
   cats  = cats.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
-  
+
   var newTool = new Tool(req.body);
+
+  if(!newTool.github_url) { 
+    newTool.github_url = ''; 
+  } else {
+    newTool.github_url = exports.prependHttp(newTool.github_url);
+  } 
+  if(!newTool.home_url) { 
+    newTool.home_url = ''; 
+  } else {
+    newTool.home_url = exports.prependHttp(newTool.home_url);
+  } 
+  if(!newTool.download_url) { 
+    newTool.download_url = ''; 
+  } else {
+    newTool.download_url = exports.prependHttp(newTool.download_url);
+  } 
+  if(!newTool.logo_url) { 
+    newTool.logo_url = ''; 
+  } else {
+    newTool.home_url = exports.prependHttp(newTool.home_url);
+  } 
 
   newTool.companies = comps;
   newTool.categories  = cats;
