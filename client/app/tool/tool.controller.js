@@ -19,13 +19,13 @@
     $scope.isLoggedIn = Auth.isLoggedIn;
 
     if($scope.isLoggedIn()) {
-      var user = User.get();
+      $scope.user = User.get();
     }
   
     $scope.loadToolLists = function() {
       $scope.toolLists = {};
-      if(user.toolLists.length) { 
-        ToolList.get({ 'id': user.toolLists })
+      if($scope.user.toolLists.length) { 
+        ToolList.get({ 'id': $scope.user.toolLists })
         .$promise.then(function(lists) {
           $scope.toolLists = lists;
         });
@@ -103,7 +103,7 @@
     };
 
     $scope.addToFavourites = function(toolID, name) {
-      User.addRemoveFavourites({ id: user._id }, {
+      User.addRemoveFavourites({ id: $scope.user._id }, {
         toolID: toolID,
         name: name,
         addTool: true

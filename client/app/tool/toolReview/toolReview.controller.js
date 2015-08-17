@@ -7,9 +7,15 @@
   .controller('ToolReviewCtrl', ToolReviewCtrl);
 
   /** @ngInject */
-  function ToolReviewCtrl($scope, Tool, $state, $timeout) {
+  function ToolReviewCtrl($scope, Tool, $state, $timeout, Auth) {
 
     $scope.reviewPosted = false;
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.user = {};
+
+    if($scope.isLoggedIn()) {
+      $scope.user = $scope.$parent.user;
+    }
 
     $scope.hideReviewMessage = function() {
       $scope.reviewPosted = false;
@@ -43,6 +49,8 @@
           $scope.slider[key] = parseInt($scope.slider[key]);
         }
       }
+      $scope.slider.userID = $scope.user._id;
+      $scope.slider.email = $scope.user.email;
 
       if($scope.$parent.toolAvailable) {
         Tool.postReview({ 
