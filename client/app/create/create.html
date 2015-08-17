@@ -54,7 +54,7 @@
 
     <!-- PRICE FIELD -->
     <div class="field ui left icon input" ng-class="{ 'error' : createToolForm.price.$invalid && !createToolForm.price.$pristine, 'disabled': currentUser().name === undefined || formData.free }">
-      <input ng-disabled="currentUser().name === undefined" ng-disabled="formData.free" ng-required="!formData.free" ng-model="formData.price" type="number" placeholder="Price" name="price" id="price">      
+      <input ng-disabled="currentUser().name === undefined" ng-disabled="formData.free" ng-required="!formData.free" ng-model="formData.price" type="number" placeholder="Price in dollars" name="price" id="price">      
       <i class="dollar icon"></i>
       <p class="fieldRequired" ng-show="createToolForm.price.$invalid && !createToolForm.price.$pristine">Please enter a valid number</p>
     </div>
