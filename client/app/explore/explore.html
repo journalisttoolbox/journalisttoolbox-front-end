@@ -122,10 +122,9 @@
         <div class="ui top left orange attached label">
           <h4>{{tool.name}}</h4>
         </div>
-        <div class="ui bottom right attached green label">
-          <i class="thumbs up icon"></i>{{tool.upvotes.length}}
+        <div ng-class = "(tool.upvotes.length >= tool.downvotes.length)? 'green': 'red'" class="ui bottom right attached label">
+          <i ng-class = "(tool.upvotes.length >= tool.downvotes.length)? 'up': 'down'" class="thumbs icon"></i>{{(tool.upvotes.length >= tool.downvotes.length)? tool.upvotes.length: tool.downvotes.length}}
         </div>
-
       </div>
     </a>
   </div>
