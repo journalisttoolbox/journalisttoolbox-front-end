@@ -1,84 +1,85 @@
-<div class="container">
 
-  <div class="ui page grid">
-    <div class="four wide column">
-      <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || 'http://simpleicon.com/wp-content/uploads/wrench.png'}}" />
-      <img ng-src="http://placehold.it/250/ffffff/ffffff" /> 
-    </div>
-    <div class="four wide column">
-      <h1>{{tool.name}}
+<div class="ui segment">
+  <div class="container">
 
-      </h1>
-
-      <p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
-      <div ng-bind-html="record.excerpt"></div>
-      <p></p>
-      <div class="ui buttons">
-        <a ng-show="tool.github_url" href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i> GitHub</a>
-        <div ng-show="tool.github_url && tool.download_url" class="or"></div>
-        <a ng-show="tool.download_url" href="{{tool.home_url}}" target="_blank" class="ui positive button">Give it a go</a>
+    <div class="ui page grid">
+      <div class="four wide column ui segment">
+        <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || 'http://simpleicon.com/wp-content/uploads/wrench.png'}}" />
+        <img ng-src="http://placehold.it/250/ffffff/ffffff" /> 
       </div>
-    </div>
-    <div class="eight wide column">
-      <div class="ui center aligned segment">
+      <div class="five wide column">
+        <h1 style="margin-bottom:0;">{{tool.name}}</h1>
+        <div class="meta">{{tool.version}}</div>
+        <p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
+        <div ng-bind-html="record.excerpt"></div>
+        <p></p>
+        <div class="ui buttons">
+          <a ng-show="tool.github_url" href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i> GitHub</a>
+          <div ng-show="tool.github_url && tool.download_url" class="or"></div>
+          <a ng-show="tool.download_url" href="{{tool.home_url}}" target="_blank" class="ui positive button">Give it a go</a>
+        </div>
+      </div>
+      <div class="seven wide column">
+        <div class="ui center aligned segment">
 
-        <div class="ui error message listErrors" ng-show="listErrors.error">
-          <div class="header">
-            There was a problem adding this tool to your list
-          </div>
-          <ul class="list">
-            <li>{{ listErrors.error }}</li>
-          </ul>
-        </div>
-        <div ng-show="isLoggedIn()" class="ui dropdown list">
-          <div class="ui label addToList" ng-click="loadToolLists()" >
-            <i class="plus icon"></i> Add to list
-            <i class="dropdown icon"></i>
-          </div>
-          <div class="menu">
-            <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
-            <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
-            <div ng-click="createNewList()" class="item newList">New List...</div>
-          </div>
-        </div>
-
-        <h2>Votes</h2>
-        <div class="center aligned column">
-          <div ng-click="toolVote(true)" class="ui icon button buttonVote">
-            <i ng-class="(tool.upvotes.length>tool.downvotes.length) ? 'huge': 'large'" class="thumbs up icon green"></i> </button>
-            <span ng-class="(tool.upvotes.length>tool.downvotes.length)? 'huge': 'large'" class="text large">{{ tool.upvotes.length }}</span>
-          </div>
-        </div>
-        <div class="center aligned column">
-          <div ng-click="toolVote(false)" class="ui icon button buttonVote">
-            <i ng-class="(tool.downvotes.length>tool.upvotes.length) ? 'huge': 'large'" class="thumbs down icon red"></i> </button>
-            <span ng-class="(tool.downvotes.length>tool.upvotes.length)? 'huge': 'large'" class="text large">{{ tool.downvotes.length }}</span>
-          </div>
-        </div>
-
-        <!-- REVIEW STATE BUTTON -->
-        <div ng-show="hasUserVoted" class="ui message reviewState">
-          <div class="content">
+          <div class="ui error message listErrors" ng-show="listErrors.error">
             <div class="header">
-              Thanks for voting! Care to leave a review?
+              There was a problem adding this tool to your list
             </div>
-            <button class="ui button" ng-click="reviewState()">Leave a review</button>
+            <ul class="list">
+              <li>{{ listErrors.error }}</li>
+            </ul>
           </div>
-        </div>
+          <div ng-show="isLoggedIn()" class="ui dropdown list">
+            <div class="ui label addToList" ng-click="loadToolLists()" >
+              <i class="plus icon"></i> Add to list
+              <i class="dropdown icon"></i>
+            </div>
+            <div class="menu">
+              <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
+              <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
+              <div ng-click="createNewList()" class="item newList">New List...</div>
+            </div>
+          </div>
 
+          <h2>Votes</h2>
+          <div class="center aligned column">
+            <div ng-click="toolVote(true)" class="ui icon button buttonVote">
+              <i ng-class="(tool.upvotes.length>tool.downvotes.length) ? 'huge': 'large'" class="thumbs up icon green"></i> </button>
+              <span ng-class="(tool.upvotes.length>tool.downvotes.length)? 'huge': 'large'" class="text large">{{ tool.upvotes.length }}</span>
+            </div>
+          </div>
+          <div class="center aligned column">
+            <div ng-click="toolVote(false)" class="ui icon button buttonVote">
+              <i ng-class="(tool.downvotes.length>tool.upvotes.length) ? 'huge': 'large'" class="thumbs down icon red"></i> </button>
+              <span ng-class="(tool.downvotes.length>tool.upvotes.length)? 'huge': 'large'" class="text large">{{ tool.downvotes.length }}</span>
+            </div>
+          </div>
+
+          <!-- REVIEW STATE BUTTON -->
+          <div ng-show="hasUserVoted" class="ui message reviewState">
+            <div class="content">
+              <div class="header">
+                Thanks for voting! Care to leave a review?
+              </div>
+              <button class="ui button" ng-click="reviewState()">Leave a review</button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="ui divider"></div>
+    <h2 class="ui horizontal divider header">
+      <i class="configure icon"></i>
+      Tool Information
+    </h2>
 
-  <div class="ui page grid" ui-view> <!-- For nested reviews child -->
-    <div class="eight wide column">
-      <div class="ui segment">
+    <div class="ui page grid" ui-view> <!-- For nested reviews child -->
+      <div class="sixteen wide column">
         <div class="ui equal width center aligned padded grid segmentinternally celled stackable">
           <div class="row">
             <div class="column">
-              <p><strong>Description</strong></p>
               <div ng-bind-html="tool.description"></div>
             </div>
           </div>
@@ -108,28 +109,60 @@
               <div ng-bind-html="tool.uploaded_date"></div>
             </div>
           </div>
-
         </div>
+      </div> <!-- End ui view -->
+    </div>
+
+    <div class="ui page grid" ui-view ng-show="ReviewsExist"> <!-- For nested reviews child -->
+      <div class="sixteen wide column">
+        <div class="ui equal width center aligned padded grid segmentinternally stackable">
+
+          <div class="row"><div class="column">
+            <h3 class="ui horizontal divider header">
+              <i class="star icon"></i>
+              Reviews
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <p><strong>Ease of use</strong></p>
+            <div>{{easeOfUse}} / 10</div>
+          </div>
+          <div class="column">
+            <p><strong>Time spent learning</strong></p>
+            <div>{{timeSpentLearning}} / 10</div>
+          </div>
+          <div class="column">
+            <p><strong>Time spent producing</strong></p>
+            <div>{{timeSpentProducing}} / 10</div>
+          </div>
+          <div class="column">
+            <p><strong>Satisfaction</strong></p>
+            <div>{{satisfiedWithTool}} / 10</div>
+          </div>
+          <div class="column">
+            <p><strong>Recommended</strong></p>
+            <div>{{wouldUseAgain}} / 10</div>
+          </div>
+        </div>
+
       </div>
     </div> <!-- End ui view -->
-    <div class="eight wide column">
-      <div class="ui segment">
-        <img src="http://placehold.it/500x300?text=Screenshots">
-      </div>
-    </div>
-
   </div>
 
-  <!-- INCLUDE the success message on adding to list -->
-  <div ng-include="'app/tool/toolList/toolListMessage.html'"></div>
+</div>
 
-  <div class="ui divider"></div>
+<!-- INCLUDE the success message on adding to list -->
+<div ng-include="'app/tool/toolList/toolListMessage.html'"></div>
 
-  <div class="ui page grid">
-    <div class="sixteen wide column">
-      <div class="footer">
-        <p>With ♥ from The Sunday Times</p>
-      </div>
+<div class="ui divider"></div>
+
+<div class="ui page grid">
+  <div class="sixteen wide column">
+    <div class="footer">
+      <p>With ♥ from The Sunday Times</p>
     </div>
   </div>
+</div>
 </div>
