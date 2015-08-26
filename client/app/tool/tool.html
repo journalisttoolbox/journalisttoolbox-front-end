@@ -90,7 +90,7 @@
               <div ng-bind-html="tool.companies"></div>
             </div>
             <div class="column">
-              <p><strong>Platform(s) in which is available</strong></p>
+              <p><strong>Platform(s)</strong></p>
               <div ng-bind-html="tool.platforms"></div>
             </div>
           </div>
@@ -125,44 +125,67 @@
           </div>
         </div>
         <div class="row">
-          <div class="column">
-            <p><strong>Ease of use</strong></p>
-            <div>{{easeOfUse}} / 10</div>
+          <div class="ui centered column">
+            <h3 style="margin-bottom:0;">Average</h3>
+            <div>Out of {{tool.reviews.length}} reviews</div>
+            <div class="ui green inverted segment">
+              <h1 style="font-size:70px">{{ToolScore | number:1}}</h1>
+            </div>
           </div>
-          <div class="column">
-            <p><strong>Time spent learning</strong></p>
-            <div>{{timeSpentLearning}} / 10</div>
-          </div>
-          <div class="column">
-            <p><strong>Time spent producing</strong></p>
-            <div>{{timeSpentProducing}} / 10</div>
-          </div>
-          <div class="column">
-            <p><strong>Satisfaction</strong></p>
-            <div>{{satisfiedWithTool}} / 10</div>
-          </div>
-          <div class="column">
-            <p><strong>Recommended</strong></p>
-            <div>{{wouldUseAgain}} / 10</div>
-          </div>
-        </div>
+          <div class="left aligned column">
+            <strong>Ease of use</strong>
+            <div style="float: right; right: 0px;">{{easeOfUse | number:1}}</div>
+            <div class="ui green tiny progress" id="progressUse" data-total="10" style="height:8px; width:85%; padding:0">
+              <div class="bar"></div>
+            </div>
+            <strong>Quick to produce</strong>
+            <div style="float: right; right: 0px;">{{timeSpentProducing | number:1}}</div>
+            <div class="ui green tiny progress" id="progressProd" data-total="10" style="height:8px; width:85%; padding:0">
+              <div class="bar">
+              </div>
+            </div>
+            <strong>Level of satisfaction</strong>
+            <div style="float: right; right: 0px;">{{satisfiedWithTool | number:1}}</div>
+            <div class="ui green tiny progress" id="progressSat" data-total="10" style="height:8px; width:85%; padding:0">
+              <div class="bar">
+              </div>
+            </div>
+            <p>
+            </div>
 
+            <div class="left aligned column">
+              <strong>Likely to recommend</strong>
+              <div style="float: right; right: 0px;">{{wouldUseAgain | number:1}}</div>
+              <div class="ui green tiny progress" id="progressAgain" data-total="10" style="height:8px; width:85%; padding:0">
+                <div class="bar"></div>
+              </div>
+              <strong>Quick to learn</strong>
+              <div style="float: right; right: 0px;">{{timeSpentLearning | number:1}}</div>
+              <div class="ui green tiny progress" id="progressLearn" data-total="10" style="height:8px; width:85%; padding:0">
+                <div class="bar">
+                </div>
+              </div>
+              <p>
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- End ui view -->
       </div>
-    </div> <!-- End ui view -->
-  </div>
 
-</div>
 
-<!-- INCLUDE the success message on adding to list -->
-<div ng-include="'app/tool/toolList/toolListMessage.html'"></div>
+    </div>
 
-<div class="ui divider"></div>
+    <!-- INCLUDE the success message on adding to list -->
+    <div ng-include="'app/tool/toolList/toolListMessage.html'"></div>
 
-<div class="ui page grid">
-  <div class="sixteen wide column">
-    <div class="footer">
-      <p>With ♥ from The Sunday Times</p>
+    <div class="ui divider"></div>
+
+    <div class="ui page grid">
+      <div class="sixteen wide column">
+        <div class="footer">
+          <p>With ♥ from The Sunday Times</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>

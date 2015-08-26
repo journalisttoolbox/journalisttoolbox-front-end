@@ -149,6 +149,16 @@
               $scope.wouldUseAgain = $scope.wouldUseAgain / $scope.tool.reviews.length;
               $scope.ReviewsExist = true;
             }
+
+
+            $('#progressUse').progress({value: $scope.easeOfUse});
+            $('#progressProd').progress({value: $scope.timeSpentProducing});
+            $('#progressSat').progress({value: $scope.satisfiedWithTool});
+            $('#progressAgain').progress({value: $scope.wouldUseAgain});            
+            $('#progressLearn').progress({value: $scope.timeSpentLearning});
+
+            //score of the tool
+            $scope.ToolScore = ($scope.easeOfUse+$scope.timeSpentLearning+$scope.timeSpentProducing+$scope.satisfiedWithTool+$scope.wouldUseAgain) / 5;
                 
           });  
       })();
