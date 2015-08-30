@@ -113,20 +113,21 @@
       </div> <!-- End ui view -->
     </div>
 
-    <div class="ui page grid" ui-view ng-show="ReviewsExist"> <!-- For nested reviews child -->
+    <div class="ui page grid" ui-view> <!-- For nested reviews child -->
       <div class="sixteen wide column">
         <div class="ui equal width center aligned padded grid segmentinternally stackable">
 
-          <div class="row"><div class="column">
+        <div class="row">
+          <div class="column">
             <h3 class="ui horizontal divider header">
               <i class="star icon"></i>
               Reviews
             </h3>
           </div>
         </div>
-        <div class="row">
+        <div class="row" ng-show="ReviewsExist">
           <div class="ui centered column">
-            <h3 style="margin-bottom:0;">Average</h3>
+            <h3 style="margin-bottom:0;">Score</h3>
             <div>Out of {{tool.reviews.length}} reviews</div>
             <div class="ui green inverted segment">
               <h1 style="font-size:70px">{{ToolScore | number:1}}</h1>
@@ -151,7 +152,7 @@
               </div>
             </div>
             <p>
-            </div>
+          </div>
 
             <div class="left aligned column">
               <strong>Likely to recommend</strong>
@@ -162,18 +163,20 @@
               <strong>Quick to learn</strong>
               <div style="float: right; right: 0px;">{{timeSpentLearning | number:1}}</div>
               <div class="ui green tiny progress" id="progressLearn" data-total="10" style="height:8px; width:85%; padding:0">
-                <div class="bar">
-                </div>
+              <div class="bar">
+              </div>
               </div>
               <p>
               </div>
-            </div>
+          </div>
 
           </div>
         </div> <!-- End ui view -->
       </div>
 
-
+      <div class="row ui center aligned segment" ng-show="!ReviewsExist">
+        <h4>There are currently no reviews available for this tool.</h4>
+      </div>
     </div>
 
     <!-- INCLUDE the success message on adding to list -->
@@ -184,7 +187,7 @@
     <div class="ui page grid">
       <div class="sixteen wide column">
         <div class="footer">
-          <p>With ♥ from The Sunday Times</p>
+          <p>With ♥ from Journalist Toolbox team</p>
         </div>
       </div>
     </div>
