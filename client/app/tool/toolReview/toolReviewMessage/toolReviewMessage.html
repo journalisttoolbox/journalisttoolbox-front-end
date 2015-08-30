@@ -1,10 +1,8 @@
-<a ui-sref="main()">
-  <div ng-show="reviewPosted" class="toolMessageWrapper" ng-click="hideReviewMessage()">
-    <div class="content">
-      <h1>Success!</h1>
-      <i class="write icon green"></i>
-      <h2>Thank you so much! We've received your review for <span class="toolName">{{ tool.name }}</span>.</h2>
-      <h3>Click anywhere to close, else we will redirect you automatically...</h3>
-    </div>
-  </div>
-</a>
+<div ng-show="reviewPosted" class="toolMessageWrapper" ng-click="hideReviewMessage()">
+<div class="content">
+  <h1>Success!</h1>
+  <i class="write icon green"></i>
+  <h2>Thank you so much! We've received your review for <span class="toolName">{{ tool.name }}</span>.</h2>
+  <h3>Click anywhere to close, else we will redirect you automatically...</h3>
+</div>
+</div>

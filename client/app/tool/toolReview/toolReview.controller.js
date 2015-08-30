@@ -19,7 +19,7 @@
 
     $scope.hideReviewMessage = function() {
       $scope.reviewPosted = false;
-      $state.go('main', {}, {reload: true});
+      $state.go('^', {'id':$scope.$parent.tool._id}, {reload:true});
     };
 
     $scope.showReviewMessage = function() {
