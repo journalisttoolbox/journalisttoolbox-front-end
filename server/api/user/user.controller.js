@@ -7,6 +7,7 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var gravatar = require('gravatar');
+var transporter = require('./nodemailer.js')
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -35,6 +36,22 @@ exports.create = function (req, res, next) {
 
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
+    var mailOptions = {
+      from: 'The Journalist Toolbox', // sender address
+      to: req.body.email, // list of receivers
+      subject: 'Please verify your email', // Subject line
+      text: '', // plaintext body
+      html: '<a href="http://google.com">Hello world ✔</a>' // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+          return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+    });
+
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
   });
