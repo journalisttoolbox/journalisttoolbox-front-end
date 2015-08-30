@@ -21,7 +21,7 @@
     if($scope.isLoggedIn()) {
       $scope.user = User.get();
     }
-  
+
     $scope.loadToolLists = function() {
       $scope.toolLists = {};
       if($scope.user.toolLists.length) { 
@@ -117,6 +117,12 @@
 
     // DEFAULT FUNCTION
       $scope.runDefault = (function() {
+        //initialize the values for the ewview
+        $scope.easeOfUse = 0;
+        $scope.timeSpentLearning = 0;
+        $scope.timeSpentProducing = 0;
+        $scope.satisfiedWithTool = 0;
+        $scope.wouldUseAgain = 0;
         // instantiate the list dropdown
         $('.ui.dropdown.list').dropdown();
 
@@ -124,7 +130,37 @@
           .$promise.then(function(data) {
             $scope.tool = data[0];
             $scope.toolAvailable = true;
-          });
+
+            //get the reviews score
+            for (var i = $scope.tool.reviews.length - 1; i >= 0; i--) {
+              $scope.easeOfUse += $scope.tool.reviews[i].easeOfUse;
+              $scope.timeSpentLearning += $scope.tool.reviews[i].timeSpentLearning;
+              $scope.timeSpentProducing += $scope.tool.reviews[i].timeSpentProducing;
+              $scope.satisfiedWithTool += $scope.tool.reviews[i].satisfiedWithTool;
+              $scope.wouldUseAgain += $scope.tool.reviews[i].wouldUseAgain;
+            };
+
+            if($scope.tool.reviews.length > 0)
+            {
+              $scope.easeOfUse = $scope.easeOfUse / $scope.tool.reviews.length;
+              $scope.timeSpentLearning = $scope.timeSpentLearning / $scope.tool.reviews.length;
+              $scope.timeSpentProducing = $scope.timeSpentProducing / $scope.tool.reviews.length;
+              $scope.satisfiedWithTool = $scope.satisfiedWithTool / $scope.tool.reviews.length;
+              $scope.wouldUseAgain = $scope.wouldUseAgain / $scope.tool.reviews.length;
+              $scope.ReviewsExist = true;
+            }
+
+
+            $('#progressUse').progress({value: $scope.easeOfUse});
+            $('#progressProd').progress({value: $scope.timeSpentProducing});
+            $('#progressSat').progress({value: $scope.satisfiedWithTool});
+            $('#progressAgain').progress({value: $scope.wouldUseAgain});            
+            $('#progressLearn').progress({value: $scope.timeSpentLearning});
+
+            //score of the tool
+            $scope.ToolScore = ($scope.easeOfUse+$scope.timeSpentLearning+$scope.timeSpentProducing+$scope.satisfiedWithTool+$scope.wouldUseAgain) / 5;
+                
+          });  
       })();
 
   }
