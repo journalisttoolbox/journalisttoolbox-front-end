@@ -1,10 +1,10 @@
 (function() {
 
-'use strict';
+  'use strict';
 
   angular
-    .module('jtApp')
-    .controller('ToolCtrl', ToolController);
+  .module('jtApp')
+  .controller('ToolCtrl', ToolController);
 
   /** @ngInject */
   function ToolController($scope, Tool, $stateParams, $state, User, Auth, ToolList, $timeout) {
@@ -37,27 +37,27 @@
     /*
      * Functions to deal with showing error or success messages when a tool has been added to a user's list
      */
-      $scope.addToolToList = function(toolListID) {
-        ToolList.update({ 
-          id: toolListID, 
-          addTool: true,
-          toolID: $scope.tool._id 
-        }, function(data) {
-          $scope.listErrors = {};
-          $scope.toolListAltered = data;
-          $scope.showAddedToListMessage();
-        }, function(err) {
-          $scope.listErrors.error = err.data.error;
-        });
-      };
+     $scope.addToolToList = function(toolListID) {
+      ToolList.update({ 
+        id: toolListID, 
+        addTool: true,
+        toolID: $scope.tool._id 
+      }, function(data) {
+        $scope.listErrors = {};
+        $scope.toolListAltered = data;
+        $scope.showAddedToListMessage();
+      }, function(err) {
+        $scope.listErrors.error = err.data.error;
+      });
+    };
 
-      $scope.hideAddedToListMessage = function() {
-        $scope.addedToList = false;
-        $state.go('admin.lists', {}, {reload: true});
-      };
+    $scope.hideAddedToListMessage = function() {
+      $scope.addedToList = false;
+      $state.go('admin.lists', {}, {reload: true});
+    };
 
-      $scope.showAddedToListMessage = function() {
-        $scope.addedToList = true;
+    $scope.showAddedToListMessage = function() {
+      $scope.addedToList = true;
 
         // Hide the tool list success message automatically
         $timeout(function() {
@@ -79,13 +79,13 @@
     /*
      * State functions
      */
-      $scope.reviewState = function() {
-        $state.go('tool.review');
-      };
+     $scope.reviewState = function() {
+      $state.go('tool.review');
+    };
 
-      $scope.toolState = function() {
-        $state.go('tool');
-      };
+    $scope.toolState = function() {
+      $state.go('tool');
+    };
 
     $scope.toolVote = function(verdict) {
       Tool.voteTool({
@@ -94,9 +94,9 @@
       }, function() {
         // Hit the API again to return up to date data
         Tool.get({ id: $stateParams.id })
-          .$promise.then(function(data) {
-            $scope.tool = data[0];
-          });
+        .$promise.then(function(data) {
+          $scope.tool = data[0];
+        });
 
         $scope.hasUserVoted = true;
       });
@@ -116,20 +116,23 @@
     };
 
     // DEFAULT FUNCTION
-      $scope.runDefault = (function() {
+    $scope.runDefault = (function() {
         //initialize the values for the ewview
         $scope.easeOfUse = 0;
         $scope.timeSpentLearning = 0;
         $scope.timeSpentProducing = 0;
         $scope.satisfiedWithTool = 0;
         $scope.wouldUseAgain = 0;
+        $scope.ToolScore = 0;
+        var ProgressBars = ["#progressUse","#progressProd","#progressSat","#progressAgain","#progressLearn"];
+        
         // instantiate the list dropdown
         $('.ui.dropdown.list').dropdown();
 
         Tool.get({ id: $stateParams.id })
-          .$promise.then(function(data) {
-            $scope.tool = data[0];
-            $scope.toolAvailable = true;
+        .$promise.then(function(data) {
+          $scope.tool = data[0];
+          $scope.toolAvailable = true;
 
             //get the reviews score
             for (var i = $scope.tool.reviews.length - 1; i >= 0; i--) {
@@ -149,20 +152,33 @@
               $scope.wouldUseAgain = $scope.wouldUseAgain / $scope.tool.reviews.length;
               $scope.ReviewsExist = true;
             }
+            
+            var ProgressBarScopes = [$scope.easeOfUse,$scope.timeSpentProducing,$scope.satisfiedWithTool,$scope.wouldUseAgain,$scope.timeSpentLearning];
 
+            for (var i = 5 - 1; i >= 0; i--) {
+             $(ProgressBars[i]).progress({value: ProgressBarScopes[i]});
 
-            $('#progressUse').progress({value: $scope.easeOfUse});
-            $('#progressProd').progress({value: $scope.timeSpentProducing});
-            $('#progressSat').progress({value: $scope.satisfiedWithTool});
-            $('#progressAgain').progress({value: $scope.wouldUseAgain});            
-            $('#progressLearn').progress({value: $scope.timeSpentLearning});
+             if(ProgressBarScopes[i] <= 4)
+              $(ProgressBars[i]).addClass('red');
 
+             if(ProgressBarScopes[i] >= 5 && ProgressBarScopes[i] <= 7)
+              $(ProgressBars[i]).addClass('yellow');
+
+             $scope.ToolScore += ProgressBarScopes[i];
+
+          };
             //score of the tool
-            $scope.ToolScore = ($scope.easeOfUse+$scope.timeSpentLearning+$scope.timeSpentProducing+$scope.satisfiedWithTool+$scope.wouldUseAgain) / 5;
-                
-          });  
-      })();
+            $scope.ToolScore = $scope.ToolScore / 5;
 
-  }
-  
+            if($scope.ToolScore <= 4)
+              $("#averageScore").addClass('red');
+
+             if($scope.ToolScore >= 5 && $scope.ToolScore <= 7)
+              $("#averageScore").addClass('yellow');
+
+          });  
+})();
+
+}
+
 })();
