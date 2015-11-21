@@ -8,7 +8,7 @@
   function homepageLists(){
     var directive = {
       restrict: 'E',
-      templateUrl: '/app/main/homepageLists/homepageLists.html',
+      templateUrl: 'app/main/homepageLists/homepageLists.html',
       controller: HomepageListsCtrl,
       bindToController: true
     };

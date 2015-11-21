@@ -10,7 +10,7 @@
       function jtLogin(){
         var directive = {
             restrict: 'E',
-            templateUrl: '/app/account/login/login.html',
+            templateUrl: 'app/account/login/login.html',
             controller: LoginCtrl,
             bindToController: true,
             link: function($scope){

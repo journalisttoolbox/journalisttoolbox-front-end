@@ -1,9 +1,13 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 $fa-font-path: "/bower_components/font-awesome/fonts";
 
+
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
-@import '../bower_components/semantic-ui/dist/semantic.min.css';
+
+/* Not importing via bower due to there not being any sass versions */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.css');
+@import url('http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,100');
 
 /**
  * App-wide Styles
@@ -11,6 +15,15 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
  // COLOR VARIABLES
  $mainGreen: #5bbd72;
+
+html {
+  font-size: 90% !important;
+}
+
+a {
+  /* Need to override BS styles */
+  text-decoration: none !important;
+}
 
 .browsehappy {
   margin: 0.2em 0;
