@@ -13,7 +13,7 @@ angular.module('jtApp')
     $('.menu .item').tab();
     $('.ui.dropdown').dropdown();
                
-    $http({ method:'GET', url: 'http://localhost:9000/api/tools/category/' + $scope.category })
+    $http({ method:'GET', url: 'api/tools/category/' + $scope.category })
       .success(function(data) {
         $scope.tools = data;
       });
