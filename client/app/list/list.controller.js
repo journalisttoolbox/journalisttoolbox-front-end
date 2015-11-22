@@ -4,10 +4,8 @@
 
   angular
   .module('jtApp')
-  .controller('ListCtrl', ListController);
+  .controller('ListCtrl', ['$scope', 'Tool', '$stateParams', 'ToolList', function ($scope, Tool, $stateParams, ToolList){
 
-  /** @ngInject */
-  function ListController($scope, Tool, $stateParams, ToolList) {
     $scope.tools = {};
     $scope.toolList = {};
     $scope.errors = {};
@@ -65,6 +63,6 @@
       $scope.loadToolList();
     })();
 
-  }
+  }])
   
 })();

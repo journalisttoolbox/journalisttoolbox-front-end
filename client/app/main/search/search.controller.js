@@ -9,7 +9,7 @@
     var directive = {
       restirct: 'E',
       templateUrl: 'app/main/search/search.html',
-      controller: SearchController,
+      controller: ['$scope', '$http', 'Tool', SearchController],
     };
 
     return directive;

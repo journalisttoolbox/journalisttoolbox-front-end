@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jtApp')
-  .controller('AdminCtrl', function ($rootScope, $scope, $state, Auth) {
+  .controller('AdminCtrl', ['$rootScope', '$scope', '$state', 'Auth', function ($rootScope, $scope, $state, Auth) {
     $scope.admin = false;
 
     if(Auth.isAdmin()) {
@@ -22,4 +22,4 @@ angular.module('jtApp')
       $state.go('admin.lists', {}, { reload: true });
     };
 
-  });
+  }]);

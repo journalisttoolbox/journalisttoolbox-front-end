@@ -4,7 +4,7 @@
 
   angular
     .module('jtApp')
-    .controller('ToolCtrl', ToolController);
+    .controller('ToolCtrl', ['$scope','Tool', '$stateParams', '$state', 'User', 'Auth', 'ToolList', '$timeout', ToolController]);
 
   /** @ngInject */
   function ToolController($scope, Tool, $stateParams, $state, User, Auth, ToolList, $timeout) {

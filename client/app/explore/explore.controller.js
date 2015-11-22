@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jtApp')
-  .controller('ExploreCtrl', function ($scope, $stateParams, $http) {
+  .controller('ExploreCtrl', ['$scope', '$stateParams', '$http', function ($scope, $stateParams, $http) {
     $scope.term = '';
     $scope.tools = [];
     $scope.categories = {};
@@ -50,5 +50,5 @@ angular.module('jtApp')
             else
               return;
         };
-});
+}]);
 
