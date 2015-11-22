@@ -7,16 +7,16 @@ angular.module('jtApp', [
   'btford.socket-io',
   'ui.router'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
-  })
+  }])
 
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+  .factory('authInterceptor', ['$rootScope', '$q', '$cookieStore', '$location', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
@@ -40,9 +40,9 @@ angular.module('jtApp', [
         }
       }
     };
-  })
+  }])
 
-  .run(function ($rootScope, $location, Auth, $document) {
+  .run(['$rootScope', '$location', 'Auth', '$document', function ($rootScope, $location, Auth, $document) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -57,4 +57,4 @@ angular.module('jtApp', [
     $rootScope.$on('$stateChangeSuccess', function() {
       $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
     });
-  });
+  }]);

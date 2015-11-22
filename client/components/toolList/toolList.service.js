@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jtApp')
-  .factory('ToolList', function ($resource) {
+  .factory('ToolList', ['$resource', function ($resource) {
     return $resource('/api/toolLists/:id/:controller', { 
       id: '@_id'
     }, 
@@ -33,4 +33,4 @@ angular.module('jtApp')
         }
       }
     });
-  });
+  }]);

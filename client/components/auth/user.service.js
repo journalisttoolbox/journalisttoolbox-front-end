@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jtApp')
-  .factory('User', function ($resource) {
+  .factory('User', ['$resource', function ($resource) {
     return $resource('/api/users/:id/:controller', {
       id: '@_id'
     },
@@ -37,4 +37,4 @@ angular.module('jtApp')
         }
       }
 	  });
-  });
+  }]);

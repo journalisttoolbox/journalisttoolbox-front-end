@@ -9,7 +9,7 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'app/main/grid/grid.html',
-      controller: GridCtrl,
+      controller: ['$scope', GridCtrl],
       bindToController: true
     };
 

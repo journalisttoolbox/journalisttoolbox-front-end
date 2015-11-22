@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('jtApp')
-  .config(function ($stateProvider) {
+  .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('main', {
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });
-  });
+  }]);

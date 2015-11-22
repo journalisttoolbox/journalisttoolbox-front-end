@@ -4,7 +4,7 @@
 
   angular
   .module('jtApp')
-  .controller('ToolReviewCtrl', ToolReviewCtrl);
+  .controller('ToolReviewCtrl', [ '$scope', 'Tool', '$state', '$timeout', 'Auth', ToolReviewCtrl ]);
 
   /** @ngInject */
   function ToolReviewCtrl($scope, Tool, $state, $timeout, Auth) {
