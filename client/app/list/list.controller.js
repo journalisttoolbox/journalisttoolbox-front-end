@@ -16,6 +16,7 @@
         var toolIDs = [];
 
         for(var i=0; i<toolsArray.length;i++) {
+          if(toolsArray[i]._id == undefined) continue; // Some tools' names don't match up
           toolIDs.push(toolsArray[i]._id);
         }
 
@@ -23,12 +24,12 @@
         .$promise.then(function(tools) {
           $scope.tools = tools;
 
-          if(toolsArray[0].jtWhat != undefined) {
+          if(toolsArray[0].jt_what != undefined) {
             toolsArray.forEach(function(toolFromList) {
               $scope.tools.forEach(function(scopedTool) {
                 if(toolFromList._id === scopedTool._id) {
-                  scopedTool.jtWhat = toolFromList.jtWhat;
-                  scopedTool.jtWhy = toolFromList.jtWhy;
+                  scopedTool.jtWhat = toolFromList.jt_what;
+                  scopedTool.jtWhy = toolFromList.jt_why;
                 }
               });
             });
