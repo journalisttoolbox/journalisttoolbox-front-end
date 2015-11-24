@@ -106,6 +106,7 @@ hr {
 
 // Component styles are injected through grunt
 // injector
+@import 'about/about.scss';
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'admin/adminLists/adminLists.scss';
