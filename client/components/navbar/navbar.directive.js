@@ -39,6 +39,10 @@
         $state.go($state.current, {}, {reload: true});
       };
 
+      $scope.home = function() {
+        $state.go('main', {}, {reload: true});
+      };
+
       $scope.isActive = function(route) {
         return route === $location.path();
       };      
