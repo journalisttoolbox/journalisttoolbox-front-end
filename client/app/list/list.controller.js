@@ -8,8 +8,9 @@
 
     $scope.tools = {};
     $scope.toolList = {};
-    $scope.errors = {};
-    $scope.noTools = true;
+    // $scope.errors = {};
+    $scope.noTools = false;
+    $scope.toolsSearched = false;
     
     $scope.loadsTools = function(toolsArray) {
       if(toolsArray.length) {
@@ -22,6 +23,7 @@
 
         Tool.get({ id: toolIDs })
         .$promise.then(function(tools) {
+          if(!tools) noTools = true;
           $scope.tools = tools;
 
           if(toolsArray[0].jt_what != undefined) {
@@ -38,12 +40,12 @@
             $scope.noJtDetails = true;
           }
 
-
           $scope.noTools = false;
         });
       } else {
         $scope.noTools = true;
       }
+      $scope.toolsSearched = true;
     };
 
     $scope.triggerDimmer = function() {
@@ -56,6 +58,10 @@
       $scope.toolList = toolList[0];
 
       $scope.loadsTools($scope.toolList.tools);
+    }, function(err) {
+      if(err.status === 404) $scope.errors.noList = true;
+      if(err.status) $scope.errors.error = err.message;
+      $scope.toolsSearched = true;
     });
   };
 
@@ -64,6 +70,6 @@
       $scope.loadToolList();
     })();
 
-  }])
+  }]);
   
 })();

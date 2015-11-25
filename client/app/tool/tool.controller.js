@@ -13,7 +13,6 @@
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.addedToList = false;
     $scope.errors = {};
-    $scope.listErrors = {};
 
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -47,7 +46,7 @@
           $scope.toolListAltered = data;
           $scope.showAddedToListMessage();
         }, function(err) {
-          $scope.listErrors.error = err.data.error;
+          $scope.errors.listError = err.data.error;
         });
       };
 
@@ -111,7 +110,7 @@
         $scope.toolListAltered = data;
         $scope.showAddedToListMessage();
       }, function(err) {
-        $scope.listErrors.error = err.data.error;
+        $scope.errors.listError = err.data.error;
       });
     };
 
@@ -160,6 +159,8 @@
             //score of the tool
             $scope.ToolScore = ($scope.easeOfUse+$scope.timeSpentLearning+$scope.timeSpentProducing+$scope.satisfiedWithTool+$scope.wouldUseAgain) / 5;
                 
+          }, function(err) {
+            $scope.errors.noTool = true;
           });  
       })();
 

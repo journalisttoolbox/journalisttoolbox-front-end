@@ -4,6 +4,14 @@
   </h1>
   <h3>{{ toolList.description }}</h3>
 
+  <div ng-show="!toolsSearched" class="ui active centered large inline loader adminLoader"></div>
+
+  <!-- Error handler -->
+  <div ng-show="errors.noList">
+    <h1>Sorry! There was an error!</h1>
+    <p>Tool List not found!</p>
+  </div>
+
   <div ng-show="noTools">
     <h1>Woops!</h1>
     <p>Looks like this list doesn't have any tools yet. If you're the owner, you can add tools to it from any tool page.</p>
