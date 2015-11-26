@@ -33,6 +33,7 @@ exports.create = function (req, res, next) {
   newUser.role = 'user';
   newUser.gravUrl = gravatar.url(req.body.email)+"?d=mm";
   newUser.tools = [];
+  newUser.isVerified = false;
 
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
@@ -41,7 +42,7 @@ exports.create = function (req, res, next) {
       to: req.body.email, // list of receivers
       subject: 'Please verify your email', // Subject line
       text: '', // plaintext body
-      html: '<a href="http://google.com">Hello world ✔</a>' // html body
+      html: 'Click <a href=\"http://newsroom.tools/verify/'+newUser.verificationString+'\">here</a> to verify your email address.' // html body
     };
 
     // send mail with defined transport object
@@ -236,6 +237,11 @@ exports.me = function(req, res, next) {
     res.json(user);
   });
 };
+
+exports.getUserByString = function(req, res, next){
+  console.log(req);
+  res.status(200).send('OK');
+}
 
 /**
  * Authentication callback

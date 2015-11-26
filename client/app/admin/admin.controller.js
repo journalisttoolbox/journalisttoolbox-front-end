@@ -3,13 +3,15 @@
 angular.module('jtApp')
   .controller('AdminCtrl', function ($rootScope, $scope, $state, Auth) {
     $scope.admin = false;
-
+    $scope.currentUser = Auth.getCurrentUser;
     if(Auth.isAdmin()) {
       $scope.admin = true;
     }
 
     if(!Auth.isLoggedIn()) {
       $state.go('signup'); 
+    } else if(!$scope.currentUser().isVerified){
+      $state.go('verify');
     }
 
     $scope.usersState = function() {

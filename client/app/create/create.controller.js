@@ -10,6 +10,11 @@
     $scope.toolMessage = false;
     $scope.githubLoaderUrl = {};
     $scope.errors = {};
+    if (typeof $scope.currentUser().name == 'undefined' || $scope.currentUser().isVerified == false){
+      $scope.allowCreate = false;
+    } else{
+      $scope.allowCreate = true;
+    }
 
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;

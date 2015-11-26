@@ -6,6 +6,13 @@ angular.module('jtApp')
       id: '@_id'
     },
     {
+      verifyUser: {
+        method: 'PUT',
+        params: {
+          id: 'verify',
+          theString: '@theString'
+        }
+      },
       changePassword: {
         method: 'PUT',
         params: {
