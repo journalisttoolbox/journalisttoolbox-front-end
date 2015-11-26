@@ -26,8 +26,8 @@ exports.getFeatured = function(req, res) {
 exports.show = function(req, res) {
   var query = req.params.id.split(",");
   ToolList.find({ '_id': { $in: query } }, function(err, toolList) {
-    if(err) { return handleError(res, err); }
     if(!toolList) { return res.status(404).send('Not Found'); }
+    if(err) { return handleError(res, err); }
     return res.json(toolList);
   });
 };

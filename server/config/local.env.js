@@ -9,11 +9,12 @@ module.exports = {
   DOMAIN: 'http://localhost:9000',
   SESSION_SECRET: "jt-secret",
 
-  FACEBOOK_ID: 'app-id',
-  FACEBOOK_SECRET: 'secret',
+  FACEBOOK_ID: '1087844534559994',
+  FACEBOOK_SECRET: '7306bd4bda2d61b64a9ae94975253909',
 
-  TWITTER_ID: 'app-id',
-  TWITTER_SECRET: 'secret',
+  TWITTER_ID: 'rRcakr9QaNj1oNt4xHnqke37P',
+  TWITTER_SECRET: '2bm62T218bWN9DrpnHO0o1vrUpY0EQKyXl07fjWWxIh1xftZ7J',
+  
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
 };
