@@ -130,8 +130,6 @@
             $scope.tool = data[0];
             $scope.toolAvailable = true;
 
-            console.log(data);
-
             //get the reviews score
             for (var i = $scope.tool.reviews.length - 1; i >= 0; i--) {
               $scope.easeOfUse += $scope.tool.reviews[i].easeOfUse;
