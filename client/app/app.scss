@@ -62,6 +62,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  line-height: 25px;
+}
+
 .text.huge {
   font-size: 4em;
   vertical-align: middle;
@@ -106,6 +110,7 @@ hr {
 
 // Component styles are injected through grunt
 // injector
+@import 'about/about.scss';
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'admin/adminLists/adminLists.scss';
