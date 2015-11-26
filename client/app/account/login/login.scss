@@ -18,6 +18,8 @@ $btnGithubBackgroundHighlight:      #ccc;
   @include button-variant($btnText, $btnFacebookBackgroundHighlight, $btnFacebookBackgroundHighlight);
 }
 .btn-twitter {
+  font-size: 16px;
+  margin: 10px 0;
   @include button-variant($btnText, $btnTwitterBackground, $btnTwitterBackgroundHighlight);
 }
 .btn-github {
@@ -26,5 +28,9 @@ $btnGithubBackgroundHighlight:      #ccc;
 
 
 .ui.small.modal{
-	height:300px;
+	height: 365px;
+}
+
+form.login {
+  text-align: center;
 }
