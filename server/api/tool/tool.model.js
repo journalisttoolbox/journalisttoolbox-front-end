@@ -8,7 +8,7 @@ var ToolSchema = new Schema({
   developer: String,  
   description: String,
   free: Boolean,
-  price: Number,
+  price: String,
   version: String,
   companies: Array,
   categories: Array,

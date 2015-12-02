@@ -40,24 +40,21 @@ var User = require('../api/user/user.model');
 
 // var ToolList = require('../api/toolList/toolList.model');
 // var Tool     = require('../api/tool/tool.model');
-
-// var toolListID  = '56571ab0c6ac028944e3f192';
-
+// 
 // function populate(desiredList, allTools) {
 //   desiredList.tools.forEach(function(toolInList) {
 //     allTools.forEach(function(tool) {
 //       if(toolInList.name === tool.name) {
 //         toolInList._id = tool;
-//         console.log(toolInList);
 //         desiredList.save();
 //       }
 //     });
 //   });
 // }
-
-// ToolList.findById(toolListID, function(err, toolList) {
+// ToolList.find({}, function(err, toolList) {
 //   Tool.find(function(err, tools) {
-//     populate(toolList, tools);
+//     toolList.forEach(function(list) {
+//       populate(list, tools);
+//     });
 //   });
-
 // });
