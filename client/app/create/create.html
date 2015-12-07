@@ -1,11 +1,11 @@
 <div class="container">
   <div class="ui grid">
     <div class="eight wide centered column">
-      <div align="center" ng-show="currentUser().name === undefined" class="ui negative message">
+      <div align="center" ng-show="currentUser().name === undefined" class="ui yellow message">
           <div class="header">
-            <i class="warning sign icon"></i> Restricted area
+            <i class="warning sign icon"></i> Are you a developer?
           </div>
-          <p>Please <a ng-click="showModal()">login </a>or<a ui-sref="signup"> signup</a> to continue.</p>
+          <p>Please <a ng-click="showModal()">login </a>or<a ui-sref="signup"> signup</a> to post a tool.</p>
       </div>
     </div>
   </div>
