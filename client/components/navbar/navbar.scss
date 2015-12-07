@@ -1,3 +1,5 @@
+@import '../../app/_sass/vars';
+
 a[ui-sref]{
   cursor: pointer;
 }
@@ -16,4 +18,40 @@ a[ng-click]{
 
 .main.menu{
 	z-index:100000 !important;
+}
+
+.navbarImageWrapper {
+  text-align: center;
+  display: block;
+
+  h1.newsroom,
+  h1.tools {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 3px;
+  }
+  
+  h1.tools {
+    font-weight: 200;
+  }
+
+  @include breakpoint(sm) {
+    display: inline-block;
+    text-align: left;
+  }
+
+  .navbarMenu {
+    text-align: center;
+
+    color: #fff !important;
+    .menuItem {
+      display: block !important;
+
+    }
+  }
+  
 }

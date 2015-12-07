@@ -1,0 +1,25 @@
+// Responsive mixin:
+
+  $px-768:  (min-width: 768px);
+  $px-992:  (min-width: 992px);
+  $px-1200: (min-width: 1200px);
+
+   // MIXINS
+    @mixin breakpoint($class) {
+      // XS
+      @if $class == xs {
+        @media (max-width: 767px) { @content; }
+      }
+      // SMALL
+      @else if $class == sm {
+        @media (min-width: 768px) { @content; }
+      }
+      // MEDIUM
+      @else if $class == md {
+        @media (min-width: 992px) { @content; }
+      }
+      // LARGE
+      @else if $class == lg {
+        @media (min-width: 1200px) { @content; }
+      }
+    }

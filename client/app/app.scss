@@ -110,6 +110,7 @@ hr {
 
 // Component styles are injected through grunt
 // injector
+@import '_sass/_vars.scss';
 @import 'about/about.scss';
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
