@@ -38,25 +38,24 @@ var User = require('../api/user/user.model');
  * Populates the toolLists with the correct IDs.
  */
 
-//  var ToolList = require('../api/toolList/toolList.model');
-//  var Tool     = require('../api/tool/tool.model');
+// var ToolList = require('../api/toolList/toolList.model');
+// var Tool     = require('../api/tool/tool.model');
 // 
-//  function populate(desiredList, allTools) {
-//    desiredList.tools.forEach(function(toolInList) {
-//      allTools.forEach(function(tool) {
-//        if(toolInList.name === tool.name) {
-//          toolInList._id = tool;
-//          desiredList.save();
-//        }
-//      });
-//    });
-//  }
-// 
-//  ToolList.find({}, function(err, toolList) {
-//    Tool.find(function(err, tools) {
-//      toolList.forEach(function(list) {
-//        populate(list, tools);
-//      });
-//    });
-
+// function populate(desiredList, allTools) {
+//   desiredList.tools.forEach(function(toolInList) {
+//     allTools.forEach(function(tool) {
+//       if(toolInList.name === tool.name) {
+//         toolInList._id = tool;
+//         desiredList.save();
+//       }
+//     });
+//   });
+// }
+// ToolList.find({}, function(err, toolList) {
+//   Tool.find(function(err, tools) {
+//     toolList.forEach(function(list) {
+//       populate(list, tools);
+//     });
+//   });
 // });
+
