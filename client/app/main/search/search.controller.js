@@ -8,8 +8,8 @@
   function jtSearch(){
     var directive = {
       restirct: 'E',
-      templateUrl: '/app/main/search/search.html',
-      controller: SearchController,
+      templateUrl: 'app/main/search/search.html',
+      controller: ['$scope', '$http', 'Tool', SearchController]
     };
 
     return directive;

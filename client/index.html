@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>The Journalist Toolbox</title>
+    <title>Newsroom Tools</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -17,13 +17,11 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,100' rel='stylesheet' type='text/css'>
       <!-- injector:css -->
       <!-- endinjector -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="jtApp">
+  <body ng-app="jtApp" ng-strict-di>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -58,8 +56,8 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/semantic-ui/dist/semantic.js"></script>
       <!-- endbower -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.js"></script>
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
 
@@ -68,6 +66,8 @@
         
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/about/about.controller.js"></script>
+          <script src="app/about/about.js"></script>
           <script src="app/account/account.js"></script>
           <script src="app/account/login/login.directive.js"></script>
           <script src="app/account/settings/settings.controller.js"></script>

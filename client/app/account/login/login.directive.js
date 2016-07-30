@@ -10,8 +10,8 @@
       function jtLogin(){
         var directive = {
             restrict: 'E',
-            templateUrl: '/app/account/login/login.html',
-            controller: LoginCtrl,
+            templateUrl: 'app/account/login/login.html',
+            controller: ['$scope', '$state', 'Auth', '$location', '$window' ,LoginCtrl],
             bindToController: true,
             link: function($scope){
                 $('.ui.modal.signIn').modal();

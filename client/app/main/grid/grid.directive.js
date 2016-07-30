@@ -8,8 +8,8 @@
   function jtGrid(){
     var directive = {
       restrict: 'E',
-      templateUrl: '/app/main/grid/grid.html',
-      controller: GridCtrl,
+      templateUrl: 'app/main/grid/grid.html',
+      controller: ['$scope', GridCtrl],
       bindToController: true
     };
 

@@ -4,14 +4,14 @@
 
     angular
     .module('jtApp')
-    .directive('jtNavbar', jtNavbar);
+    .directive('jtNavbar',  jtNavbar);
 
  /** @ngInject */
   function jtNavbar() {
     var directive = {
       restrict: 'E',
       templateUrl: 'components/navbar/navbar.html',
-      controller: NavbarCtrl,
+      controller: ['Auth', '$scope', '$location', '$state', NavbarCtrl],
       bindToController: true,
       link: function($scope){
         $scope.showModal = function(){
@@ -37,6 +37,10 @@
       $scope.logout = function() {
         Auth.logout();
         $state.go($state.current, {}, {reload: true});
+      };
+
+      $scope.home = function() {
+        $state.go('main', {}, {reload: true});
       };
 
       $scope.isActive = function(route) {

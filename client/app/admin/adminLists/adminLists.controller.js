@@ -3,10 +3,8 @@
   
   angular
   .module('jtApp')
-  .controller('AdminListsCtrl', AdminListsController);
+  .controller('AdminListsCtrl', ['$scope','$state','User','ToolList','Auth', function ($scope, $state, User, ToolList, Auth){
 
-  /** @ngInject */
-  function AdminListsController($scope, $state, User, ToolList, Auth) {
     $scope.toolLists = [];
     $scope.user = null;
 
@@ -85,5 +83,5 @@
       });
     };
 
-  }
+}])
 })();

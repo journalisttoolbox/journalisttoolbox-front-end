@@ -2,9 +2,7 @@
   'use strict';
 
   angular.module('jtApp')
-    .controller('CreateCtrl', CreateCtrl);
-
-  function CreateCtrl($scope, $http, $stateParams, $state, Tool, Auth, User, $timeout) {
+    .controller('CreateCtrl', ['$scope', '$http', '$stateParams', '$state', 'Tool', 'Auth', 'User', '$timeout', function ($scope, $http, $stateParams, $state, Tool, Auth, User, $timeout){
 
     $scope.currentUser = Auth.getCurrentUser;
     $scope.toolMessage = false;
@@ -92,6 +90,6 @@
       $scope.errors.githubError = 'Invalid GitHub url';
     };
 
-  }
+  }])
 
 })();

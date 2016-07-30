@@ -3,10 +3,8 @@
   
   angular
   .module('jtApp')
-  .controller('AdminToolsCtrl', AdminToolsController);
+  .controller('AdminToolsCtrl', ['$scope','$state','User','Tool','Auth', function($scope, $state, User, Tool, Auth){
 
-  /** @ngInject */
-  function AdminToolsController($scope, $state, User, Tool, Auth) {
     $scope.selectedRecordIds = [];
     $scope.toolList = {};
 
@@ -89,5 +87,5 @@
       }
     };
 
-  }
+  }])
 })();

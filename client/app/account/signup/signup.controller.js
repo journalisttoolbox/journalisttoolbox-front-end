@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jtApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
+  .controller('SignupCtrl', ['$scope', 'Auth', '$location', '$window', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -34,4 +34,4 @@ angular.module('jtApp')
     $scope.loginOauth = function(provider) {
       $window.location.href = '/auth/' + provider;
     };
-  });
+  }]);

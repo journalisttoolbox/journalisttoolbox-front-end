@@ -3,9 +3,9 @@
 angular.module('jtApp')
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
-      .state('list', {
-        url: '/list/:id',
-        templateUrl: 'app/list/list.html',
-        controller: 'ListCtrl'
+      .state('about', {
+        url: '/about',
+        templateUrl: 'app/about/about.html',
+        controller: 'AboutCtrl'
       });
   }]);
