@@ -10,7 +10,7 @@ angular.module('jtApp')
         method: 'PUT',
         params: {
           id: 'verify',
-          theString: '@theString'
+          controller: '@uid'
         }
       },
       changePassword: {

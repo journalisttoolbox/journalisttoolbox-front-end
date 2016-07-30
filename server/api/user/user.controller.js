@@ -239,8 +239,17 @@ exports.me = function(req, res, next) {
 };
 
 exports.getUserByString = function(req, res, next){
-  console.log(req);
-  res.status(200).send('OK');
+  console.log(req.body.uid);
+  User.findOne({verificationString: req.body.uid}, function(err,user){
+    if(err) return validationError(res, err);
+    if(user == null) return res.status(404).end()
+    user.isVerified = true;
+    user.save(function(err){
+      if (err) return validationError(res,err);
+      res.status(200).send('OK');
+    });
+  });
+  
 }
 
 /**
