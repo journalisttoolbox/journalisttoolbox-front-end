@@ -38,11 +38,11 @@ exports.create = function (req, res, next) {
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var mailOptions = {
-      from: 'The Journalist Toolbox', // sender address
+      from: '"The Journalist Toolbox" <team@newsroom.tools>', // sender address
       to: req.body.email, // list of receivers
       subject: 'Please verify your email', // Subject line
       text: '', // plaintext body
-      html: 'Click <a href=\"http://newsroom.tools/verify/'+newUser.verificationString+'\">here</a> to verify your email address.' // html body
+      html: 'Click <a href=\"http://'+req.headers.host+'/verify/'+newUser.verificationString+'\">here</a> to verify your email address.' // html body
     };
 
     // send mail with defined transport object
