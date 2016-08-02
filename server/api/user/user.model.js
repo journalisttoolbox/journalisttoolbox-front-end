@@ -24,7 +24,9 @@ var UserSchema = new Schema({
   salt: String,
   facebook: {},
   twitter: {},
-  github: {}
+  github: {},
+  isVerified: Boolean,
+  verificationString: String
 });
 
 /**
@@ -36,6 +38,7 @@ UserSchema
     this._password = password;
     this.salt = this.makeSalt();
     this.hashedPassword = this.encryptPassword(password);
+    this.verificationString = this.makeRandomString();
   })
   .get(function() {
     return this._password;
@@ -136,6 +139,9 @@ UserSchema.methods = {
    */
   makeSalt: function() {
     return crypto.randomBytes(16).toString('base64');
+  },
+  makeRandomString: function() {
+    return crypto.randomBytes(48).toString('hex');
   },
 
   /**

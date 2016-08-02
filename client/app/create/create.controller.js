@@ -5,10 +5,7 @@
     .controller('CreateCtrl', ['$scope', '$http', '$stateParams', '$state', 'Tool', 'Auth', 'User', '$timeout', function ($scope, $http, $stateParams, $state, Tool, Auth, User, $timeout){
 
     $scope.currentUser = Auth.getCurrentUser;
-    $scope.toolMessage = false;
-    $scope.githubLoaderUrl = {};
-    $scope.errors = {};
-
+    
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;
       $state.go('tool', { id: $scope.toolID }, {reload: true});

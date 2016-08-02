@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="ui four column centered grid">
+		<div ng-if="foundUser == true">
+			<h3>Your account is verified!</h3>
+			<h4>Click <a ng-click="home()">here</a> to go to the home page.</h4>
+		</div>
+		<div ng-if="foundUser == false">
+			<h3>Oops! There has been a problem with your registration.</h3>
+			<h3>Please Contact <a href="mailto:team@newsroom.tools?subject=Problem with registration">team@newsroom.tools</a>.</h3>
+		</div>
+	</div>
+</div>

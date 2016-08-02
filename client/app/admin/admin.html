@@ -1,15 +1,31 @@
 <div class="container admin">
-  <div class="ui four column grid">
-    <div class="center aligned column row">
-      <h1 class="centered">ADMIN PANEL</h1>
+  <div ng-show="currentUser().isVerified == false">
+    <div class="container">
+      <div class="ui grid">
+        <div class="eight wide centered column">
+          <div align="center" class="ui negative message">
+            <div class="header">
+              <i class="warning sign icon"></i> Restricted area
+            </div>
+            <p>Please verify your email to continue.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  
+  <div ng-show="currentUser().isVerified == true">
+    <div class="ui four column grid">
+      <div class="center aligned column row">
+        <h1 class="centered">ADMIN PANEL</h1>
+      </div>
+    </div>
+    <button class="ui button" ng-click="toolsState()">TOOLS</button>
+    <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
+    <button class="ui button" ng-click="listsState()">LISTS</button>
 
-  <button class="ui button" ng-click="toolsState()">TOOLS</button>
-  <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
-  <button class="ui button" ng-click="listsState()">LISTS</button>
-
-    <!-- For nested child views -->
+      <!-- For nested child views -->
     <div class="adminComponents" ui-view></div>
+  </div>
 
 </div>
