@@ -9,13 +9,6 @@ angular.module('jtApp')
   		$scope.foundUser = true;
   	}, function(){
   		$scope.foundUser = false;
-  	})
-
-
-
-    // User.verifyUser(function({uid:$stateParams.uid}){
-    // 	console.log("success");
-    // }, function(){
-    // 	console.log("error");
-    // }
+  	});
+    
   }]);

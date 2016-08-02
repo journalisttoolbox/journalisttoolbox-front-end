@@ -38,7 +38,7 @@ exports.create = function (req, res, next) {
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var mailOptions = {
-      from: '"The Journalist Toolbox" <team@newsroom.tools>', // sender address
+      from: '"Newsroom Tools" <team@newsroom.tools>', // sender address
       to: req.body.email, // list of receivers
       subject: 'Please verify your email', // Subject line
       text: '', // plaintext body

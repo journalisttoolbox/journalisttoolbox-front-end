@@ -10,10 +10,8 @@ angular.module('jtApp')
 
     if(!Auth.isLoggedIn()) {
       $state.go('signup'); 
-    } else if(!$scope.currentUser().isVerified){
-      $state.go('verify');
     }
-
+    
     $scope.usersState = function() {
       $state.go('admin.users', {}, { reload: true });
     };
