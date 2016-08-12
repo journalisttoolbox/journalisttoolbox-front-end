@@ -16,10 +16,13 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  // COLOR VARIABLES
  $mainGreen: #5bbd72;
 
+
 html {
   font-size: 90% !important;
 }
+body{
 
+}
 a {
   /* Need to override BS styles */
   text-decoration: none !important;
@@ -55,7 +58,12 @@ iframe {
 body {
   margin: 0;
   padding-top: 5%;
-  work-break: inherit!important;
+  word-break: inherit !important;
+  font-family: 'Roboto Slab', serif !important;
+}
+
+html {
+  font-family: 'Roboto Slab', serif !important;
 }
 
 a {
@@ -65,11 +73,11 @@ a {
 p {
   line-height: 25px;
 }
-
-.text.huge {
-  font-size: 4em;
-  vertical-align: middle;
-}
+//
+// .text.huge {
+//   // font-size: 4em;
+//   vertical-align: middle;
+// }
 
 .container {
   margin-right: auto;

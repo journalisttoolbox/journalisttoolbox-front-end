@@ -1,11 +1,9 @@
 <div class="container">
-  <div class="ui segment">
-    <div class="ui four column grid stackable">
-      <div class="sixteen wide column">
-        <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
-          <input type="text" ng-model="term" ng-change="onKeyUp()" placeholder="What are you looking to create...?" ng-model-options="{debounce: 500}">
-          <i class="search icon"></i>
-        </div>
+  <div class="ui four column grid stackable">
+    <div class="sixteen wide column">
+      <div class="ui fluid icon input massive" ng-class="{'loading': loading}">
+        <input type="text" ng-model="term" ng-change="onKeyUp()" placeholder="What are you looking to create...?" ng-model-options="{debounce: 500}">
+        <i class="search icon"></i>
       </div>
     </div>
 
@@ -53,7 +51,7 @@
                     <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
                     <label for="mac"><b>MacOS</b></label>
                   </div>
-                </td>           
+                </td>
               </tr>
             </tbody>
           </table>
@@ -91,25 +89,25 @@
                     <input type="checkbox" ng-click="includeFilter('Audio')" tabindex="0" class="hidden" name="Audio" id="Audio">
                     <label for="Audio"><b>Audio</b></label>
                   </div>
-                </td>   
+                </td>
                 <td>
                   <div class="ui checkbox">
                     <input type="checkbox" ng-click="includeFilter('Data Processing')" tabindex="0" class="hidden" name="Data" id="Data">
                     <label for="Data"><b>Data Processing</b></label>
                   </div>
-                </td>   
+                </td>
                 <td>
                   <div class="ui checkbox">
                     <input type="checkbox" ng-click="includeFilter('Timelines')" tabindex="0" class="hidden" name="Timelines" id="Timelines">
                     <label for="Timelines"><b>Timelines</b></label>
                   </div>
-                </td>   
+                </td>
                 <td>
                   <div class="ui checkbox">
                     <input type="checkbox" ng-click="includeFilter('Design')" tabindex="0" class="hidden" name="Design" id="Design">
                     <label for="Design"><b>Design</b></label>
                   </div>
-                </td>              
+                </td>
               </tr>
             </tbody>
           </table>
@@ -165,15 +163,15 @@
         </div>
 
         <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
-        <img ng-src="http://placehold.it/300/ffffff/ffffff" />  
-        
+        <img ng-src="http://placehold.it/300/ffffff/ffffff" />
+
         <div class="ui top left orange attached label">
           <h4>{{tool.name}}</h4>
         </div>
         <div ng-class = "(tool.upvotes.length >= tool.downvotes.length)? 'green': 'red'" class="ui bottom right attached label">
           <i ng-class = "(tool.upvotes.length >= tool.downvotes.length)? 'up': 'down'" class="thumbs icon"></i>{{(tool.upvotes.length >= tool.downvotes.length)? tool.upvotes.length: tool.downvotes.length}}
         </div>
-        
+
     </div>
     </a>
   </div>

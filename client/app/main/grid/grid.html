@@ -1,20 +1,20 @@
 <div class="ui four column grid stackable">
-    <div class="sixteen wide column">
-      <h1>Explore all tools</h1>
-    </div>
-    <div class="four wide column center aligned" ng-repeat="cat in categories">
-      <a ui-sref="explore({cat: (cat.name | lowercase)})" style="color: #222222;">
-        <div class="ui segment {{cat.color}}">
-          <h1 class="ui header">
-            <i class="{{cat.icon}} icon" style="margin-right: 0; font-size: 1.5em;"></i>
-          </h1>
-          <h3>{{cat.name}}</h3>
-        </div>
-      </a>
-    </div>
+  <div class="two column row gridHeader centered">
+    <h1>Explore by category</h1>
+  </div>
+  <div class="four wide column center aligned" ng-repeat="cat in categories">
+    <a ui-sref="explore({cat: (cat.name | lowercase)})" style="color: #222222;">
+      <div class="ui segment {{cat.color}}">
+        <h1 class="ui header">
+          <i class="{{cat.icon}} icon" style="margin-right: 0; font-size: 1.5em;"></i>
+        </h1>
+        <h3>{{cat.name}}</h3>
+      </div>
+    </a>
+  </div>
 </div>
 
-<div class="ui page grid stackable">
+<div class="ui grid stackable">
   <div class="sixteen wide column">
     <div class="ui divider"></div>
   </div>

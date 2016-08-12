@@ -1,21 +1,15 @@
-  <div class="sixteen wide column ftlHeader">
+<div class="ui three column grid stackable">
+  <div class="row centered ftlHeader">
     <h1>Featured Tool Lists</h1>
   </div>
-
-<div class="ui three column grid stackable">
   <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="column featuredList">
     <div class="ui fluid card button">
       <div class="header"><h1 class="ui header green">{{ list.toolListName }}</h1></div>
         <div class="description">
-          {{ list.description }}
+          <p>
+            {{ list.description }}
+          </p>
         </div>
     </div>
-  </div>
-</div>
-
-
-<div class="ui page grid stackable">
-  <div class="sixteen wide column">
-    <div class="ui divider"></div>
   </div>
 </div>
