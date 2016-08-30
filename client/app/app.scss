@@ -55,15 +55,14 @@ iframe {
   float: right;
 }
 
+*:not(i) {
+  font-family: 'Roboto Slab', serif !important;
+}
+
 body {
   margin: 0;
   padding-top: 5%;
   word-break: inherit !important;
-  font-family: 'Roboto Slab', serif !important;
-}
-
-html {
-  font-family: 'Roboto Slab', serif !important;
 }
 
 a {

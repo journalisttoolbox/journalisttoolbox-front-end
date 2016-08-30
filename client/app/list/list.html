@@ -1,38 +1,39 @@
-<div class="list container">  
-  <h1 class="ui horizontal divider header">
-    {{ toolList.toolListName | uppercase }}
-  </h1>
-  <h3>{{ toolList.description }}</h3>
+<div class="container">
+  <div class="list">
+    <h1 class="ui horizontal divider header">
+      {{ toolList.toolListName | uppercase }}
+    </h1>
+    <h3>{{ toolList.description }}</h3>
 
-  <div ng-show="!toolsSearched" class="ui active centered large inline loader adminLoader"></div>
+    <div ng-show="!toolsSearched" class="ui active centered large inline loader adminLoader"></div>
 
-  <!-- Error handler -->
-  <div ng-show="errors.noList">
-    <h1>Sorry! There was an error!</h1>
-    <p>Tool List not found!</p>
-  </div>
-
-  <div ng-show="noTools">
-    <h1>Woops!</h1>
-    <p>Looks like this list doesn't have any tools yet. If you're the owner, you can add tools to it from any tool page.</p>
-  </div>
-
-<div class="ui link cards listCards">
-  <div class="card" ng-repeat="tool in tools" ui-sref="tool({id: tool._id})">
-    <div class="image">
-      <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
-      <img ng-src="http://placehold.it/300/ffffff/ffffff" />
+    <!-- Error handler -->
+    <div ng-show="errors.noList">
+      <h1>Sorry! There was an error!</h1>
+      <p>Tool List not found!</p>
     </div>
-    <div class="content">
-      <div class="ui header green">{{tool.name}}</div>
-      <div class="meta">
-      </div>
-      <div ng-show="!noJtDetails" class="description">
-        <p style="color:black;"><i>"{{ tool.jtWhat }}"</i></p>
-        <p><i>"{{ tool.jtWhy }}"</i></p>
+
+    <div ng-show="noTools">
+      <h1>Woops!</h1>
+      <p>Looks like this list doesn't have any tools yet. If you're the owner, you can add tools to it from any tool page.</p>
+    </div>
+
+    <div class="ui link cards listCards">
+      <div class="card" ng-repeat="tool in tools" ui-sref="tool({id: tool._id})">
+        <div class="image">
+          <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
+          <img ng-src="http://placehold.it/300/ffffff/ffffff" />
+        </div>
+        <div class="content">
+          <div class="ui header green">{{tool.name}}</div>
+          <div class="meta">
+          </div>
+          <div ng-show="!noJtDetails" class="description">
+            <p style="color:black;"><i>"{{ tool.jtWhat }}"</i></p>
+            <p><i>"{{ tool.jtWhy }}"</i></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </div>
