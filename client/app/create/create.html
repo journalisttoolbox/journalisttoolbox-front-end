@@ -2,14 +2,14 @@
 <div class="container">
   <div ng-show = "currentUser().name === undefined || currentUser().isVerified === false">
     <div class="ui grid">
-      <div class="eight wide centered column">
-        <div align="center" ng-show="currentUser().name === undefined" class="ui negative message">
+      <div class="ten wide centered column">
+        <div align="center" ng-show="currentUser().name === undefined" class="ui warning message">
             <div class="header">
-              <i class="warning sign icon"></i> Restricted area
+              <i class="warning sign icon"></i> Please login to continue
             </div>
-            <p>Please&nbsp;<a ng-click="showModal()">login</a>&nbsp;or&nbsp;<a ui-sref="signup">signup</a>&nbsp;to continue.</p>
+            <p>If you are a developer and you would like to have your tool featured on newsroom.tools, please&nbsp;<a ng-click="showModal()">login</a>&nbsp;or&nbsp;<a ui-sref="signup">signup</a>&nbsp;to continue.</p>
         </div>
-        <div align="center" ng-show="currentUser().isVerified === false" class="ui negative message">
+        <div align="center" ng-show="currentUser().isVerified === false" class="ui warning message">
             <div class="header">
               <i class="warning sign icon"></i> Restricted area
             </div>
@@ -63,14 +63,14 @@
 
     <!-- PRICE FIELD -->
     <div class="field ui left icon input" ng-class="{ 'error' : createToolForm.price.$invalid && !createToolForm.price.$pristine, 'disabled': currentUser().name === undefined || currentUser().isVerified === false || formData.free }">
-      <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-disabled="formData.free" ng-required="!formData.free" ng-model="formData.price" type="number" placeholder="Price in dollars" name="price" id="price">      
+      <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-disabled="formData.free" ng-required="!formData.free" ng-model="formData.price" type="number" placeholder="Price in dollars" name="price" id="price">
       <i class="dollar icon"></i>
       <p class="fieldRequired" ng-show="createToolForm.price.$invalid && !createToolForm.price.$pristine">Please enter a valid number</p>
     </div>
-    
+
     <!-- VERSION FIELD -->
     <div class="field ui left icon input">
-      <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version" required>      
+      <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version" required>
       <i class="cubes icon"></i>
        <p class="fieldRequired" ng-show="createToolForm.version.$invalid && !createToolForm.version.$pristine">Please enter a version number</p>
     </div>
