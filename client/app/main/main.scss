@@ -31,10 +31,16 @@
 
 .search-area{
   padding:100px 0 100px 0 !important;
+  margin-bottom: 30px !important;
+  margin-top: -20px !important;
   background-color: #EEF6EE;
   input{
 
     border: 0px !important;
     // background-color: #EEEEEE !important;
+  }
+
+  h3{
+    text-align:center;
   }
 }

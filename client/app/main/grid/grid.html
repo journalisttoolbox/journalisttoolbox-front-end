@@ -3,21 +3,28 @@
     <div class="two column row gridHeader centered">
       <h1>Explore by category</h1>
     </div>
-    <div class="four wide column center aligned" ng-repeat="cat in categories">
-      <a ui-sref="explore({cat: (cat.name | lowercase)})" style="color: #222222;">
+    <div class="four wide column" ng-repeat="cat in categories">
+
+      <div class="ui link card">
+        <a class="image category-icon" ui-sref="explore({cat: (cat.name | lowercase)})">
+          <i class="{{cat.icon}} icon "></i>
+        </a>
+        <div class="content">
+          <a class="header" ui-sref="explore({cat: (cat.name | lowercase)})">{{cat.name}}</a>
+          <div class="meta">
+            <a ui-sref="explore({cat: (cat.name | lowercase)})">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh.</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- <a ui-sref="explore({cat: (cat.name | lowercase)})" style="color: #222222;">
         <div class="ui segment {{cat.color}}">
           <h1 class="ui header">
             <i class="{{cat.icon}} icon" style="margin-right: 0; font-size: 1.5em;"></i>
           </h1>
           <h3>{{cat.name}}</h3>
         </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="ui grid stackable">
-    <div class="sixteen wide column">
-      <div class="ui divider"></div>
+      </a> -->
     </div>
   </div>
 </div>
