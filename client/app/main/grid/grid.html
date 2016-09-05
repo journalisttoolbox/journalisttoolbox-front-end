@@ -1,11 +1,9 @@
 <div class="container">
-  <div class="ui four column grid stackable">
-    <div class="two column row gridHeader centered">
-      <h1>Explore by category</h1>
-    </div>
-    <div class="four wide column" ng-repeat="cat in categories">
-
-      <div class="ui link card">
+  <div class="gridHeader">
+    <h1>Explore by category</h1>
+  </div>
+  <div class="ui three stackable cards">
+      <div class="ui link card" ng-repeat="cat in categories">
         <a class="image category-icon" ui-sref="explore({cat: (cat.name | lowercase)})">
           <i class="{{cat.icon}} icon "></i>
         </a>
@@ -16,15 +14,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <a ui-sref="explore({cat: (cat.name | lowercase)})" style="color: #222222;">
-        <div class="ui segment {{cat.color}}">
-          <h1 class="ui header">
-            <i class="{{cat.icon}} icon" style="margin-right: 0; font-size: 1.5em;"></i>
-          </h1>
-          <h3>{{cat.name}}</h3>
-        </div>
-      </a> -->
     </div>
   </div>
 </div>

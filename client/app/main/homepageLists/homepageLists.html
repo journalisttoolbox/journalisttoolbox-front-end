@@ -3,34 +3,25 @@
     <div class="row centered ftlHeader">
       <h1>Featured Tool Lists</h1>
     </div>
-
     <div class="ui items">
-      <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="item eight wide column">
-        <div class="ui small image">
-          <img src="/assets/images/jt_nologo.png">
-        </div>
-        <div class="middle aligned content">
-          <a class="header">{{ list.toolListName }}</a>
-          <div class="meta">
-            <span></span>
+        <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="item two wide column">
+          <div class="ui small image">
+            <!-- need to change to proper logos -->
+            <img src="/assets/images/jt_nologo.png">
           </div>
-          <div class="description">
-            <p>{{ list.description }}</p>
+          <div class="middle aligned content">
+            <a class="header">{{ list.toolListName }}</a>
+            <!-- perhaps add a date here -->
+            <div class="meta">
+              <span></span>
+            </div>
+            <div class="description">
+              <p>{{ list.description }}</p>
+            </div>
           </div>
-        </div>
       </div>
     </div>
 
-    <!-- <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="column featuredList">
-      <div class="ui fluid card button">
-        <div class="header"><h1 class="ui header">{{ list.toolListName }}</h1></div>
-          <div class="description">
-            <p>
-              {{ list.description }}
-            </p>
-          </div>
-      </div> -->
-    <!-- </div> -->
   </div>
   <div class="ui grid stackable">
     <div class="sixteen wide column">
