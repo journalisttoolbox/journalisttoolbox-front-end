@@ -6,7 +6,7 @@
     <div class="ui page grid">
       <div class="four wide column ui segment">
         <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
-        <img ng-src="http://placehold.it/250/ffffff/ffffff" /> 
+        <img ng-src="http://placehold.it/250/ffffff/ffffff" />
       </div>
       <div class="five wide column">
         <h1 style="margin-bottom:0;">{{tool.name}}</h1>
@@ -175,8 +175,8 @@
         </div> <!-- End ui view -->
       </div>
 
-      <div class="row ui center aligned segment" ng-show="!ReviewsExist">
-        <h4>There are currently no reviews available for this tool.</h4>
+      <div class="row" ng-show="!ReviewsExist">
+        <h4 style="text-align:center;">There are currently no reviews available for this tool.</h4>
       </div>
     </div>
 

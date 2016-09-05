@@ -27,116 +27,104 @@
       </div>
     </div>
 
-      <div class="ui four column grid" style="margin:0px;" ng-show="(tools | filter:term).length > 0">
-        <div class="left floated left aligned thirteen wide column">
-          <div class="ui top attached tabular menu" >
-            <a class="item active" data-tab="first">Platforms</a>
-            <a class="item" data-tab="second">Categories</a>
-            <a class="item" data-tab="third">Others</a>
-          </div>
-          <div class="ui bottom attached tab segment active" data-tab="first">
-            <table class="ui very basic collapsing table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
-                      <label for="web"><b>Web</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
-                      <label for="Windows"><b>Windows</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
-                      <label for="Linux"><b>Linux</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
-                      <label for="mac"><b>MacOS</b></label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="ui bottom attached tab segment" data-tab="second">
-            <table class="ui very basic collapsing table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Maps')" tabindex="0" class="hidden" name="Maps" id="Maps">
-                      <label for="Maps"><b>Maps</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Videos')" tabindex="0" class="hidden" name="Videos" id="Videos">
-                      <label for="Videos"><b>Videos</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Images')" tabindex="0" class="hidden" name="Images" id="Images">
-                      <label for="Images"><b>Images</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Charts')" tabindex="0" class="hidden" name="Charts" id="Charts">
-                      <label for="Charts"><b>Charts</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Audio')" tabindex="0" class="hidden" name="Audio" id="Audio">
-                      <label for="Audio"><b>Audio</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Data Processing')" tabindex="0" class="hidden" name="Data" id="Data">
-                      <label for="Data"><b>Data Processing</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Timelines')" tabindex="0" class="hidden" name="Timelines" id="Timelines">
-                      <label for="Timelines"><b>Timelines</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Design')" tabindex="0" class="hidden" name="Design" id="Design">
-                      <label for="Design"><b>Design</b></label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="ui bottom attached tab segment" data-tab="third">
-            <table class="ui very basic collapsing table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter(true)" tabindex="0" class="hidden" name="free" id="free">
-                      <label for="free"><b>Free</b></label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+    <div ng-show="(tools | filter:term).length > 0">
+
+      <div class="ui top attached tabular menu" >
+        <a class="item active" data-tab="first">Platforms</a>
+        <a class="item" data-tab="second">Categories</a>
+        <a class="item" data-tab="third">Other</a>
+      </div>
+
+      <div class="ui bottom attached tab segment active" data-tab="first">
+        <ul>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
+              <label for="web"><b>Web</b></label>
+            </div>
+          </li>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
+              <label for="Windows"><b>Windows</b></label>
+            </div>
+          </li>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
+              <label for="Linux"><b>Linux</b></label>
+            </div>
+          </li>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
+              <label for="mac"><b>MacOS</b></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+        <div class="ui bottom attached tab segment" data-tab="second">
+          <ul>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Maps')" tabindex="0" class="hidden" name="Maps" id="Maps">
+                <label for="Maps"><b>Maps</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Videos')" tabindex="0" class="hidden" name="Videos" id="Videos">
+                <label for="Videos"><b>Videos</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Images')" tabindex="0" class="hidden" name="Images" id="Images">
+                <label for="Images"><b>Images</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Charts')" tabindex="0" class="hidden" name="Charts" id="Charts">
+                <label for="Charts"><b>Charts</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Audio')" tabindex="0" class="hidden" name="Audio" id="Audio">
+                <label for="Audio"><b>Audio</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Data Processing')" tabindex="0" class="hidden" name="Data" id="Data">
+                <label for="Data"><b>Data Processing</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Timelines')" tabindex="0" class="hidden" name="Timelines" id="Timelines">
+                <label for="Timelines"><b>Timelines</b></label>
+              </div>
+            </li>
+            <li style="display: inline-block;">
+              <div class="ui checkbox">
+                <input type="checkbox" ng-click="includeFilter('Design')" tabindex="0" class="hidden" name="Design" id="Design">
+                <label for="Design"><b>Design</b></label>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ui bottom attached tab segment" data-tab="third">
+          <div class="ui checkbox">
+            <input type="checkbox" ng-click="includeFilter(true)" tabindex="0" class="hidden" name="free" id="free">
+            <label for="free"><b>Free</b></label>
           </div>
         </div>
+
         <div class="right floated left aligned three wide column">
           <div style="padding-top:20%;">
             <div class="ui compact left menu">
@@ -159,10 +147,8 @@
         </div>
       </div>
 
-
     <div class="ui three cards stackable" ng-show="!noResults && ShowFilter">
       <div class="ui link card" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
-
         <a class="image" ui-sref="tool({id: tool._id})">
           <img ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" alt="" />
         </a>
@@ -173,7 +159,6 @@
           <div class="desciption" ui-sref="tool({id: tool._id})">
             {{tool.description | limitTo: 120 }}{{tool.description.length > 120 ? '...' : ''}}
           </div>
-
         </div>
         <div class="extra content">
           <i class="green thumbs up icon"></i> {{tool.upvotes.length}} &nbsp;
@@ -182,5 +167,6 @@
             <span ng-repeat="cat in tool.categories" style="font-size:12px">{{cat}}{{$last ? '' : ', '}}</span>
           </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
