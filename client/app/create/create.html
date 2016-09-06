@@ -60,7 +60,7 @@
 
       <div class="row">
           <div class="eight wide column">
-            <div class="field input">
+            <div class="field input" ng-class="{'disabled': currentUser().name === undefined || currentUser().isVerified === false}">
               <label>Version</label>
               <div class="ui left icon input">
                 <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version" required>

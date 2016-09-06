@@ -26,6 +26,9 @@ $btnGithubBackgroundHighlight:      #ccc;
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
 
+#signup-form{
+  margin-bottom:20px;
+}
 
 .ui.small.modal{
 	height: 365px;
