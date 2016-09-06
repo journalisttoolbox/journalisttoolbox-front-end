@@ -5,8 +5,7 @@
   <div ng-show="!errors.noTool" class="toolWrapper">
     <div class="ui page grid">
       <div class="four wide column ui segment">
-        <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
-        <img ng-src="http://placehold.it/250/ffffff/ffffff" />
+        <img err-src="/assets/images/jt_nologo.png" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
       </div>
       <div class="five wide column">
         <h1 style="margin-bottom:0;">{{tool.name}}</h1>
@@ -189,13 +188,15 @@
     <h1>Tool not found :-(.</h1>
   </div>
 
-    <div class="ui divider"></div>
-
-    <div class="ui page grid">
-      <div class="sixteen wide column">
-        <div class="footer">
-          <p>With ♥ from Journalist Toolbox team</p>
-        </div>
+  <div class="container">
+    <hr>
+    <div class="ui grid">
+      <div class="twelve wide column">
+          <p>With ♥ from Newsroom.tools team.</p>
+      </div>
+      <div class="four wide column right aligned">
+          <a target="_blank" style="color:#1dcaff;" href="https://twitter.com/newsroomtools"><i class="fa fa-twitter fa-2x"></i></a>
       </div>
     </div>
   </div>
+</div>
