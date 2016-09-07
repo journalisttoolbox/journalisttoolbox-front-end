@@ -43,11 +43,11 @@
               <li>{{ errors.listError }}</li>
             </ul>
           </div>
-          <div ng-show="isLoggedIn()" class="ui dropdown list">
-            <div class="ui label addToList" ng-click="loadToolLists()" >
-              <i class="plus icon"></i> Add to list
-              <i class="dropdown icon"></i>
-            </div>
+
+          <div ng-show="isLoggedIn()" class="ui selection dropdown">
+            <input type="hidden" name="addToList">
+            <i class="dropdown icon"></i>
+            <div class="default text">Add to list</div>
             <div class="menu">
               <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
               <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
@@ -184,4 +184,8 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+  $('.ui.dropdown')
+    .dropdown();
+  </script>
 </div>

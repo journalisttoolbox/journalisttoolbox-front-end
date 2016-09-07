@@ -19,17 +19,18 @@
 
     if($scope.isLoggedIn()) {
       $scope.user = User.get();
+      $timeout(function(){$scope.loadToolLists();}, 300);
     }
 
     $scope.loadToolLists = function() {
       $scope.toolLists = {};
-      if($scope.user.toolLists.length) { 
+      if($scope.user.toolLists.length) {
         ToolList.get({ 'id': $scope.user.toolLists })
         .$promise.then(function(lists) {
           $scope.toolLists = lists;
         });
       } else {
-        $scope.toolLists = false; 
+        $scope.toolLists = false;
       }
     };
 
@@ -37,10 +38,10 @@
      * Functions to deal with showing error or success messages when a tool has been added to a user's list
      */
       $scope.addToolToList = function(toolListID) {
-        ToolList.update({ 
-          id: toolListID, 
+        ToolList.update({
+          id: toolListID,
           addTool: true,
-          toolID: $scope.tool._id 
+          toolID: $scope.tool._id
         }, function(data) {
           $scope.listErrors = {};
           $scope.toolListAltered = data;
@@ -153,17 +154,17 @@
             $('#progressUse').progress({value: $scope.easeOfUse});
             $('#progressProd').progress({value: $scope.timeSpentProducing});
             $('#progressSat').progress({value: $scope.satisfiedWithTool});
-            $('#progressAgain').progress({value: $scope.wouldUseAgain});            
+            $('#progressAgain').progress({value: $scope.wouldUseAgain});
             $('#progressLearn').progress({value: $scope.timeSpentLearning});
 
             //score of the tool
             $scope.ToolScore = ($scope.easeOfUse+$scope.timeSpentLearning+$scope.timeSpentProducing+$scope.satisfiedWithTool+$scope.wouldUseAgain) / 5;
-                
+
           }, function(err) {
             $scope.errors.noTool = true;
-          });  
+          });
       })();
 
   }
-  
+
 })();

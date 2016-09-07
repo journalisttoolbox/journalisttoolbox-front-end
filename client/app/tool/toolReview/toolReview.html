@@ -1,4 +1,4 @@
-<!-- <div class="ui grid"> -->
+<div class="ui grid">
 <!-- <div class="row">
 </div>
 
@@ -17,7 +17,7 @@
     <h2>Review <b class="toolReviewName">{{tool.name}}</b></h2>
   </div> -->
 
-  <form class="ui form">
+  <form class="form centered">
   <!-- HOW HARD TO USE -->
     <div class="grouped fields">
       <div class="label ui question">
@@ -116,7 +116,8 @@
       </div>
     </div>
 
+
     <button ng-click="postReview()" class="ui button toolReviewSubmit" type="submit">Submit</button>
   </form>
-
+</div>
   <div ng-include="'app/tool/toolReview/toolReviewMessage/toolReviewMessage.html'"></div>
