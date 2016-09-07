@@ -1,48 +1,37 @@
-
-<div class="ui segment">
-  <div class="container">
-
+<div class="container">
   <div ng-show="!errors.noTool" class="toolWrapper">
-    <div class="ui page grid">
-      <div class="four wide column ui segment">
-        <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
-        <img ng-src="http://placehold.it/250/ffffff/ffffff" /> 
-      </div>
-      <div class="five wide column">
-        <h1 style="margin-bottom:0;">{{tool.name}}</h1>
-        <div class="meta">{{tool.version}}</div>
-        <a class="homepageUrl" ng-show="tool.home_url" href="{{tool.home_url}}" target="_blank">{{tool.home_url}}</a>
-        <p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
-        <div ng-bind-html="record.excerpt"></div>
-        <div class="ui buttons">
-          <a ng-show="tool.github_url" href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i>GitHub</a>
-          <div ng-show="tool.github_url && (tool.download_url || tool.home_url)" class="or"></div>
-          <a ng-show="tool.download_url || tool.home_url" ng-attr-href="{{(tool.download_url) ? tool.download_url : tool.home_url; }}" target="_blank" class="ui positive button">Give it a go</a>
+    <div class="ui stackable grid">
+      <div class="row">
+        <div class="one wide column"></div>
+        <div class="three wide column ui segment center aligned">
+          <img err-src="/assets/images/jt_nologo.png" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
         </div>
-      </div>
-      <div class="seven wide column">
-        <div class="ui center aligned segment">
-
-          <div class="ui error message listErrors" ng-show="errors.listError">
-            <div class="header">
-              There was a problem adding this tool to your list
-            </div>
-            <ul class="list">
-              <li>{{ errors.listError }}</li>
-            </ul>
+        <div class="seven wide column left aligned">
+          <h1>{{tool.name}}</h1>
+          <div class="meta">{{tool.version}}</div>
+          <a class="homepageUrl" ng-show="tool.home_url" href="{{tool.home_url}}" target="_blank">{{tool.home_url}}</a>
+          <p class="meta">{{tool.developer}} <i class="check circle icon orange" ng-if="record.acf.organisation_verified"><small style="text-transform: uppercase; padding-left: 2px;">Verified</small></i></p>
+          <div ng-bind-html="record.excerpt"></div>
+          <div ng-show="tool.github_url && (tool.download_url || tool.home_url)" class="ui buttons">
+            <a href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i>GitHub</a>
+            <div class="or"></div>
+            <a ng-attr-href="{{(tool.download_url) ? tool.download_url : tool.home_url; }}" target="_blank" class="ui positive button">Give it a go</a>
           </div>
-          <div ng-show="isLoggedIn()" class="ui dropdown list">
-            <div class="ui label addToList" ng-click="loadToolLists()" >
-              <i class="plus icon"></i> Add to list
-              <i class="dropdown icon"></i>
-            </div>
+          <a ng-show="tool.github_url && !(tool.download_url || tool.home_url)" href="{{tool.github_url}}" target="_blank" class="ui button"><i class="github icon"></i>GitHub</a>
+          <a ng-show="!tool.github_url && (tool.download_url || tool.home_url)" ng-attr-href="{{(tool.download_url) ? tool.download_url : tool.home_url; }}" target="_blank" class="ui positive button">Give it a go</a><br><br>
+          <div ng-show="isLoggedIn()" class="ui selection dropdown">
+            <input type="hidden" name="addToList">
+            <i class="dropdown icon"></i>
+            <div class="default text">Add to list</div>
             <div class="menu">
               <div ng-click="addToolToList(value._id)" ng-repeat="(key, value) in toolLists" class="item">{{ value.toolListName }}</div>
               <div ng-click="addToFavourites(tool._id, tool.name)" class="item">Favourites <i class="star icon"></i></div>
               <div ng-click="createNewList()" class="item newList">New List...</div>
             </div>
           </div>
+        </div>
 
+        <div class="five wide column center aligned">
           <h2>Votes</h2>
           <div class="center aligned column">
             <div ng-click="toolVote(true)" class="ui icon button buttonVote">
@@ -56,132 +45,132 @@
               <span ng-class="(tool.downvotes.length>tool.upvotes.length)? 'huge': 'large'" class="text large">{{ tool.downvotes.length }}</span>
             </div>
           </div>
+          <div class="ui error message listErrors" ng-show="errors.listError">
+            <div class="header">
+              There was a problem adding this tool to your list
+            </div>
+            <ul class="list">
+              <li>{{ errors.listError }}</li>
+            </ul>
+          </div>
 
-          <!-- REVIEW STATE BUTTON -->
           <div ng-show="hasUserVoted" class="ui message reviewState">
-            <div class="content">
-              <div class="header">
-                Thanks for voting! Care to leave a review?
-              </div>
-              <button class="ui button" ng-click="reviewState()">Leave a review</button>
+            <div class="header">
+              Thank you!
             </div>
+            <p><a href="#review-form" ng-click="reviewState()">Care to leave a review?</a></p>
           </div>
-
         </div>
       </div>
     </div>
 
-    <h2 class="ui horizontal divider header">
-      <i class="configure icon"></i>
-      Tool Information
-    </h2>
-
-    <div class="ui page grid"> <!-- For nested reviews child -->
-      <div class="sixteen wide column">
-        <div class="ui equal width center aligned padded grid segmentinternally celled stackable">
-          <div class="row">
-            <div class="column">
-              <div ng-bind-html="tool.description"></div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="column">
-              <p><strong>Company(ies) using this tool</strong></p>
-              <div ng-bind-html="tool.companies"></div>
-            </div>
-            <div class="column">
-              <p><strong>Platform(s)</strong></p>
-              <div ng-bind-html="tool.platforms"></div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="column">
-              <p><strong>Price</strong></p>
-              <div ng-bind-html="(tool.price === '0') ? 'Free' : tool.price"></div>
-            </div>
-            <div class="column">
-              <p><strong>Version</strong></p>
-              <div ng-bind-html="tool.version"></div>
-            </div>
-            <div class="column">
-              <p><strong>Uploaded date</strong></p>
-              <div ng-bind-html="tool.uploaded_date"></div>
-            </div>
+    <div class="ui equal width padded grid segmentinternally celled stackable">
+      <div class="tool-section row justified">
+        <div class="column">
+          <div class="tool_description">
+              <p>{{tool.description}}</p>
           </div>
         </div>
-      </div> <!-- End ui view -->
-    </div>
-
-    <div class="ui page grid" ui-view> <!-- For nested reviews child -->
-      <div class="sixteen wide column">
-        <div class="ui equal width center aligned padded grid segmentinternally stackable">
-
-        <div class="row">
-          <div class="column">
-            <h3 class="ui horizontal divider header">
-              <i class="star icon"></i>
-              Reviews
-            </h3>
-          </div>
-        </div>
-        <div class="row" ng-show="ReviewsExist">
-          <div class="ui centered column">
-            <h3 style="margin-bottom:0;">Score</h3>
-            <div>Out of {{tool.reviews.length}} reviews</div>
-            <div class="ui green inverted segment">
-              <h1 style="font-size:70px">{{ToolScore | number:1}}</h1>
-            </div>
-          </div>
-          <div class="left aligned column">
-            <strong>Ease of use</strong>
-            <div style="float: right; right: 0px;">{{easeOfUse | number:1}}</div>
-            <div class="ui green tiny progress" id="progressUse" data-total="10" style="height:8px; width:85%; padding:0">
-              <div class="bar"></div>
-            </div>
-            <strong>Quick to produce</strong>
-            <div style="float: right; right: 0px;">{{timeSpentProducing | number:1}}</div>
-            <div class="ui green tiny progress" id="progressProd" data-total="10" style="height:8px; width:85%; padding:0">
-              <div class="bar">
-              </div>
-            </div>
-            <strong>Level of satisfaction</strong>
-            <div style="float: right; right: 0px;">{{satisfiedWithTool | number:1}}</div>
-            <div class="ui green tiny progress" id="progressSat" data-total="10" style="height:8px; width:85%; padding:0">
-              <div class="bar">
-              </div>
-            </div>
-            <p>
-          </div>
-
-            <div class="left aligned column">
-              <strong>Likely to recommend</strong>
-              <div style="float: right; right: 0px;">{{wouldUseAgain | number:1}}</div>
-              <div class="ui green tiny progress" id="progressAgain" data-total="10" style="height:8px; width:85%; padding:0">
-                <div class="bar"></div>
-              </div>
-              <strong>Quick to learn</strong>
-              <div style="float: right; right: 0px;">{{timeSpentLearning | number:1}}</div>
-              <div class="ui green tiny progress" id="progressLearn" data-total="10" style="height:8px; width:85%; padding:0">
-              <div class="bar">
-              </div>
-              </div>
-              <p>
-              </div>
-          </div>
-
-          </div>
-        </div> <!-- End ui view -->
       </div>
 
-      <div class="row ui center aligned segment" ng-show="!ReviewsExist">
-        <h4>There are currently no reviews available for this tool.</h4>
+      <div class="centered tool-section row">
+        <div class="column">
+          <p><strong>Company(ies) using this tool</strong></p>
+          <p><span ng-repeat="company in tool.companies">{{company}}{{$last ? '' : ', '}}</span></p>
+        </div>
+        <div class="column">
+          <p><strong>Platform(s)</strong></p>
+          <p><span ng-repeat="platform in tool.platforms">{{platform}}{{$last ? '' : ', '}}</span></p>
+        </div>
+      </div>
+
+      <div class="centered row">
+        <div class="column">
+          <p><strong>Price</strong></p>
+          <div ng-bind-html="(tool.price === '0') ? 'Free' : tool.price"></div>
+        </div>
+        <div class="column">
+          <p><strong>Version</strong></p>
+          <div ng-bind-html="tool.version"></div>
+        </div>
+        <div class="column">
+          <p><strong>Uploaded date</strong></p>
+          <div ng-bind-html="tool.uploaded_date"></div>
+        </div>
       </div>
     </div>
 
+
+    <div class="ui grid centered stackable">
+      <div ui-view id="review-form"></div> <!-- For nested reviews child -->
+    </div>
+
+    <div class="ui equal width center aligned padded grid stackable">
+      <div class="tool-section row">
+        <div class="column">
+          <h3 class="ui horizontal divider header">
+            <i class="star icon"></i>
+            Reviews
+          </h3>
+        </div>
+      </div>
+
+      <div class="row" ng-show="ReviewsExist">
+        <div class="ui centered column">
+          <h3 style="margin-bottom:0;">Score</h3>
+          <div>Out of {{tool.reviews.length}} reviews</div>
+          <div class="ui green inverted segment">
+            <h1 style="font-size:50px">{{ToolScore | number:1}}</h1>
+          </div>
+        </div>
+        <div class="left aligned column">
+          <strong>Ease of use</strong>
+          <div style="float: right;">{{easeOfUse | number:1}}</div>
+          <div class="ui green tiny progress" id="progressUse" data-total="10" style="height:8px; width:85%; padding:0">
+            <div class="bar"></div>
+          </div>
+          <strong>Quick to produce</strong>
+          <div style="float: right; right: 0px;">{{timeSpentProducing | number:1}}</div>
+          <div class="ui green tiny progress" id="progressProd" data-total="10" style="height:8px; width:85%; padding:0">
+            <div class="bar">
+            </div>
+          </div>
+          <strong>Level of satisfaction</strong>
+          <div style="float: right; right: 0px;">{{satisfiedWithTool | number:1}}</div>
+          <div class="ui green tiny progress" id="progressSat" data-total="10" style="height:8px; width:85%; padding:0">
+            <div class="bar">
+            </div>
+          </div>
+          <p>
+        </div>
+        <div class="left aligned column">
+          <strong>Likely to recommend</strong>
+          <div style="float: right; right: 0px;">{{wouldUseAgain | number:1}}</div>
+          <div class="ui green tiny progress" id="progressAgain" data-total="10" style="height:8px; width:85%; padding:0">
+            <div class="bar"></div>
+          </div>
+          <strong>Quick to learn</strong>
+          <div style="float: right; right: 0px;">{{timeSpentLearning | number:1}}</div>
+          <div class="ui green tiny progress" id="progressLearn" data-total="10" style="height:8px; width:85%; padding:0">
+          <div class="bar">
+          </div>
+          </div>
+          <p>
+          </div>
+        </div>
+      </div>
+
+    <div class="ui grid">
+      <div class="row centered" ng-show="!ReviewsExist && isLoggedIn()">
+        <h4>There are currently no reviews available for this tool. <a href="#review-form" ng-click="reviewState()">Add one yourself!</a></h4>
+      </div>
+      <div class="row centered" ng-show="!ReviewsExist && !isLoggedIn()">
+        <h4>There are currently no reviews available for this tool. Why don't you <a ng-click="showModal()">login</a> and add one yourself!</a></h4>
+      </div>
+    </div>
     <!-- INCLUDE the success message on adding to list -->
     <div ng-include="'app/tool/toolList/toolListMessage.html'"></div>
+
   </div>
 
   <!-- Error handler -->
@@ -189,13 +178,19 @@
     <h1>Tool not found :-(.</h1>
   </div>
 
-    <div class="ui divider"></div>
 
-    <div class="ui page grid">
-      <div class="sixteen wide column">
-        <div class="footer">
-          <p>With ♥ from Journalist Toolbox team</p>
-        </div>
-      </div>
+  <hr>
+  <div class="ui grid">
+    <div class="twelve wide column">
+        <p>With ♥ from Newsroom.tools team.</p>
+    </div>
+    <div class="four wide column right aligned">
+        <a target="_blank" style="color:#1dcaff;" href="https://twitter.com/newsroomtools"><i class="fa fa-twitter fa-2x"></i></a>
     </div>
   </div>
+</div>
+
+<script type="text/javascript">
+$('.ui.dropdown')
+  .dropdown();
+</script>

@@ -1,28 +1,56 @@
-<div class="ui fixed green inverted main menu">
-  <div class="text item bold">
-    <a ng-click="home()"><img src="assets/images/thebriefcase.png" style="max-width: 23px; vertical-align: -3px; margin-right: 2px;"><span style="font-family: 'Roboto Slab'; font-weight: 700; text-transform: uppercase; color: #FFFFFF; letter-spacing: 3px;">Newsroom</span><span style="font-family: 'Roboto Slab'; font-weight: 100; text-transform: uppercase; color: #FFFFFF; letter-spacing: 2px;">Tools</span></a> 
-  </div>
-  <a ng-click="home()" class="item">
-    <i class="home icon"></i> Home
-  </a>
-  <a ui-sref="about" class="item">
-    <i class="question icon"></i> About
-  </a>
-  <a ui-sref="create" class="item">
-    <i class="puzzle icon"></i> Create
-  </a>
-
-  <div style="display:inline;" class="item right" ng-hide="isLoggedIn()">
-    <a href="#" ng-click="showModal()">Login</a>
-  </div>
-  <jt-login></jt-login>
-
-  <div ng-show="isLoggedIn()" class="ui simple dropdown item right navbar-dropdown">
-      <img ng-src="{{ getCurrentUser().gravUrl }}"> <i class="dropdown icon"></i>
-      <div class="menu">
-        <a ui-sref="admin.tools" class="item">Admin Panel</a>
-        <a class="item" href="#" ng-click="logout()"> Logout</a>
+<div class="ui grid">
+  <div class="computer tablet only row">
+    <div class="ui inverted green fixed menu navbar page grid">
+      <div class="text item bold">
+        <a ng-click="home()"><img src="assets/images/thebriefcase.png" style="max-width: 23px; vertical-align: -3px; margin-right: 2px;"><span style="font-family: 'Roboto Slab'; font-weight: 700; text-transform: uppercase; color: #FFFFFF; letter-spacing: 3px;">Newsroom</span><span style="font-family: 'Roboto Slab'; font-weight: 100; text-transform: uppercase; color: #FFFFFF; letter-spacing: 2px;">Tools</span></a>
       </div>
+      <a ng-click="home()" class="item">Home</a>
+      <a ui-sref="about" class="item">About</a>
+      <a ui-sref="create" class="item">Create</a>
+      <div class="right menu">
+        <div style="display:inline;" class="item right" ng-hide="isLoggedIn()">
+          <a href="#" ng-click="showModal()">Login</a>
+        </div>
+        <jt-login></jt-login>
+      </div>
+      <div ng-show="isLoggedIn()" class="ui simple dropdown item right navbar-dropdown">
+          <img ng-src="{{ getCurrentUser().gravUrl }}"> <i class="dropdown icon"></i>
+          <div class="menu">
+            <a ui-sref="admin.tools" class="item">Admin Panel</a>
+            <a class="item" href="#" ng-click="logout()"> Logout</a>
+          </div>
+      </div>
+    </div>
   </div>
-  </div>
+
+  <div class="mobile only row">
+      <div class="ui fixed inverted green navbar menu">
+        <div class="text item bold">
+          <a ng-click="home()"><img src="assets/images/thebriefcase.png" style="max-width: 23px; vertical-align: -3px; margin-right: 2px;"><span style="font-family: 'Roboto Slab'; font-weight: 700; text-transform: uppercase; color: #FFFFFF; letter-spacing: 3px;">Newsroom</span><span style="font-family: 'Roboto Slab'; font-weight: 100; text-transform: uppercase; color: #FFFFFF; letter-spacing: 2px;">Tools</span></a>
+        </div>
+          <div class="right menu open">
+              <a href="" class="menu item">
+                  <i class="content icon"></i>
+              </a>
+          </div>
+      </div>
+      <div class="ui vertical navbar menu">
+        <a ng-click="home()" class="item">Home</a>
+        <a ui-sref="about" class="item">About</a>
+        <a ui-sref="create" class="item">Create</a>
+        <a ng-hide="isLoggedIn()" ng-click="showModal()" class="item">Login</a>
+        <a ng-show="isLoggedIn()" ui-sref="admin.tools" class="item">Admin Panel</a>
+        <a ng-show="isLoggedIn()" class="item" href="#" ng-click="logout()"> Logout</a>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.right.menu.open').on("click",function(e){
+    e.preventDefault();
+    $('.ui.vertical.menu').toggle();
+  });
+
+  $('.ui.dropdown').dropdown();
+  });
+</script>

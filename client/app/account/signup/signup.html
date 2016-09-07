@@ -6,7 +6,7 @@
   </div>
 
 
-  <div class="ui column stackable page grid">
+  <div id="signup-form" class="ui stackable grid">
     <form name="signupForm" class="ui six wide column centered form segment" ng-submit="register(signupForm)" novalidate>
 
     <!-- NAME -->
@@ -33,13 +33,28 @@
       </div>
 
       <!-- SOCIAL SIGNUP -->
-        <div style="text-align: center;">
-          <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
-            <i class="fa fa-twitter"></i> Connect with Twitter
-          </a>
-        </div>
 
-      <button class="ui submit positive button center-button" ng-disabled="signupForm.$invalid">Signup</button>
+      <button class="ui submit large positive button center-button" ng-disabled="signupForm.$invalid">Signup</button>
+      <p style="text-align:center;">
+        -OR-
+      </p>
+      <a class="btn btn-twitter center-button" href="" ng-click="loginOauth('twitter')">
+        <i class="fa fa-twitter"></i> Connect with Twitter
+      </a>
+
+
     </form>
+  </div>
+</div>
+
+<div class="container">
+  <hr>
+  <div class="ui grid">
+    <div class="twelve wide column">
+        <p>With ♥ from Newsroom.tools team.</p>
+    </div>
+    <div class="four wide column right aligned">
+        <a target="_blank" style="color:#1dcaff;" href="https://twitter.com/newsroomtools"><i class="fa fa-twitter fa-2x"></i></a>
+    </div>
   </div>
 </div>

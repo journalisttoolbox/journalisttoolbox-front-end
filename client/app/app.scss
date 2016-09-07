@@ -6,7 +6,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'font-awesome/scss/font-awesome';
 
 /* Not importing via bower due to there not being any sass versions */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.3/semantic.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:300,700,100');
 
 /**
@@ -16,10 +16,13 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  // COLOR VARIABLES
  $mainGreen: #5bbd72;
 
+
 html {
   font-size: 90% !important;
 }
+body{
 
+}
 a {
   /* Need to override BS styles */
   text-decoration: none !important;
@@ -52,10 +55,14 @@ iframe {
   float: right;
 }
 
+*:not(i) {
+  font-family: 'Roboto Slab', serif !important;
+}
+
 body {
   margin: 0;
-  padding-top: 5%;
-  work-break: inherit!important;
+  padding-top: 2%;
+  word-break: inherit !important;
 }
 
 a {
@@ -65,18 +72,18 @@ a {
 p {
   line-height: 25px;
 }
-
-.text.huge {
-  font-size: 4em;
-  vertical-align: middle;
-}
+//
+// .text.huge {
+//   // font-size: 4em;
+//   vertical-align: middle;
+// }
 
 .container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-  margin-top:20px;
+  margin-top:50px;
 }
 
 .btn {
@@ -102,8 +109,12 @@ hr {
   clear: both;
 }
 
+h1{
+  font-size: 28px;
+}
+
 .center-button{
-  margin-left: auto !important; 
+  margin-left: auto !important;
   margin-right:auto !important;
   display:block !important;
 }
@@ -121,6 +132,7 @@ hr {
 @import 'main/grid/grid.scss';
 @import 'main/homepageLists/homepageLists.scss';
 @import 'main/main.scss';
+@import 'main/search/search.scss';
 @import 'main/verify-account/verify-account.scss';
 @import 'tool/tool.scss';
 @import 'tool/toolReview/toolReview.scss';

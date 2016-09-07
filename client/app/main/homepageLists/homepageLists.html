@@ -1,21 +1,34 @@
-  <div class="sixteen wide column ftlHeader">
+<div class="container">
+  <div class="ftlHeader">
     <h1>Featured Tool Lists</h1>
   </div>
-
-<div class="ui three column grid">
-  <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="column featuredList">
-    <div class="ui fluid card button">
-      <div class="header"><h1 class="ui header green">{{ list.toolListName }}</h1></div>
-        <div class="description">
-          {{ list.description }}
+  <div class="ui four link stackable cards">
+      <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="card">
+        <div class="image">
+          <!-- need to change to proper logos -->
+          <img src="/assets/images/jt_nologo.png">
+        </div>
+        <div class="content">
+            <a class="header">{{ list.toolListName }}</a>
+            <!-- perhaps add a date here -->
+            <div class="meta">
+              <span></span>
+            </div>
+            <div class="description">
+              <p>{{ list.description }}</p>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <i class="fa fa-calendar"></i>
+              <!-- change to proper dates -->
+              04/06/2016
+            </span>
+            <span>
+              <i class="fa fa-suitcase"></i>
+                {{list.tools.length}} Tools
+            </span>
+          </div>
         </div>
     </div>
   </div>
-</div>
-
-
-<div class="ui page grid stackable">
-  <div class="sixteen wide column">
-    <div class="ui divider"></div>
-  </div>
-</div>

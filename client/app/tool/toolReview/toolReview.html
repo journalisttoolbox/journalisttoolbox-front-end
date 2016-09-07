@@ -1,22 +1,26 @@
-<div class="ui reviewForm segment">
-  <button ng-click="toolState()"class="ui left labeled icon button"><i class="left arrow icon"></i>
-    back to tool
-  </button>
 
-  <h2>Leave a review for <b class="toolReviewName">{{tool.name}}</b></h2>
+  <div class="row">
+    <div class="close-button column">
+      <button ng-click="toolState()"class="ui left labeled icon button"><i class="x icon"></i>
+        Close
+      </button>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="column">
+      <h2>Review <b class="toolReviewName">{{tool.name}}</b></h2>
+    </div>
+  </div>
 
-  <form class="form ui">
-
-  <h3>On a scale of 1-10...</h3>
-
+  <form class="form centered">
   <!-- HOW HARD TO USE -->
     <div class="grouped fields">
       <div class="label ui question">
         <label for="easeOfUse">How hard was this tool to use?</label>
       </div>
 
-      <div class="ui slider range">
+      <div class="ui slider">
         <input type="range" ng-model="slider.easeOfUse" min="0" max="10" value="5" />
       </div>
       <div class="options">
@@ -105,9 +109,8 @@
       </div>
     </div>
 
-    <button ng-click="postReview()" class="ui button toolReviewSubmit" type="submit">Submit</button>
+
+    <button ng-click="postReview()" class="ui button positive large" type="submit">Review</button>
   </form>
 
   <div ng-include="'app/tool/toolReview/toolReviewMessage/toolReviewMessage.html'"></div>
-
-</div>

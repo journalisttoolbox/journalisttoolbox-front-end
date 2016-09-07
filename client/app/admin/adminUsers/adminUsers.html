@@ -1,5 +1,5 @@
 <div class="usersAdmin">
-  <h2>USERS</h2>
+  <h2 style="text-align:center;">USERS</h2>
 
 <div ng-show="forbidden" class="ui error message">
   <div class="header">
@@ -11,14 +11,14 @@
 </div>
 
 <div ng-show="!forbidden">
-  
+
   <p>Click to edit field.</p>
     <!-- USERS TABLE -->
     <table class="ui celled striped tablet stackable table">
       <thead>
         <tr>
           <th></th>
-          <th ng-repeat="(head, value) in usersList[0]"><span>{{ head }}</span></th>
+          <th ng-repeat="header in collectionHeaders"><span>{{ header }}</span></th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -28,7 +28,7 @@
             <input type="checkbox" ng-click="alterSelect(row._id)">
           </td>
           <td ng-repeat="(name, value) in row" ng-scope>
-            <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="row[name] || 'null'"></a>
+            <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="value || 'null'"></a>
             <textarea ng-model="row[name]" ng-show="editing"></textarea>
             <button ng-click="editing = false; updateUser(row)" ng-show="editing">UPDATE</button>
           </td>
