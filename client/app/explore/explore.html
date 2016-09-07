@@ -1,128 +1,93 @@
-<div class="container">  
-  <h1 class="ui horizontal divider header">
-    {{category | uppercase}}
-  </h1>
-  <div class="ui segment">
-    <h3 class="ui horizontal divider header">
-      <i class="filter icon"></i>
-      Filters
-    </h3>
-    <div class="ui right aligned grid stackable">
-      <div class="left floated left aligned thirteen wide column">
-        <div class="ui nine wide column">
-          <div class="ui top attached tabular menu" >
-            <a class="item active" data-tab="first">Platforms</a>
-            <a class="item" data-tab="second">Others</a>
-          </div>
-          <div class="ui bottom attached tab segment active" data-tab="first">
-            <table class="ui very basic collapsing table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
-                      <label for="web"><b>Web</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
-                      <label for="Windows"><b>Windows</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
-                      <label for="Linux"><b>Linux</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
-                      <label for="mac"><b>MacOS</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('iOS')" tabindex="0" class="hidden" name="iOS" id="iOS">
-                      <label for="iOS"><b>iOS</b></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter('Android')" tabindex="0" class="hidden" name="Android" id="Android">
-                      <label for="Android"><b>Android</b></label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="ui bottom attached tab segment" data-tab="second">
-            <table class="ui very basic collapsing table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="ui checkbox">
-                      <input type="checkbox" ng-click="includeFilter(true)" tabindex="0" class="hidden" name="free" id="free">
-                      <label for="free"><b>Free</b></label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="ui bottom attached tab segment" data-tab="third">
-            Third
-          </div>
+<div class="container">
+  <div class="row centered">
+    <h2 class="explore-header ui horizontal divider header">
+      {{category | uppercase}}
+    </h2>
+  </div>
+  <div class="ui grid stackable" ng-show="(tools | filter:term).length > 0">
+    <div id="filters" class="twelve wide column">
+      <div class="ui top attached tabular menu" >
+        <a class="item active" data-tab="first">Platforms</a>
+        <a class="item" data-tab="second">Other</a>
+      </div>
+
+      <div class="ui bottom attached tab segment active" data-tab="first">
+        <ul class="filter-list">
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('Web')" tabindex="0" class="hidden" name="web" id="web">
+              <label for="web"><b>Web</b></label>
+            </div>
+          </li>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('Windows')" tabindex="0" class="hidden" name="Windows" id="Windows">
+              <label for="Windows"><b>Windows</b></label>
+            </div>
+          </li>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('Linux')" tabindex="0" class="hidden" name="Linux" id="Linux">
+              <label for="Linux"><b>Linux</b></label>
+            </div>
+          </li>
+          <li style="display: inline-block;">
+            <div class="ui checkbox">
+              <input type="checkbox" ng-click="includeFilter('MacOS')" tabindex="0" class="hidden" name="mac" id="mac">
+              <label for="mac"><b>MacOS</b></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ui bottom attached tab segment" data-tab="second">
+        <div class="ui checkbox">
+          <input type="checkbox" ng-click="includeFilter(true)" tabindex="0" class="hidden" name="free" id="free">
+          <label for="free"><b>Free</b></label>
         </div>
       </div>
-      <div class="right floated left aligned three wide column">
-        <div style="padding-top:20%;">
-          <div class="ui compact left menu">
-            <div class="ui simple dropdown item">
-              Order by
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item" ng-click="toolOrder = 'name'">Name A-Z</div>
-                <div class="item" ng-click="toolOrder = '-name'">Name Z-A</div>
-                <div class="item" ng-click="toolOrder = 'uploaded_date'">Date released (↑)</div>
-                <div class="item" ng-click="toolOrder = '-uploaded_date'">Date released (↓)</div>
-                <div class="item" ng-click="toolOrder = '-upvotes'">Upvotes</div>
-                <div class="item" ng-click="toolOrder = '-downvotes'">Downvotes</div>
-                <div class="item" ng-click="toolOrder = 'price'">Price (↑)</div>
-                <div class="item" ng-click="toolOrder = '-price'">Price (↓)</div>
-              </div>
-            </div>
+    </div>
+
+    <div class="four wide column">
+      <div id="sort" class="ui compact left menu">
+        <div class="ui simple dropdown item">
+          Order by
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item" ng-click="toolOrder = 'name'">Name (A-Z)</div>
+            <div class="item" ng-click="toolOrder = '-name'">Name (Z-A)</div>
+            <div class="item" ng-click="toolOrder = 'uploaded_date'">Date released (↑)</div>
+            <div class="item" ng-click="toolOrder = '-uploaded_date'">Date released (↓)</div>
+            <div class="item" ng-click="toolOrder = '-upvotes'">Upvotes</div>
+            <div class="item" ng-click="toolOrder = '-downvotes'">Downvotes</div>
+            <div class="item" ng-click="toolOrder = 'price'">Price (↑)</div>
+            <div class="item" ng-click="toolOrder = '-price'">Price (↓)</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="ui four column grid stackable" ng-mouseover="triggerDimmer()">
-    <a ui-sref="tool({id: tool._id})" class="column" ng-repeat="tool in tools | filter:toolFilter | orderBy:toolOrder">
-      <div class="ui medium image">
-
-        <div class="ui dimmer">
-          <div class="content" style="padding:10px">
-            <div class="center">
-              <div class="ui">{{tool.description | limitTo: 140 }}{{tool.description.length > 140 ? '...' : ''}}</div><br>
-              <span><i class="file image outline icon"></i><span ng-repeat="cat in tool.categories" style="font-size:12px">{{cat}}{{$last ? '' : ', '}}</span></span>
-            </div>
-          </div>
-        </div>
-
-        <img style="max-width: 80%; max-height: 80%; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" />
-        <img ng-src="http://placehold.it/300/ffffff/ffffff" />
-
-        <div class="ui top left orange attached label">
-          <h4>{{tool.name}}</h4>
-        </div>
-        <div ng-class = "(tool.upvotes.length >= tool.downvotes.length)? 'green': 'red'" class="ui bottom right attached label">
-          <i ng-class = "(tool.upvotes.length >= tool.downvotes.length)? 'up': 'down'" class="thumbs icon"></i>{{(tool.upvotes.length >= tool.downvotes.length)? tool.upvotes.length: tool.downvotes.length}}
+  <div class="ui four cards stackable">
+    <div class="ui link card" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
+      <a class="image" ui-sref="tool({id: tool._id})">
+        <img ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" err-src="/assets/images/jt_nologo.png" alt="" />
+      </a>
+      <div class="content">
+        <a class="header" ui-sref="tool({id: tool._id})">
+          {{tool.name}}
+        </a>
+        <div class="desciption" ui-sref="tool({id: tool._id})">
+          {{tool.description | limitTo: 120 }}{{tool.description.length > 120 ? '...' : ''}}
         </div>
       </div>
-    </a>
+      <div class="extra content">
+        <i class="green thumbs up icon"></i> {{tool.upvotes.length}} &nbsp;
+        <i class="red thumbs down icon"></i> {{tool.downvotes.length}}
+        <div class="right floated">
+          <span ng-repeat="cat in tool.categories" style="font-size:12px">{{cat}}{{$last ? '' : ', '}}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
