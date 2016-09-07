@@ -1,21 +1,23 @@
-<div class="ui grid">
+<!-- <div class="ui grid"> -->
 <!-- <div class="row">
-</div>
+</div> -->
 
-<div class="row">
-  <div class="three wide column">
+  <div class="row">
+    <!-- <div class="three wide column">
 
+    </div> -->
+    <div class="close-button column">
+      <button ng-click="toolState()"class="ui left labeled icon button"><i class="x icon"></i>
+        Close
+      </button>
+    </div>
   </div>
-  <div class="four wide column">
-    <button ng-click="toolState()"class="ui left labeled icon button"><i class="x icon"></i>
-      Close
-    </button>
-  </div>
-</div>
 
-  <div class="sixteen wide column center aligned">
-    <h2>Review <b class="toolReviewName">{{tool.name}}</b></h2>
-  </div> -->
+  <div class="row">
+    <div class="column">
+      <h2>Review <b class="toolReviewName">{{tool.name}}</b></h2>
+    </div>
+  </div>
 
   <form class="form centered">
   <!-- HOW HARD TO USE -->
@@ -36,10 +38,8 @@
         <h4>{{ slider.easeOfUse || 5 }}</h4>
       </div>
     </div>
-    <!-- </div> -->
 
   <!-- HOW MUCH TIME SPENT LEARNING -->
-  <!-- <div class="row"> -->
     <div class="grouped fields">
       <div class="label ui question">
         <label for="timeSpentLearning">How much time did you spend learning to use this tool?</label>
@@ -57,7 +57,6 @@
         <h4>{{ slider.timeSpentLearning || 5 }}</h4>
       </div>
     </div>
-  <!-- </div> -->
 
   <!-- HOW MUCH TIME TO PRODUCE SOMETHING -->
     <div class="grouped fields">
@@ -117,7 +116,8 @@
     </div>
 
 
-    <button ng-click="postReview()" class="ui button toolReviewSubmit" type="submit">Submit</button>
+    <button ng-click="postReview()" class="ui button positive large" type="submit">Review</button>
   </form>
-</div>
+
+  <!-- </div> -->
   <div ng-include="'app/tool/toolReview/toolReviewMessage/toolReviewMessage.html'"></div>

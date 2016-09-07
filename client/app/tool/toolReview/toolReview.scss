@@ -17,9 +17,9 @@
   font-size: 20px;
   margin: 20px 0 10px 0;
 }
-.ui.button.toolReviewSubmit {
-  margin-top: 20px;
-}
+// .ui.button.toolReviewSubmit {
+//   margin-top: 20px;
+// }
 .options {
   margin-bottom: 20px;
 
@@ -40,4 +40,9 @@
 }
 .grouped.fields {
   margin-bottom: 50px!important;
+}
+
+.close-button{
+  text-align: left;
+  margin: 25px 0;
 }
