@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  
+
   angular
   .module('jtApp')
   .controller('AdminUsersCtrl', ['$scope', 'User', '$state', 'Auth', AdminUsersController ]);
@@ -17,6 +17,17 @@
         $scope.forbidden = false;
         $scope.usersList = {};
         $scope.usersList = data;
+        var numUsers = $scope.usersList.length;
+        var largestNumFields = 0;
+        var ix = 0;
+        for(var i=0; i<numUsers; i++){
+          if(Object.keys($scope.usersList[i]).length > largestNumFields){
+              ix = i;
+              largestNumFields = Object.keys($scope.usersList[i]).length;
+          }
+        }
+
+        $scope.collectionHeaders = Object.keys($scope.usersList[ix]);
       }, function(err) {
         if (err.status === 403) {
           $scope.forbidden = true;
@@ -25,7 +36,7 @@
     };
 
     if(!Auth.isAdmin()) {
-      $state.go('signup'); 
+      $state.go('signup');
     } else {
       $scope.loadUsers();
     }

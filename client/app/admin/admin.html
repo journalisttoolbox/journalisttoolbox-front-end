@@ -13,16 +13,18 @@
       </div>
     </div>
   </div>
-  
+
   <div ng-show="currentUser().isVerified == true">
-    <div class="ui four column grid">
-      <div class="center aligned column row">
-        <h1 class="centered">ADMIN PANEL</h1>
+    <div class="ui grid">
+      <div class="row centered">
+        <h1>ADMIN PANEL</h1>
+      </div>
+      <div class="row centered">
+        <button class="ui button" ng-click="toolsState()">TOOLS</button>
+        <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
+        <button class="ui button" ng-click="listsState()">LISTS</button>
       </div>
     </div>
-    <button class="ui button" ng-click="toolsState()">TOOLS</button>
-    <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
-    <button class="ui button" ng-click="listsState()">LISTS</button>
 
       <!-- For nested child views -->
     <div class="adminComponents" ui-view></div>
