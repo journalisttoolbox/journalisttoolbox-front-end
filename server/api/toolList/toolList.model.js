@@ -16,7 +16,9 @@ var ToolListSchema = new Schema({
     name: String,
     jtWhat: String,
     jtWhy: String
-  }]
+  }],
+  toolDate: String,
+  image: String
 });
 
 module.exports = mongoose.model('ToolList', ToolListSchema);
