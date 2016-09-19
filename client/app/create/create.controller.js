@@ -6,8 +6,8 @@
 
     $scope.currentUser = Auth.getCurrentUser;
     $scope.showMore = false;
-
-    $scope.githubLoaderUrl = 'hello';
+    $scope.githubLoaderUrl = {};
+    $scope.loadingGithub = false;
 
     $scope.showMoreClicked = function() {
       $scope.showMore = !$scope.showMore;
@@ -56,23 +56,27 @@
       encString = encString.replace(/\s/g, '');
       var decoded = atob(encString);
       var obj = JSON.parse(decoded);
+      obj.companies = obj.companies.toString();
 
       $scope.formData = obj;
     };
 
     $scope.hitGithubApi = function(owner, repo) {
+      $scope.loadingGithub = true;
       $http.get('https://api.github.com/repos/'+owner+'/'+repo+'/'+'contents/toolbox.json').
         then(function(data) {
           $scope.decodeData(data.data.content);
           $scope.errors.githubError = false;
+          $scope.loadingGithub = false;
         }, function(err) {
           $scope.errors.githubError = 'GitHub API error: ' + err;
         });
     };
 
     $scope.populateForm = function() {
-      console.log($scope.githubLoaderUrl)
+      console.log($scope.githubLoaderUrl.url)
       if(!$scope.githubLoaderUrl) {
+
         $scope.errors.githubError = 'Invalid entry';
         return;
       }

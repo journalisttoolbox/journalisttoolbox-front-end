@@ -37,9 +37,10 @@ exports.create = function(req,res) {
 
   var NumberOfPlatforms = 0;
 
+  console.log(req.body.companies);
+
   var cats  = typeof req.body.categories === 'undefined' ? '' : req.body.categories.split(/\s*,\s*/);
   var comps = typeof req.body.companies === 'undefined' ? '' : req.body.companies.split(/\s*,\s*/);
-
   comps = comps != '' ? comps.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; }) : '';
   cats  = cats != '' ? cats.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; }): '';
 

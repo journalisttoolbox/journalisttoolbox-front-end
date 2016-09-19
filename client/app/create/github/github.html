@@ -17,8 +17,9 @@
 </div>
 
 <div ng-show="showGithub" class="showGithub">
-  <input type="text" ng-model="githubLoaderUrl" placeholder="Github link">
+  <input type="text" ng-model="githubLoaderUrl.url" placeholder="Github link">
   <div class="populateForm" ng-click="populateForm()">
-    <button class="positive ui button">Populate form</button>
+    <a class="positive ui button">Populate form</a>
   </div>
+  <div ng-show="loadingGithub" class="ui active centered large inline loader adminLoader"></div>
 </div>
