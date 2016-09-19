@@ -5,7 +5,13 @@
     .controller('CreateCtrl', ['$scope', '$http', '$stateParams', '$state', 'Tool', 'Auth', 'User', '$timeout', function ($scope, $http, $stateParams, $state, Tool, Auth, User, $timeout){
 
     $scope.currentUser = Auth.getCurrentUser;
-    
+    $scope.showMore = false;
+
+    $scope.githubLoaderUrl = 'hello';
+
+    $scope.showMoreClicked = function() {
+      $scope.showMore = !$scope.showMore;
+    }
     $scope.hideToolMessage = function() {
       $scope.toolMessage = false;
       $state.go('tool', { id: $scope.toolID }, {reload: true});
@@ -30,7 +36,7 @@
       Tool.save($scope.formData)
         .$promise.then(function(tool) {
 
-          // Once the tool has been created, add this tool's ID to the user object 
+          // Once the tool has been created, add this tool's ID to the user object
           User.addRemoveTool({ id: $scope.currentUser()._id }, {
             toolID: tool._id,
             addTool: true
@@ -65,7 +71,8 @@
     };
 
     $scope.populateForm = function() {
-      if(!$scope.githubLoaderUrl.url) {
+      console.log($scope.githubLoaderUrl)
+      if(!$scope.githubLoaderUrl) {
         $scope.errors.githubError = 'Invalid entry';
         return;
       }

@@ -2,7 +2,7 @@
   <i class="github icon"></i>
   Upload from GitHub repository
 </div>
-<div ng-show="showGithub" ng-click="showGithub =! showGithub" class="ui labeled icon button">
+<div ng-show="showGithub" ng-click="showGithub = !showGithub" class="ui labeled icon button">
   <i class="github icon"></i>
   Hide GitHub upload
 </div>
@@ -17,10 +17,8 @@
 </div>
 
 <div ng-show="showGithub" class="showGithub">
-  <input type="text" ng-model="githubLoaderUrl.url" placeholder="Paste the link to your github repository here">
+  <input type="text" ng-model="githubLoaderUrl" placeholder="Github link">
   <div class="populateForm" ng-click="populateForm()">
-    <div class="ui labeled button green">
-      Populate form
-    </div>
+    <button class="positive ui button">Populate form</button>
   </div>
 </div>
