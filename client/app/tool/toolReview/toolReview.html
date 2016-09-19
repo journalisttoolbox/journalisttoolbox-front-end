@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row centered">
     <div class="column">
       <h2>Review <b class="toolReviewName">{{tool.name}}</b></h2>
     </div>
@@ -109,8 +109,9 @@
       </div>
     </div>
 
-
-    <button ng-click="postReview()" class="ui button positive large" type="submit">Review</button>
+    <div class="centered">
+      <button ng-click="postReview()" class="ui button positive large" type="submit">Review</button>
+    </div>
   </form>
 
   <div ng-include="'app/tool/toolReview/toolReviewMessage/toolReviewMessage.html'"></div>

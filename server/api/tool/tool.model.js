@@ -5,8 +5,12 @@ var mongoose = require('mongoose'),
 
 var ToolSchema = new Schema({
   name: String,
-  developer: String,  
+  developer: String,
   description: String,
+  documentation: String,
+  tutorials: String,
+  custom: String,
+  installation: String,
   free: Boolean,
   price: String,
   version: String,

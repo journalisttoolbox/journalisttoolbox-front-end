@@ -64,58 +64,8 @@
       </div>
     </div>
 
-    <div class="ui equal width padded grid segmentinternally celled stackable">
-      <div class="tool-section row justified">
-        <div class="column">
-          <div class="tool_description">
-              <p>{{tool.description}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="centered tool-section row">
-        <div class="column">
-          <p><strong>Company(ies) using this tool</strong></p>
-          <p><span ng-repeat="company in tool.companies">{{company}}{{$last ? '' : ', '}}</span></p>
-        </div>
-        <div class="column">
-          <p><strong>Platform(s)</strong></p>
-          <p><span ng-repeat="platform in tool.platforms">{{platform}}{{$last ? '' : ', '}}</span></p>
-        </div>
-      </div>
-
-      <div class="centered row">
-        <div class="column">
-          <p><strong>Price</strong></p>
-          <div ng-bind-html="(tool.price === '0') ? 'Free' : tool.price"></div>
-        </div>
-        <div class="column">
-          <p><strong>Version</strong></p>
-          <div ng-bind-html="tool.version"></div>
-        </div>
-        <div class="column">
-          <p><strong>Uploaded date</strong></p>
-          <div ng-bind-html="tool.uploaded_date"></div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="ui grid centered stackable">
-      <div ui-view id="review-form"></div> <!-- For nested reviews child -->
-    </div>
-
-    <div class="ui equal width center aligned padded grid stackable">
-      <div class="tool-section row">
-        <div class="column">
-          <h3 class="ui horizontal divider header">
-            <i class="star icon"></i>
-            Reviews
-          </h3>
-        </div>
-      </div>
-
-      <div class="row" ng-show="ReviewsExist">
+    <div class="ui equal width padded grid center aligned stackable">
+      <div class="tool-section row centered" ng-show="ReviewsExist">
         <div class="ui centered column">
           <h3 style="margin-bottom:0;">Score</h3>
           <div>Out of {{tool.reviews.length}} reviews</div>
@@ -156,18 +106,89 @@
           </div>
           </div>
           <p>
-          </div>
         </div>
       </div>
 
-    <div class="ui grid">
+      <div class="row centered">
+        <div ui-view id="review-form"></div> <!-- For nested reviews child -->
+      </div>
       <div class="row centered" ng-show="!ReviewsExist && isLoggedIn()">
         <h4>There are currently no reviews available for this tool. <a href="#review-form" ng-click="reviewState()">Add one yourself!</a></h4>
       </div>
       <div class="row centered" ng-show="!ReviewsExist && !isLoggedIn()">
-        <h4>There are currently no reviews available for this tool. Why don't you <a ng-click="showModal()">login</a> and add one yourself!</a></h4>
+        <h4>There are currently no reviews available for this tool. <a ng-click="showModal()">Login</a> and add one yourself!</a></h4>
+      </div>
+
+    </div>
+
+    <div class="ui equal width padded grid stackable">
+      <div class="row justified">
+        <div class="column">
+          <!-- <p>{{tool.description}}</p> -->
+          <h4><strong>Description</strong></h4>
+          <p>
+            {{tool.description}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <h4><strong>Documentation</strong></h4>
+          <p>
+            {{tool.documentation}}
+          </p>
+        </div>
+        <div class="column">
+          <h4><strong>Tutorials</strong></h4>
+          <p>
+            <a href="{{tool.tutorials}}" target="_blank">This</a> is a good tutorial.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <h4><strong>Customizability</strong></h4>
+          <p>
+            {{tool.custom}}
+          </p>
+        </div>
+        <div class="column">
+          <h4><strong>Installation</strong></h4>
+          <p>
+            {{tool.installation}}
+          </p>
+        </div>
       </div>
     </div>
+
+    <div class="ui equal width padded grid internally celled stackable">
+      <div class="centered tool-section row">
+        <div class="column">
+          <p><strong>Company(ies) using this tool</strong></p>
+          <p><span ng-repeat="company in tool.companies">{{company}}{{$last ? '' : ', '}}</span></p>
+        </div>
+        <div class="column">
+          <p><strong>Platform(s)</strong></p>
+          <p><span ng-repeat="platform in tool.platforms">{{platform}}{{$last ? '' : ', '}}</span></p>
+        </div>
+      </div>
+
+      <div class="centered row">
+        <div class="column">
+          <p><strong>Price</strong></p>
+          <div ng-bind-html="(tool.price === '0') ? 'Free' : tool.price"></div>
+        </div>
+        <div class="column">
+          <p><strong>Version</strong></p>
+          <div ng-bind-html="tool.version"></div>
+        </div>
+        <div class="column">
+          <p><strong>Uploaded date</strong></p>
+          <div ng-bind-html="tool.uploaded_date"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- INCLUDE the success message on adding to list -->
     <div ng-include="'app/tool/toolList/toolListMessage.html'"></div>
 
@@ -182,7 +203,7 @@
   <hr>
   <div class="ui grid">
     <div class="twelve wide column">
-        <p>With ♥ from Newsroom.tools team.</p>
+        <p>With ♥ from the Newsroom.tools team.</p>
     </div>
     <div class="four wide column right aligned">
         <a target="_blank" style="color:#1dcaff;" href="https://twitter.com/newsroomtools"><i class="fa fa-twitter fa-2x"></i></a>

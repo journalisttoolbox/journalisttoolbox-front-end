@@ -3,9 +3,7 @@
 angular.module('jtApp')
   .factory('Auth', ['$location', '$rootScope', '$http', 'User', '$cookieStore', '$q', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
-    console.log("cookieStore" + $cookieStore.get('token'));
     if($cookieStore.get('token')) {
-      console.log("user get" + User.get());
       currentUser = User.get();
     }
 
