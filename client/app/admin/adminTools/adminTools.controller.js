@@ -1,12 +1,13 @@
 (function(){
   'use strict';
-  
+
   angular
   .module('jtApp')
   .controller('AdminToolsCtrl', ['$scope','$state','User','Tool','Auth', function($scope, $state, User, Tool, Auth){
 
     $scope.selectedRecordIds = [];
     $scope.toolList = {};
+    $scope.showTables = {};
 
     $scope.getCurrentUser = Auth.getCurrentUser;
     var user = $scope.getCurrentUser();
@@ -15,7 +16,7 @@
       Tool.get({ 'id': toolsArray })
       .$promise.then(function(tools) {
         $scope.toolList = tools;
-
+        $scope.toolsTables = tools;
         if($scope.toolList.length) {
           $scope.toolsFound = true;
         } else {
@@ -23,6 +24,10 @@
         }
       });
     };
+
+    $scope.showToolTable = function(tool){
+      $scope.showTables[tool._id] == true ? $scope.showTables[tool._id] = false : $scope.showTables[tool._id] = true;
+    }
 
     $scope.loadAllTools = function() {
       Tool.query()
@@ -39,7 +44,7 @@
     };
 
     if(!Auth.isLoggedIn()) {
-      $state.go('signup'); 
+      $state.go('signup');
     } else {
       if(user.role === 'admin') {
         $scope.loadAllTools();
@@ -47,16 +52,16 @@
         // Get user's tools from the DB, global user variable might not be up to date
         User.get()
           .$promise.then(function(user) {
-            if(user.tools.length) { 
+            if(user.tools.length) {
               // load the tools of this user
               $scope.loadUsersTools(user.tools);
             } else {
-              $scope.toolsNotFound = true; 
+              $scope.toolsNotFound = true;
             }
           });
       } else {
         $scope.toolsNotFound = true;
-      }      
+      }
     }
 
     // Remove a tool
@@ -74,18 +79,18 @@
       });
     };
 
-    $scope.alterSelect = function(toolID) {
-      // Location of element
-      var present = $scope.selectedRecordIds.indexOf(toolID);
-
-      // If not found, add
-      if (present < 0) {
-        $scope.selectedRecordIds.push(toolID);
-      // If found, remove
-      } else {
-        $scope.selectedRecordIds.splice(present, 1);
-      }
-    };
+    // $scope.alterSelect = function(toolID) {
+    //   // Location of element
+    //   var present = $scope.selectedRecordIds.indexOf(toolID);
+    //
+    //   // If not found, add
+    //   if (present < 0) {
+    //     $scope.selectedRecordIds.push(toolID);
+    //   // If found, remove
+    //   } else {
+    //     $scope.selectedRecordIds.splice(present, 1);
+    //   }
+    // };
 
   }])
 })();
