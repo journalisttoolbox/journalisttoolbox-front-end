@@ -110,10 +110,10 @@ exports.create = function(req,res) {
   // DATE
   var now = new Date();
   var day = now.getDate();
-  var month = now.getMonth();
+  var month = now.getMonth()+1;
   var year = now.getFullYear();
 
-  var fullDate = day+'/'+month+1+'/'+year;
+  var fullDate = day+'/'+month+'/'+year;
 
   newTool.uploaded_date = fullDate;
 
