@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jtApp')
-  .controller('ExploreCtrl', ['$scope', '$stateParams', '$http', function ($scope, $stateParams, $http) {
+  .controller('ExploreCtrl', ['$scope', '$stateParams', '$http', 'User', function ($scope, $stateParams, $http, User) {
     $scope.term = '';
     $scope.tools = [];
     $scope.categories = {};
@@ -12,10 +12,26 @@ angular.module('jtApp')
     // starting the semantic UI tab
     $('.menu .item').tab();
     $('.ui.dropdown').dropdown();
-               
+
     $http({ method:'GET', url: 'api/tools/category/' + $scope.category })
       .success(function(data) {
         $scope.tools = data;
+
+        for(var tix in $scope.tools){
+          if(typeof $scope.tools[tix]._id !== 'undefined'){
+            if(typeof $scope.tools[tix].owner !== 'undefined'){
+              var i = tix;
+              User.get({email: $scope.tools[tix].owner})
+                .$promise.then(function(theUser){
+                  $scope.tools[i].ownerIsAdmin = theUser.role == 'admin' ? true : false;
+                });
+              }
+            else {
+              var i = tix
+              $scope.tools[i].ownerIsAdmin = false;
+            }
+          }
+        }
       });
 
         $scope.includeFilter = function(name) {
@@ -30,8 +46,8 @@ angular.module('jtApp')
         $scope.triggerDimmer = function() {
            $('.ui.image').dimmer({on: 'hover'});
         }
-        
-        
+
+
         $scope.toolFilter = function(tool) {
           $scope.Findit  = false;
             if ($scope.FilterTools.length > 0) {
@@ -39,11 +55,11 @@ angular.module('jtApp')
               for (var i = tool.platforms.length - 1; i >= 0; i--) {
                 if ($.inArray(tool.platforms[i], $scope.FilterTools) >= 0)
                         $scope.Findit  = true;
-              };          
+              };
                 //free or not
                 if ($.inArray(tool.free, $scope.FilterTools) >= 0)
-                    $scope.Findit  = true;  
-            } 
+                    $scope.Findit  = true;
+            }
             //if no filter or tool find, return the tool
             if($scope.Findit == true || $scope.FilterTools.length == 0)
           return tool;
@@ -51,4 +67,3 @@ angular.module('jtApp')
               return;
         };
 }]);
-

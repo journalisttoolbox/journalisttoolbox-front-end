@@ -26,6 +26,9 @@
   <div class="ui four cards stackable">
     <div class="ui link card" ng-repeat="tool in tools | filter:toolFilter | filter:term | orderBy:toolOrder">
       <a class="image" ui-sref="tool({id: tool._id})">
+        <span ng-show="tool.ownerIsAdmin" class="ui left corner green label">
+          <i class="check circle icon"></i>
+        </span>
         <img ng-src="{{tool.logo_url || '/assets/images/jt_nologo.png'}}" err-src="/assets/images/jt_nologo.png" alt="" />
       </a>
       <div class="content">

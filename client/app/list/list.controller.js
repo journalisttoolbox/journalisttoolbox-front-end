@@ -4,14 +4,14 @@
 
   angular
   .module('jtApp')
-  .controller('ListCtrl', ['$scope', 'Tool', '$stateParams', 'ToolList', function ($scope, Tool, $stateParams, ToolList){
+  .controller('ListCtrl', ['$scope', 'Tool', '$stateParams', 'ToolList', 'User', function ($scope, Tool, $stateParams, ToolList, User){
 
     $scope.tools = {};
     $scope.toolList = {};
     // $scope.errors = {};
     $scope.noTools = false;
     $scope.toolsSearched = false;
-    
+
     $scope.loadsTools = function(toolsArray) {
       if(toolsArray.length) {
         var toolIDs = [];
@@ -25,6 +25,22 @@
         .$promise.then(function(tools) {
           if(!tools) noTools = true;
           $scope.tools = tools;
+          for(var tix in $scope.tools){
+            if(typeof $scope.tools[tix]._id !== 'undefined'){
+              if(typeof $scope.tools[tix].owner !== 'undefined'){
+                var i = tix;
+                User.get({email: $scope.tools[tix].owner})
+                  .$promise.then(function(theUser){
+                    $scope.tools[i].ownerIsAdmin = theUser.role == 'admin' ? true : false;
+                  });
+                }
+              else {
+                var i = tix
+                $scope.tools[i].ownerIsAdmin = false;
+              }
+            }
+          }
+
 
           if(toolsArray[0].jt_what != undefined) {
             toolsArray.forEach(function(toolFromList) {
@@ -51,7 +67,7 @@
     $scope.triggerDimmer = function() {
      $('.ui.image').dimmer({on: 'hover'});
    };
-   
+
    $scope.loadToolList = function() {
     ToolList.get({ id: $stateParams.id })
     .$promise.then(function(toolList) {
@@ -71,5 +87,5 @@
     })();
 
   }]);
-  
+
 })();
