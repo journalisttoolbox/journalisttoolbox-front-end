@@ -114,11 +114,10 @@
         </div>
 
         <div class="field input" ng-class="{'disabled': currentUser().name === undefined || currentUser().isVerified === false}">
-          <label>Category</label>
-          <div class="ui left icon input">
-              <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" type="text" ng-model="formData.categories" name="categories" id="categories" placeholder="Separate each category by a comma">
-              <i class="tags icon"></i>
-          </div>
+          <label>Categories</label>
+          <select multiple ng-model="formData.categories" name="categories" id="categories">
+            <option ng-repeat="cat in categories" value="{{cat.name}}">{{cat.name}}</option>
+          </select>
         </div>
       </div>
 

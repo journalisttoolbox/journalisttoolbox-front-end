@@ -65,7 +65,7 @@ exports.put = function(req, res) {
       // If User is not found
       res.statusCode = 404;
       return res.send({ error: 'Not found' });
-    }    
+    }
     if(err) {
       res.send(err.message);
     } else {
@@ -96,11 +96,11 @@ exports.addRemoveTool = function(req, res, next) {
 
   Tool.findOne({ '_id': toolId }, function(err, Tool) {
     if(!Tool) { res.statusCode = 404; return res.send({ error: 'Tool not found' }); }
-    if(err) { 
-      res.send(err.message) 
+    if(err) {
+      res.send(err.message)
     } else {
       User.findOne({ '_id': userId }, function(err, User) {
-        if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
+        if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }
         if(err) {
           res.send(err.message);
         } else {
@@ -161,11 +161,11 @@ exports.addRemoveFavourites = function(req, res) {
 
   Tool.findOne({ '_id': toolId }, function(err, Tool) {
     if(!Tool) { res.statusCode = 404; return res.send({ error: 'Tool not found' }); }
-    if(err) { 
-      res.send(err.message) 
+    if(err) {
+      res.send(err.message)
     } else {
       User.findOne({ '_id': userId }, function(err, User) {
-        if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }    
+        if(!User) { res.statusCode = 404; return res.send({ error: 'Not found' }); }
         if(err) {
           res.send(err.message);
         } else {
@@ -248,7 +248,7 @@ exports.getUserByString = function(req, res, next){
       res.status(200).send('OK');
     });
   });
-  
+
 }
 
 /**

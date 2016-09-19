@@ -32,7 +32,7 @@
       // Add the tool creator
       $scope.formData.owner = $scope.currentUser().email;
       $scope.toolName       = $scope.formData.name;
-
+      if($scope.formData.categories) $scope.formData.categories = $scope.formData.categories.toString();
       Tool.save($scope.formData)
         .$promise.then(function(tool) {
 
@@ -88,6 +88,59 @@
       }
       $scope.errors.githubError = 'Invalid GitHub url';
     };
+
+    $scope.categories = [
+        {
+          name: 'Maps',
+          icon: 'map',
+          link: 'maps'
+        },
+        {
+          name: 'Videos',
+          icon: 'video',
+          link: 'videos'
+        },
+        {
+          name: 'Images',
+          icon: 'photo',
+          link: 'images'
+        },
+        {
+          name: 'Charts',
+          icon: 'bar chart',
+          link: 'charts'
+        },
+        {
+          name: 'Audio',
+          icon: 'sound',
+          link: 'audio'
+        },
+        {
+          name: 'Data Processing',
+          icon: 'calculator',
+          link: 'data-processing'
+        },
+        {
+          name: 'Timelines',
+          icon: 'time',
+          link: 'timelines'
+        },
+        {
+          name: 'Design',
+          icon: 'paint brush',
+          link: 'design'
+        },
+        {
+          name: 'Text Editor',
+          icon: 'write',
+          link: 'text-editor'
+        },
+        {
+          name: 'Research',
+          icon: 'student',
+          link: 'research'
+        },
+      ];
 
   }])
 

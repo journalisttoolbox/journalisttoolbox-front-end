@@ -14,7 +14,7 @@ exports.index = function(req, res) {
 // Get a certain tool(s)
 exports.show = function(req, res) {
   var query = req.params.id.split(",");
-  
+
   Tool.find({ '_id': { $in: query } }, function(err, tool) {
     if(err) { return handleError(res, err); }
     if(!tool) { return res.status(404).send('Not Found'); }
@@ -37,34 +37,34 @@ exports.create = function(req,res) {
 
   var NumberOfPlatforms = 0;
 
-  var cats  = req.body.categories.split(/\s*,\s*/);
-  var comps = req.body.companies.split(/\s*,\s*/);
+  var cats  = typeof req.body.categories === 'undefined' ? '' : req.body.categories.split(/\s*,\s*/);
+  var comps = typeof req.body.companies === 'undefined' ? '' : req.body.companies.split(/\s*,\s*/);
 
-  comps = comps.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
-  cats  = cats.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; });
+  comps = comps != '' ? comps.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; }) : '';
+  cats  = cats != '' ? cats.filter(function(val) {if (val === "" || !val.trim()) {return false; }return true;}).map(function(val) { return val; }): '';
 
   var newTool = new Tool(req.body);
 
-  if(!newTool.github_url) { 
-    newTool.github_url = ''; 
+  if(!newTool.github_url) {
+    newTool.github_url = '';
   } else {
     newTool.github_url = exports.prependHttp(newTool.github_url);
-  } 
-  if(!newTool.home_url) { 
-    newTool.home_url = ''; 
+  }
+  if(!newTool.home_url) {
+    newTool.home_url = '';
   } else {
     newTool.home_url = exports.prependHttp(newTool.home_url);
-  } 
-  if(!newTool.download_url) { 
-    newTool.download_url = ''; 
+  }
+  if(!newTool.download_url) {
+    newTool.download_url = '';
   } else {
     newTool.download_url = exports.prependHttp(newTool.download_url);
-  } 
-  if(!newTool.logo_url) { 
-    newTool.logo_url = ''; 
+  }
+  if(!newTool.logo_url) {
+    newTool.logo_url = '';
   } else {
     newTool.home_url = exports.prependHttp(newTool.home_url);
-  } 
+  }
 
   newTool.companies = comps;
   newTool.categories  = cats;
@@ -83,27 +83,27 @@ exports.create = function(req,res) {
   }
 
   if(req.body.pc)
-  {    
+  {
     newTool.platforms[NumberOfPlatforms] = "Windows";
     NumberOfPlatforms++;
   }
   if(req.body.mac)
-  {    
+  {
     newTool.platforms[NumberOfPlatforms] = "MacOS";
     NumberOfPlatforms++;
   }
   if(req.body.linux)
-  {    
+  {
     newTool.platforms[NumberOfPlatforms] = "Linux";
     NumberOfPlatforms++;
   }
   if(req.body.web)
-  {    
+  {
     newTool.platforms[NumberOfPlatforms] = "Web";
     NumberOfPlatforms++;
   }
   if(req.body.other !== undefined)
-  {    
+  {
     newTool.platforms[NumberOfPlatforms] = req.body.other;
   }
 
@@ -116,7 +116,7 @@ exports.create = function(req,res) {
   var fullDate = day+'/'+month+1+'/'+year;
 
   newTool.uploaded_date = fullDate;
-    
+
 
   // Redundant platform urls to populate for now
   newTool.windows_url = '';
@@ -134,7 +134,7 @@ exports.put = function(req, res) {
       // If tool is not found
       res.statusCode = 404;
       return res.send({ error: 'Not found' });
-    }    
+    }
     if(err) {
       res.send(err.message);
     } else {
@@ -170,7 +170,7 @@ exports.destroy = function(req, res) {
     if(err) {
       res.statusCode = 500;
       error = err.data;
-    } 
+    }
     else {
       res.statusCode = 200;
     }
