@@ -1,45 +1,32 @@
 <div class="usersAdmin">
-  <h2 style="text-align:center;">USERS</h2>
+  <h1 style="text-align:center;">USERS</h1>
+  <div ng-show="!forbidden">
+    <h2 style="text-align:center;">Click text to edit.</h2>
+    <div style="margin:30px 0;" ng-repeat="user in usersList | orderBy: '+name'">
 
-<div ng-show="forbidden" class="ui error message">
-  <div class="header">
-    You do not have access to this panel.
+      <h4><a ng-click="showUserTable(user)"><i ng-class="showUsers[user._id] ? 'minus icon': 'plus icon'"></i>{{user.email}}</a></h4>
+      <table ng-show="showUsers[user._id]" class="ui celled striped stackable table adminTable">
+        <tbody>
+          <tr ng-repeat="(head, value) in user">
+            <th>{{head | uppercase}}</th>
+            <td style="word-wrap:break-word;">
+              <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing">{{value == '' ? '-' : value}}</a>
+              <textarea style="width:100%;" ng-model="user[head]" ng-show="editing"></textarea>
+              <button class="positive ui button" ng-click="editing = false; updateUser(user)" ng-show="editing">Update</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="full-width">
+          <tr>
+            <th></th>
+            <th colspan="4">
+              <div style="margin:20px 0 0 0" class="ui right floated red labeled icon button small" ng-really-message="Are you sure you want to delete {{user.email}}?" ng-really-click="removeUser(user._id)">
+                <i class="trash outline icon"></i> Delete User
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
-  <ul class="list">
-    <li>Only admins have access to the User control panel.</li>
-  </ul>
-</div>
-
-<div ng-show="!forbidden">
-
-  <p>Click to edit field.</p>
-    <!-- USERS TABLE -->
-    <table class="ui celled striped tablet stackable table">
-      <thead>
-        <tr>
-          <th></th>
-          <th ng-repeat="header in collectionHeaders"><span>{{ header }}</span></th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="row in usersList">
-          <td>
-            <input type="checkbox" ng-click="alterSelect(row._id)">
-          </td>
-          <td ng-repeat="(name, value) in row" ng-scope>
-            <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="value || 'null'"></a>
-            <textarea ng-model="row[name]" ng-show="editing"></textarea>
-            <button ng-click="editing = false; updateUser(row)" ng-show="editing">UPDATE</button>
-          </td>
-          <td>
-            <button class="ui mini icon negative button" ng-really-message="Are you sure you want to delete this user?" ng-really-click="removeUser(row._id)">
-              <i class="icon close"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button ng-really-message="Are you sure you want to delete all selected users?" ng-really-click="removeUser(selectedRecordIds)" class="ui negative button">Remove selected users</button>
-</div>
 </div>

@@ -1,3 +1,10 @@
+.listsHeader{
+  text-align:center !important;
+  margin-bottom:30px !important;
+}
+#favorites{
+  margin-bottom:-3px;
+}
 .adminLists {
   .cards {
     display: inline-block!important;
@@ -12,7 +19,7 @@
   }
 }
 .createListWrapper {
-  margin-top: 50px;
+  margin: 50px 0;
 
   .createForm {
     margin-top: 25px;
@@ -20,5 +27,11 @@
     .ui.button.addList {
       margin-top: 25px;
     }
+  }
+}
+
+@media (max-width:767px) {
+  #favorites{
+    margin-bottom:15px !important;
   }
 }

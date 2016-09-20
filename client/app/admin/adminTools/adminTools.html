@@ -1,40 +1,41 @@
 <div class="toolsAdmin">
-  <h1 style="margin-bottom: 25px;">TOOLS</h1>
+  <h1 class="toolsHeader">TOOLS</h1>
 
-    <!-- LOADING -->
-    <div ng-show="!toolList.length && !toolsNotFound" class="ui active centered large inline loader adminLoader"></div>
-
+  <!-- LOADING -->
+  <div ng-show="!toolList.length && !toolsNotFound" class="row">
+    <div class="ui active centered large inline loader adminLoader"></div>
     <div ng-show="toolsNotFound" class="noTools">
       <h1>No tools yet!</h1>
       <p>Why don't you go and <a ui-sref="create">add some?</a></p>
     </div>
-
-    <!-- TOOLS TABLE -->
-    <div ng-show="toolsFound">
-      <div style="margin-bottom:20px;" ng-repeat="tool in toolList | orderBy: '+name'">
-        <h4><a ng-click="showToolTable(tool)"><i ng-class="showTables[tool._id] ? 'minus icon': 'plus icon'"></i>{{tool.name}}</a></h4>
-        <table ng-show="showTables[tool._id]" class="ui celled striped tablet stackable table">
-          <tbody>
-            <tr ng-repeat="(head, value) in tool">
-              <th>{{head | uppercase}}</th>
-              <td>
-                <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing" ng-bind="tool[head]"></a>
-                <textarea style="width:100%;" ng-model="tool[head]" ng-show="editing"></textarea>
-                <button class="positive ui button" ng-click="editing = false; updateTool(tool)" ng-show="editing">UPDATE</button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot class="full-width">
-            <tr>
-              <th></th>
-              <th>
-                <div class="ui right floated small red labeled icon button large" ng-really-message="Are you sure you want to delete {{tool.name}}?" ng-really-click="removeTool(tool._id)">
-                  <i class="trash outline icon"></i> Delete Tool
-                </div>
-              </th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+  </div>
+  <!-- TOOLS TABLE -->
+  <div ng-show="toolsFound">
+    <h2 style="text-align:center;">Click text to edit.</h2>
+    <div style="margin:30px 0;" ng-repeat="tool in toolList | orderBy: '+name'">
+      <h4><a ng-click="showToolTable(tool)"><i ng-class="showTables[tool._id] ? 'minus icon': 'plus icon'"></i>{{tool.name}}</a></h4>
+      <table ng-show="showTables[tool._id]" class="ui celled striped stackable table adminTable">
+        <tbody>
+          <tr ng-repeat="(head, value) in tool">
+            <th>{{head | uppercase}}</th>
+            <td style="word-wrap:break-word;">
+              <a href="#" onclick="return false" ng-click="editing = true" ng-hide="editing">{{value == '' ? '-' : value}}</a>
+              <textarea style="width:100%;" ng-model="tool[head]" ng-show="editing"></textarea>
+              <button class="positive ui button" ng-click="editing = false; updateTool(tool)" ng-show="editing">Update</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="full-width">
+          <tr>
+            <th></th>
+            <th colspan="4">
+              <div style="margin:20px 0 0 0" class="ui right floated red labeled icon button small" ng-really-message="Are you sure you want to delete {{tool.name}}?" ng-really-click="removeTool(tool._id)">
+                <i class="trash outline icon"></i> Delete Tool
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
+  </div>
 </div>

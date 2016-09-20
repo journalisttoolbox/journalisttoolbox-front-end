@@ -15,22 +15,16 @@
   </div>
 
   <div ng-show="currentUser().isVerified == true">
-    <div class="ui grid">
-      <div class="row centered">
-        <h2 class="admin-header ui header">
-          <i class="settings icon"></i>
-          Admin Panel
-        </h2>
-      </div>
-      <div class="row centered">
-        <button class="ui button" ng-click="toolsState()">TOOLS</button>
-        <button ng-show="admin" class="ui button" ng-click="usersState()">USERS</button>
-        <button class="ui button" ng-click="listsState()">LISTS</button>
-      </div>
+    <h2 style="text-align:center;" class="admin-header ui horizontal divider header" >
+      <i class="settings icon"></i>
+      Admin Panel
+    </h2>
+    <div style="margin-top: 30px; text-align:center">
+      <button class="ui button" ng-click="toolsState()">Tools</button>
+      <button ng-show="admin" class="ui button" ng-click="usersState()">Users</button>
+      <button class="ui button" ng-click="listsState()">Lists</button>
     </div>
-
       <!-- For nested child views -->
     <div class="adminComponents" ui-view></div>
   </div>
-
 </div>
