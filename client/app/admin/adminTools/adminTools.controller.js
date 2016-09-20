@@ -8,7 +8,7 @@
     $scope.selectedRecordIds = [];
     $scope.toolList = {};
     $scope.showTables = {};
-
+    $scope.isArray = angular.isArray;
     $scope.getCurrentUser = Auth.getCurrentUser;
     var user = $scope.getCurrentUser();
 
@@ -78,19 +78,5 @@
         console.log(data);
       });
     };
-
-    // $scope.alterSelect = function(toolID) {
-    //   // Location of element
-    //   var present = $scope.selectedRecordIds.indexOf(toolID);
-    //
-    //   // If not found, add
-    //   if (present < 0) {
-    //     $scope.selectedRecordIds.push(toolID);
-    //   // If found, remove
-    //   } else {
-    //     $scope.selectedRecordIds.splice(present, 1);
-    //   }
-    // };
-
   }])
 })();
