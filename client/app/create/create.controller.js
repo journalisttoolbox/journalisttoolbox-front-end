@@ -12,8 +12,11 @@
     $scope.tags = [];
 
     $scope.loadTags = function(query) {
-                     return $http.get('/tags?query=' + query);
-                };
+                         var result = $http.get('api/tags?query=' + query);
+                         console.log(result);
+                         return result;
+
+                      };
 
     $scope.showMoreClicked = function() {
       $scope.showMore = !$scope.showMore;
