@@ -35,7 +35,11 @@
         <a class="header" ui-sref="tool({id: tool._id})">
           {{tool.name}}
         </a>
-        <div class="desciption" ui-sref="tool({id: tool._id})">
+        <div ng-show="tool.tags.length != 0" class="meta">
+          <i class="fa fa-tags"></i>
+          <span ng-repeat="tag in tool.tags">{{tag}}{{$last? '' : ', '}}</span>
+        </div>
+        <div style="margin-top:10px;" class="desciption" ui-sref="tool({id: tool._id})">
           {{tool.description | limitTo: 120 }}{{tool.description.length > 120 ? '...' : ''}}
         </div>
       </div>

@@ -48,6 +48,8 @@
           }
         });
 
+      // var setUserIsAdmin = function(theTool){}
+
       $scope.onKeyUp = function(){
         $scope.tools = $scope.allTools;
           //show the filter options

@@ -15,7 +15,8 @@
     "angular-socket-io": "~0.6.0",
     "jquery": "~2.1.4",
     "angular-ui-router": "~0.2.15",
-    "semantic": "semantic-ui#^2.2.2"
+    "semantic": "semantic-ui#^2.2.2",
+    "ng-tags-input": "^3.1.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
