@@ -9,6 +9,12 @@
     $scope.githubLoaderUrl = {};
     $scope.loadingGithub = false;
 
+    $scope.tags = [];
+
+    $scope.loadTags = function(query) {
+                     return $http.get('/tags?query=' + query);
+                };
+
     $scope.showMoreClicked = function() {
       $scope.showMore = !$scope.showMore;
     }

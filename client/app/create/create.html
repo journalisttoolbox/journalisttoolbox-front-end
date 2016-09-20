@@ -101,6 +101,11 @@
             <p class="fieldRequired" ng-show="createToolForm.price.$invalid && !createToolForm.price.$pristine">Please enter a valid number</p>
           </div>
         </div>
+
+        <tags-input ng-model="tags">
+          <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input>
+
       </div>
 
       <div class="eight wide column">
