@@ -41,6 +41,13 @@
       // Add the tool creator
       $scope.formData.owner = $scope.currentUser().email;
       $scope.toolName       = $scope.formData.name;
+
+      $scope.formData.tags = [];
+
+      for(let key in $scope.tags){
+        $scope.formData.tags.push($scope.tags[key].text);
+      }
+
       if($scope.formData.categories) $scope.formData.categories = $scope.formData.categories.toString();
       Tool.save($scope.formData)
         .$promise.then(function(tool) {
@@ -53,6 +60,7 @@
             console.log(err);
           });
 
+          $http.post('api/tags', $scope.formData.tags);
           $scope.toolID = tool._id;
           $scope.showToolMessage();
 

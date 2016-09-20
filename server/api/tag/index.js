@@ -7,6 +7,7 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/', controller.index); // Get all tags
+router.post('/', controller.addTags); // Get all tags
 
 // router.post('/', auth.isAuthenticated(), controller.create); // Post a new tag
 

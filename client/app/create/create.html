@@ -19,7 +19,6 @@
     </div>
   </div>
   <form name="createToolForm" ng-submit="submitTool()" class="ui form" novalidate>
-
     <div class="create-tool-header row">
       <h2 class="ui horizontal divider header" ng-class="{'disabled': currentUser().name === undefined || currentUser().isVerified === false}">
         <i class="cube icon"></i>
@@ -103,7 +102,7 @@
         </div>
         <!-- <div> -->
         <label>Tags</label>
-        <tags-input ng-model="tags">
+        <tags-input class="bootstrap" ng-model="tags">
           <auto-complete source="loadTags($query)"></auto-complete>
         </tags-input>
         <!-- </div> -->

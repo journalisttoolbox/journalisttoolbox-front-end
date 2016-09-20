@@ -25,7 +25,8 @@ var ToolSchema = new Schema({
   downvotes: Array,
   owner: String,
   uploaded_date: String,
-  reviews: Array
+  reviews: Array,
+  tags: Array
 });
 
 module.exports = mongoose.model('Tool', ToolSchema);
