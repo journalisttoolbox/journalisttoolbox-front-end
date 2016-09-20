@@ -10,7 +10,6 @@ exports.index = function(req, res) {
 
 exports.addTags = function(req, res) {
   for(tagIx in req.body){
-    console.log(req.body[tagIx]);
     createTagIfMissing(req.body[tagIx]);
   }
 };
@@ -18,10 +17,8 @@ exports.addTags = function(req, res) {
 var createTagIfMissing = function(currentTag){
   var currTag = currentTag;
   Tag.find({'text': currTag}, function(err,tag){
-    console.log(currTag);
     if(tag.length == 0){
       var newTag = new Tag({'text': currTag});
-      console.log("the new tag is " + currTag);
       newTag.save();
     }
   });

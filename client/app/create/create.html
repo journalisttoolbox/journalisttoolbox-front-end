@@ -103,7 +103,7 @@
         <!-- <div> -->
         <label>Tags</label>
         <tags-input class="bootstrap" ng-model="tags">
-          <auto-complete source="loadTags($query)"></auto-complete>
+          <auto-complete select-first-match="false" highlight-matched-text="false" source="loadTags($query)"></auto-complete>
         </tags-input>
         <!-- </div> -->
 
