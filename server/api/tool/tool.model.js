@@ -26,7 +26,8 @@ var ToolSchema = new Schema({
   owner: String,
   uploaded_date: String,
   reviews: Array,
-  tags: Array
+  tags: Array,
+  ownerIsAdmin: Boolean
 });
 
 module.exports = mongoose.model('Tool', ToolSchema);

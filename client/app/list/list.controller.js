@@ -25,21 +25,6 @@
         .$promise.then(function(tools) {
           if(!tools) noTools = true;
           $scope.tools = tools;
-          for(var tix in $scope.tools){
-            if(typeof $scope.tools[tix]._id !== 'undefined'){
-              if(typeof $scope.tools[tix].owner !== 'undefined'){
-                var i = tix;
-                User.get({email: $scope.tools[tix].owner})
-                  .$promise.then(function(theUser){
-                    $scope.tools[i].ownerIsAdmin = theUser.role == 'admin' ? true : false;
-                  });
-                }
-              else {
-                var i = tix
-                $scope.tools[i].ownerIsAdmin = false;
-              }
-            }
-          }
 
 
           if(toolsArray[0].jt_what != undefined) {

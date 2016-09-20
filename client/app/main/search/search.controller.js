@@ -31,21 +31,6 @@
       Tool.query()
         .$promise.then(function(data) {
           $scope.allTools = data;
-          for(var tix in $scope.allTools){
-            if(typeof $scope.allTools[tix]._id !== 'undefined'){
-              if(typeof $scope.allTools[tix].owner !== 'undefined'){
-                var i = tix;
-                User.get({email: $scope.allTools[tix].owner})
-                  .$promise.then(function(theUser){
-                    $scope.allTools[i].ownerIsAdmin = theUser.role == 'admin' ? true : false;
-                  });
-                }
-              else {
-                var i = tix
-                $scope.allTools[i].ownerIsAdmin = false;
-              }
-            }
-          }
         });
 
       // var setUserIsAdmin = function(theTool){}

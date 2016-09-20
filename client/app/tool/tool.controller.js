@@ -132,15 +132,7 @@
           .$promise.then(function(data) {
             $scope.tool = data[0];
             $scope.toolAvailable = true;
-            if(typeof $scope.tool.owner !== 'undefined'){
-              User.get({email: $scope.tool.owner})
-                .$promise.then(function(theUser){
-                  $scope.toolOwnerAdmin = theUser.role == 'admin' ? true : false;
-                });
-            }
-            else{
-              $scope.toolOwnerAdmin = false;
-            }
+            
             //get the reviews score
             for (var i = $scope.tool.reviews.length - 1; i >= 0; i--) {
               $scope.easeOfUse += $scope.tool.reviews[i].easeOfUse;

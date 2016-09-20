@@ -36,8 +36,8 @@
       // Add the tool creator
       $scope.formData.owner = $scope.currentUser().email;
       $scope.toolName       = $scope.formData.name;
-
       $scope.formData.tags = [];
+      $scope.formData.ownerIsAdmin = $scope.currentUser().role == 'admin' ? true : false;
 
       for(let key in $scope.tags){
         $scope.formData.tags.push($scope.tags[key].text);
