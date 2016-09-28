@@ -4,9 +4,9 @@ angular.module('jtApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngTagsInput',
   'btford.socket-io',
-  'ui.router',
-  'ngTagsInput'
+  'ui.router'
 ])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
