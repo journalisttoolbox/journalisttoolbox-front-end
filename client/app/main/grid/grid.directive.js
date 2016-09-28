@@ -29,7 +29,7 @@
         },
         {
           name: 'Style',
-          icon: 'photo',
+          icon: 'shopping bag',
           link: 'style'
         },
         {
@@ -49,7 +49,7 @@
         },
         {
           name: 'Social',
-          icon: 'time',
+          icon: 'comments',
           link: 'social'
         }
         // {
