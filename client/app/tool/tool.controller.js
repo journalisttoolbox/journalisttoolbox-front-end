@@ -21,9 +21,7 @@
       $scope.user = User.get();
       $timeout(function(){$scope.loadToolLists();}, 300);
     }
-    $scope.isOwnerAdmin = function(){
 
-    }
     $scope.loadToolLists = function() {
       $scope.toolLists = {};
       if($scope.user.toolLists.length) {
@@ -132,7 +130,7 @@
           .$promise.then(function(data) {
             $scope.tool = data[0];
             $scope.toolAvailable = true;
-            
+
             //get the reviews score
             for (var i = $scope.tool.reviews.length - 1; i >= 0; i--) {
               $scope.easeOfUse += $scope.tool.reviews[i].easeOfUse;

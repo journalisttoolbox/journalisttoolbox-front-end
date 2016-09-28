@@ -23,14 +23,14 @@
           link: 'maps'
         },
         {
-          name: 'Videos',
+          name: 'Video',
           icon: 'video',
           link: 'videos'
         },
         {
-          name: 'Images',
+          name: 'Style',
           icon: 'photo',
-          link: 'images'
+          link: 'style'
         },
         {
           name: 'Charts',
@@ -43,30 +43,30 @@
           link: 'audio'
         },
         {
-          name: 'Data Processing',
+          name: 'Data',
           icon: 'calculator',
           link: 'data-processing'
         },
         {
-          name: 'Timelines',
+          name: 'Social',
           icon: 'time',
-          link: 'timelines'
-        },
-        {
-          name: 'Design',
-          icon: 'paint brush',
-          link: 'design'
-        },
-        {
-          name: 'Text Editor',
-          icon: 'write',
-          link: 'text-editor'
-        },
-        {
-          name: 'Research',
-          icon: 'student',
-          link: 'research'
-        },
+          link: 'social'
+        }
+        // {
+        //   name: 'Design',
+        //   icon: 'paint brush',
+        //   link: 'design'
+        // },
+        // {
+        //   name: 'Text Editor',
+        //   icon: 'write',
+        //   link: 'text-editor'
+        // },
+        // {
+        //   name: 'Research',
+        //   icon: 'student',
+        //   link: 'research'
+        // },
       ];
   }
 }
