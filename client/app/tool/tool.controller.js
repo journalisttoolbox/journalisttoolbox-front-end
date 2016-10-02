@@ -129,8 +129,8 @@
         Tool.get({ id: $stateParams.id })
           .$promise.then(function(data) {
             $scope.tool = data[0];
-            $scope.tool.description = $scope.tool.description.replace("¶ ", "\n");
-            $scope.tool.description = $scope.tool.description.replace("¶", "\n");
+            $scope.tool.description = $scope.tool.description.replace("¶ ", "\n\n");
+            $scope.tool.description = $scope.tool.description.replace("¶", "\n\n");
             $scope.toolAvailable = true;
 
             //get the reviews score

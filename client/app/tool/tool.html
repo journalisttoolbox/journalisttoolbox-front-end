@@ -125,35 +125,43 @@
     </div>
 
     <div class="ui grid stackable">
-      <div class="sixteen wide column">
-        <h4><strong>Description</strong></h4>
-        <p style="white-space:pre-wrap;" ng-bind="tool.description">
+      <div class="row">
+        <div class="fourteen wide column centered">
+          <h4><strong>Description</strong></h4>
+          <p style="white-space:pre-wrap;" ng-bind="tool.description">
 
-        </p>
+          </p>
+        </div>
       </div>
-      <div ng-show="tool.documentation" class="eight wide column">
-        <h4><strong>Documentation</strong></h4>
-        <p>
-          {{tool.documentation}}
-        </p>
+      <div class="row">
+        <div class="column"></div>
+        <div ng-show="tool.documentation" class="seven wide column">
+          <h4><strong>Documentation</strong></h4>
+          <p>
+            {{tool.documentation}}
+          </p>
+        </div>
+        <div ng-show="tool.tutorials" class="seven wide column">
+          <h4><strong>Tutorials</strong></h4>
+          <p>
+            <a href="{{tool.tutorials}}" target="_blank">This</a> is a good tutorial.
+          </p>
+        </div>
       </div>
-      <div ng-show="tool.tutorials" class="eight wide column">
-        <h4><strong>Tutorials</strong></h4>
-        <p>
-          <a href="{{tool.tutorials}}" target="_blank">This</a> is a good tutorial.
-        </p>
-      </div>
-      <div ng-show="tool.custom" class="eight wide column">
-        <h4><strong>Customizability</strong></h4>
-        <p>
-          {{tool.custom}}
-        </p>
-      </div>
-      <div ng-show="tool.installation" class="eight wide column">
-        <h4><strong>Installation</strong></h4>
-        <p>
-          {{tool.installation}}
-        </p>
+      <div class="row">
+        <div class="column"></div>
+        <div ng-show="tool.custom" class="seven wide column">
+          <h4><strong>Customizability</strong></h4>
+          <p>
+            {{tool.custom}}
+          </p>
+        </div>
+        <div ng-show="tool.installation" class="seven wide column">
+          <h4><strong>Installation</strong></h4>
+          <p>
+            {{tool.installation}}
+          </p>
+        </div>
       </div>
     </div>
 

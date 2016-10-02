@@ -1,5 +1,5 @@
 <div class="container admin">
-  <div ng-show="currentUser().isVerified == false">
+  <div ng-show="currentUser().isVerified === false">
     <div class="container">
       <div class="ui grid">
         <div class="eight wide centered column">
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div ng-show="currentUser().isVerified == true">
+  <div ng-show="currentUser().isVerified === true">
     <h2 style="text-align:center;" class="admin-header ui horizontal divider header" >
       <i class="settings icon"></i>
       Admin Panel
