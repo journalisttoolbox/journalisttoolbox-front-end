@@ -69,7 +69,7 @@
           name: 'Multimedia',
           icon: 'play',
           link: 'multimedia',
-          discovery: 'Combine audio, video, photography, text & graphics. Tools for building projects with multimedia components.'
+          description: 'Combine audio, video, photography, text & graphics. Tools for building projects with multimedia components.'
         }
       ];
   }

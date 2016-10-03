@@ -6,7 +6,7 @@
       <div ui-sref="list({ id: list._id })" ng-repeat="list in featuredLists" class="card">
         <div class="image">
           <!-- need to change to proper logos -->
-          <img src="/assets/images/jt_nologo.png">
+          <img ng-src="{{list.toolListLogo || '/assets/images/jt_nologo.png'}}" err-src="/assets/images/jt_nologo.png" alt="" />
         </div>
         <div class="content">
             <a class="header">{{ list.toolListName }}</a>
@@ -20,7 +20,7 @@
           <div class="extra content">
             <span class="right floated">
               <i class="fa fa-calendar"></i>
-              {{list.toolDate}}
+              {{list.toolListDate}}
             </span>
             <span>
               <i class="fa fa-suitcase"></i>

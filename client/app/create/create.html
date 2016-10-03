@@ -86,9 +86,8 @@
         <div class="field input" ng-class="{'disabled': currentUser().name === undefined || currentUser().isVerified === false}">
           <label>Version</label>
           <div class="ui left icon input">
-            <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version" required>
+            <input ng-disabled="currentUser().name === undefined || currentUser().isVerified === false" ng-model="formData.version" type="text" placeholder="Version #" name="version" id="version">
             <i class="cubes icon"></i>
-            <p class="fieldRequired" ng-show="createToolForm.version.$invalid && !createToolForm.version.$pristine">Please enter a version number</p>
           </div>
         </div>
 
