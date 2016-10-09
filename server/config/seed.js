@@ -6,7 +6,7 @@
 'use strict';
 
 // var User = require('../api/user/user.model');
-
+//
 // User.find({}).remove(function() {
 //   User.create({
 //     provider: 'local',
@@ -30,7 +30,7 @@
 
 // var ToolList = require('../api/toolList/toolList.model');
 // var Tool     = require('../api/tool/tool.model');
-// 
+//
 // function populate(desiredList, allTools) {
 //   desiredList.tools.forEach(function(toolInList) {
 //     allTools.forEach(function(tool) {
@@ -48,4 +48,3 @@
 //     });
 //   });
 // });
-

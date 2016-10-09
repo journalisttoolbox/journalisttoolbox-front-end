@@ -59,7 +59,6 @@
       $scope.toolList = toolList[0];
 
       $scope.loadsTools($scope.toolList.tools);
-      console.log($scope.toolList.tools);
     }, function(err) {
       if(err.status === 404) $scope.errors.noList = true;
       if(err.status) $scope.errors.error = err.message;
