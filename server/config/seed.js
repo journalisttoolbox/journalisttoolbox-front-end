@@ -17,7 +17,8 @@
 //     tools: [],
 //     toolLists: [],
 //     favourites: [],
-//     password: 'newsr00m'
+//     password: 'newsr00m',
+//     isVerified: true,
 //   }, function() {
 //       console.log('finished populating users');
 //     }
