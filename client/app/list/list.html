@@ -40,7 +40,8 @@
           <span ng-repeat="tag in tool.tags">{{tag}}{{$last? '' : ', '}}</span>
         </div>
         <div style="margin-top:10px;" class="desciption" ui-sref="tool({id: tool._id})">
-          {{tool.description | limitTo: 120 }}{{tool.description.length > 120 ? '...' : ''}}
+          <strong><em>{{tool.jtWhat}}</em></strong> <br><br>
+          {{tool.jtWhy}}
         </div>
       </div>
       <div class="extra content">
